@@ -10,9 +10,7 @@ const title = 'Dashboard';
 
 ReactDOM.render(
   <div>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-    {title}
+    <h3>{title}</h3>
     <App />
     <Button>mybutton22</Button>
     <TextField

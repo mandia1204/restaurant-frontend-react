@@ -40,7 +40,7 @@ module.exports = {
       }),
       new HtmlWebpackPlugin({
         title: 'Restaurant app',
-        template: 'index.template.html'
+        template: './webpack/index.template.html'
       }),
       new CleanWebpackPlugin(['dist'], {
         // exclude:  ['oli.html'],

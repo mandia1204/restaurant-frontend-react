@@ -37,7 +37,7 @@ module.exports = merge(baseConfig, {
       new HtmlWebpackPlugin({
         filename: '../dist/index.html',
         title: 'Restaurant app',
-        template: 'index.template.html'
+        template: 'webpack/index.template.html'
       }),
       new CleanWebpackPlugin(['dist'], {
         root: path.resolve(__dirname, '..'),
