@@ -1,15 +1,17 @@
+import LocalStorageWrapper from '../../util/LocalStorageWrapper';
+
 const AuthClient = () => {
+    const localStorageWrapper = LocalStorageWrapper();
     const authenticate = () => {
-        localStorage.setItem('authenticated', true);
-        return 'token1234';
+        localStorageWrapper.save('authenticated', true);
     };
 
     const logout = () => {
-        localStorage.setItem('authenticated', false);
+        localStorageWrapper.save('authenticated', false);
     };
 
     const isAuthenticated = () => {
-        return localStorage.getItem('authenticated') === 'true';
+        return localStorageWrapper.get('authenticated') === 'true';
     };
 
     return {

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import HeaderContainer from './navBar/HeaderContainer';
 import Main from './Main';
-class App extends React.Component {
+class AppContainer extends React.Component {
   render() {
     return (
       <div>
@@ -13,4 +13,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default AppContainer;
