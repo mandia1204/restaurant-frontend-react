@@ -6,6 +6,7 @@ import UserInfo from './UserInfo';
 import AuthClient from '../../api/security/AuthClient';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class HeaderContainer extends Component {
     constructor(props){
@@ -27,14 +28,25 @@ class HeaderContainer extends Component {
               <NavBar />
               <Filters />
               <UserInfo logout={this.logout} />
+              <span>Charts: {this.props.dashboard.charts.length}</span>
+              <span>Bars: {this.props.dashboard.bars.length}</span>
           </AppBar>
         </header>
       );
     }
   }
 
-  HeaderContainer.propTypes = {
-    history: PropTypes.object
+  const mapStateToProps = state => {
+    const { dashboard } = state;
+    return {
+      dashboard
+    };
   };
 
-  export default withRouter(HeaderContainer);
+  HeaderContainer.propTypes = {
+    history: PropTypes.object,
+    dashboard: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+
+  export default connect(mapStateToProps)(withRouter(HeaderContainer));
