@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { addChart } from '../../state/actions/DashboardActions';
+import { addChart, fetchDashboard } from '../../state/actions/DashboardActions';
 
 class DashboardContainer extends Component {
 
   constructor(props){
     super(props);
     this.state = { chartName: '' };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchDashboard({}));
   }
 
   addChart = () => {
