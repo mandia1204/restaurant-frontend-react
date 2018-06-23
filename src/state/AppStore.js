@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promiseMiddleware from 'redux-promise-middleware';
-import { AppReducer } from './reducers/AppReducer';
+import { RootReducer } from './reducers/RootReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -11,5 +11,5 @@ const enhancer = composeEnhancers(
 );
 
 export const createAppStore = () => {
-    return createStore(AppReducer, enhancer);
+    return createStore(RootReducer, enhancer);
 };

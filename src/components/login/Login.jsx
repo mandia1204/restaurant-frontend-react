@@ -3,6 +3,8 @@ import AuthClient from '../../api/security/AuthClient';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { showNavLinks } from '../../state/actions/AppActions';
 
 class Login extends React.Component {
   constructor(props){
@@ -14,6 +16,7 @@ class Login extends React.Component {
     const authClient = AuthClient();
     authClient.authenticate();
     this.props.history.push('/');
+    this.props.dispatch(showNavLinks(true));
   }
 
   render() {
@@ -28,8 +31,16 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
-  history: PropTypes.object
+const mapStateToProps = state => {
+  const { appState } = state;
+  return {
+    appState
+  };
 };
 
-export default withRouter(Login);
+Login.propTypes = {
+  history: PropTypes.object,
+  dispatch: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps)(withRouter(Login));
