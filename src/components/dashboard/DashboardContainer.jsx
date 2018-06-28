@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { addChart, fetchDashboard } from '../../state/actions/DashboardActions';
+import Grid from '@material-ui/core/Grid';
 
 class DashboardContainer extends Component {
 
@@ -30,13 +31,19 @@ class DashboardContainer extends Component {
   render() {
     return (
       <div>
-        <h1>Dashboard soon...</h1>
-        <span>Charts: {this.props.dashboard.charts.length}</span>
-        <span>Bars: {this.props.dashboard.bars.length}</span>
-        <div>
-          <TextField onChange={this.updateState} value={this.state.chartName} label="chart" />
-          <Button onClick={this.addChart}>Add chart</Button>
-        </div>
+        
+        <Grid container>
+          <Grid item xs={12}>
+            <h1>Dashboard soon...</h1>
+
+            <span>Charts: {this.props.dashboard.charts.length}</span>
+            <span>Bars: {this.props.dashboard.bars.length}</span>
+            <div>
+              <TextField onChange={this.updateState} value={this.state.chartName} label="chart" />
+              <Button onClick={this.addChart}>Add chart</Button>
+            </div>
+          </Grid>
+        </Grid>
       </div>
     );
   }

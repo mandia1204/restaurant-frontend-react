@@ -8,6 +8,15 @@ import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showNavLinks } from '../../state/actions/AppActions';
+import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  }
+};
 
 class HeaderContainer extends Component {
     constructor(props){
@@ -26,11 +35,19 @@ class HeaderContainer extends Component {
     render() {
       return (
         <AppBar position="static">
-              <NavBar showLinks={this.props.appState.showHeaderLinks} />
-              <Filters />
-              { this.props.appState.showHeaderLinks ? <UserInfo logout={this.logout} /> : null }
-              <span>Charts: {this.props.dashboard.charts.length}</span>
-              <span>Bars: {this.props.dashboard.bars.length}</span>
+            <Toolbar>
+              <Grid container spacing={8}>
+                <Grid item xs>
+                  <NavBar showLinks={this.props.appState.showHeaderLinks} />  
+                </Grid>
+                <Grid item xs={6}>
+                  { this.props.appState.showHeaderLinks && <Filters /> }
+                </Grid>
+                <Grid item xs>
+                  { this.props.appState.showHeaderLinks && <UserInfo logout={this.logout} /> }
+                </Grid>
+              </Grid>
+            </Toolbar>
         </AppBar>
       );
     }
@@ -51,4 +68,4 @@ class HeaderContainer extends Component {
     dispatch: PropTypes.func.isRequired
   };
 
-  export default connect(mapStateToProps)(withRouter(HeaderContainer));
+  export default connect(mapStateToProps)(withRouter(withStyles(styles)(HeaderContainer)));

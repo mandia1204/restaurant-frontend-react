@@ -36,6 +36,7 @@ module.exports = (env) => {
       new HtmlWebpackHarddiskPlugin(),
       new CleanWebpackPlugin([bundleFolder], {
         root: path.resolve(__dirname, '..'),
+        exclude:  ['Favicon.ico'],
         verbose:  true,
         dry:      false
       })

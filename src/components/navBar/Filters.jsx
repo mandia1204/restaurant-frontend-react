@@ -1,12 +1,13 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 
 const Filters = () => (
     <div>
-        <TextField
-          id="name"
-          label="Name"
-          margin="normal"
+        <Input
+            placeholder="enter a filter..."
+            inputProps={{
+            'aria-label': 'Description',
+            }}
         />
     </div>
 );
