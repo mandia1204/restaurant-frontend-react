@@ -1,15 +1,16 @@
 import Colors from '../../util/Colors';
+import { ChartColors } from './ChartConfig';
 
-const barFormat = (datasets, chartColors) => {
+const barFormat = (datasets) => {
     const formatProps = {
-        backgroundColor: chartColors.map(c=> Colors[c].light),
-        borderColor: chartColors.map(c=> Colors[c].normal),
+        backgroundColor: ChartColors['bar'].map(c=> Colors[c].light),
+        borderColor: ChartColors['bar'].map(c=> Colors[c].normal),
         borderWidth: 1
     };
     return datasets.map(ds => Object.assign({}, ds, formatProps));
 };
 
-const lineFormat = (datasets, chartColors) => {
+const lineFormat = (datasets) => {
     const getProps = (color) => ({
         backgroundColor: color.light,
         borderColor: color.dark,
@@ -18,6 +19,7 @@ const lineFormat = (datasets, chartColors) => {
         pointHighlightFill: '#fff',
         pointHighlightStroke: color.dark
     });
+    const chartColors = ChartColors['line'];
 
     return datasets.map((ds, index) => {
         const color = Colors[chartColors[index]];
@@ -25,10 +27,10 @@ const lineFormat = (datasets, chartColors) => {
     });
 };
 
-const pieFormat = (datasets, chartColors) => {
+const pieFormat = (datasets) => {
     const formatProps = {
-        backgroundColor: chartColors.map(c=> Colors[c].normal),
-        hoverBackgroundColor: chartColors.map(c=> Colors[c].dark)
+        backgroundColor: ChartColors['pie'].map(c=> Colors[c].normal),
+        hoverBackgroundColor: ChartColors['pie'].map(c=> Colors[c].dark)
     };
     return datasets.map(ds => Object.assign({}, ds, formatProps));
 };

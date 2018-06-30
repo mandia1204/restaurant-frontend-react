@@ -2,8 +2,7 @@ import test from 'tape';
 import { ChartFormatter } from './ChartFormatter';
 
 test('ChartFormatter.generateChartBody(), passing chartData, returns chart with labels and ds', (assert) => {
-
-    var data = {
+    const data = {
         '2018': {
             'Septiembre': 70611,
             'Marzo': 42356,
@@ -12,9 +11,9 @@ test('ChartFormatter.generateChartBody(), passing chartData, returns chart with 
         }
     };
     
-    var result = ChartFormatter().generateChartBody(data);
+    const result = ChartFormatter().generateChartBody(data);
     
-    var expected = {
+    const expected = {
         labels: [
           'Septiembre',
           'Marzo',
@@ -33,7 +32,7 @@ test('ChartFormatter.generateChartBody(), passing chartData, returns chart with 
           }
         ]
     };
-    assert.deepEqual(result, expected, 'result structure is different');
-  
+
+    assert.deepEqual(result, expected, 'result structure should match expected.');
     assert.end();
 });
