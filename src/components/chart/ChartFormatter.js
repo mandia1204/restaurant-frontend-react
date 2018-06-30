@@ -2,7 +2,6 @@ import { ChartColors } from './ChartConfig';
 import { DataSetFormatter } from './DataSetFormatter';
 
 export const ChartFormatter = () => {
-    
     const generateChartBody = (data) => {
         const chart = { 'labels': [], 'datasets': [] };
         Object.keys(data).forEach((k, index) => {
@@ -26,6 +25,7 @@ export const ChartFormatter = () => {
     };
 
     return {
-        format: format,
+        generateChartBody,
+        format
     };
 };

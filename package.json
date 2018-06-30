@@ -8,7 +8,8 @@
     "build": "webpack --config ./webpack/prod.js",
     "build-dev": "webpack --config ./webpack/dev.js",
     "start-prod": "lws --port=9000 --dir=dist/",
-    "build-backup": "webpack --config ./webpack.config.js"
+    "build-backup": "webpack --config ./webpack.config.js",
+    "test": "babel-tape-runner src/**/*.test.js | faucet"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -16,11 +17,13 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "babel-tape-runner": "^2.0.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-react": "^7.9.1",
+    "faucet": "0.0.1",
     "html-webpack-harddisk-plugin": "^0.2.0",
     "html-webpack-plugin": "^4.0.0-alpha",
     "light-web-server": "^1.2.4",
@@ -29,6 +32,7 @@
     "react-hot-loader": "^4.1.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "tape": "^4.9.1",
     "webpack": "^4.6.0",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^2.0.15",
