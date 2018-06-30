@@ -1,4 +1,3 @@
-import { ChartColors } from './ChartConfig';
 import { DataSetFormatter } from './DataSetFormatter';
 
 export const ChartFormatter = () => {
@@ -20,8 +19,8 @@ export const ChartFormatter = () => {
 
     const format = (data, type) => {
         const chart = generateChartBody(data);
-        const dsFormatter = DataSetFormatter();
-        return dsFormatter[type](chart, ChartColors[type]);
+        const dataSetFormatted = DataSetFormatter()[type](chart.datasets);
+        return Object.assign({}, chart, { datasets: dataSetFormatted});
     };
 
     return {
