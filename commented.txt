@@ -1,0 +1,39 @@
+{/* <Grid container>
+          <Grid item xs={12}>
+            <h1>Dashboard soon...</h1>
+
+            <span>Charts: {this.props.dashboard.charts.length}</span>
+            <span>Bars: {this.props.dashboard.bars.length}</span>
+            <div>
+              <TextField onChange={this.updateState} value={this.state.chartName} label="chart" />
+              <Button onClick={this.addChart}>Add chart</Button>
+            </div>
+            <div>
+              
+            </div>
+          </Grid>
+        </Grid> */}
+
+
+//import Button from '@material-ui/core/Button';
+//import TextField from '@material-ui/core/TextField';
+
+{
+                bars: [{name: 'bar1'}, {name: 'bar2'}],
+                charts: [{name: 'chart1'}, {name: 'chart1'}]
+        }
+
+
+          addChart = () => {
+    const chart = { name: this.state.chartName};
+    this.props.dispatch(addChart(chart));
+    this.setState({ chartName: '' });
+  }
+
+  import { addChart, fetchDashboard } from '../../state/actions/DashboardActions';
+
+
+  updateState = (event) => {
+    const newState = {...this.state, chartName: event.target.value};
+    this.setState(newState);
+  }

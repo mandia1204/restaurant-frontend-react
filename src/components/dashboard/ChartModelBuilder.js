@@ -1,7 +1,5 @@
 import { ChartFormatter } from '../chart/ChartFormatter';
 
-//const getItem = (data, par, type) => ({ data: formatChart(data, par, type) });
-
 //converts data from api to chart model
 const generateChartModel = (data, par, type) => {
     const chartFormatter = ChartFormatter();

@@ -1,3 +1,5 @@
+import dashboardJson from '../../api/mocks/FullResponse';
+
 export const GET_DASHBOARD = 'GET_DASHBOARD';
 export const ADD_CHART = 'ADD_CHART';
 export const RECEIVE_DASHBOARD = 'RECEIVE_DASHBOARD';
@@ -5,17 +7,12 @@ export const RECEIVE_DASHBOARD = 'RECEIVE_DASHBOARD';
 
 const asyncOperation = (filters) => { // eslint-disable-line no-unused-vars
     return new Promise((resolve) => {
-        resolve({
-                bars: [{name: 'bar1'}, {name: 'bar2'}],
-                charts: [{name: 'chart1'}, {name: 'chart1'}]
-        });
+        setTimeout(function(){ resolve(dashboardJson); }, 200);
     });
 };
 
 export const fetchDashboard = filters => dispatch => {
-    return asyncOperation(filters).then((dashboard) => {
-        dispatch(receiveDashboard(dashboard));
-    });
+    return asyncOperation(filters).then(dashboard => dispatch(receiveDashboard(dashboard)));
 };
 
 export const getDashboard = () => {

@@ -1,8 +1,9 @@
 import { GET_DASHBOARD, RECEIVE_DASHBOARD , ADD_CHART } from '../actions/DashboardActions';
 
 const initialState = {
-    bars: [],
+    cards: null,
     charts: [],
+    anulaciones: []
 };
 
 export const DashboardReducer = (state = initialState, action) => {
