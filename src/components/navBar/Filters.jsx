@@ -1,15 +1,38 @@
 import React from 'react';
-import Input from '@material-ui/core/Input';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import { years, months } from '../../util/constants';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
-const Filters = () => (
+const styles = {
+    select: {
+        marginRight: '10px',
+        backgroundColor: 'white'
+    }
+};
+
+const onYearChange = (filtersChange) => (e) => {
+    filtersChange({year: e.target.value});
+};
+
+const onMonthChange = (filtersChange) => (e) => {
+    filtersChange({month: e.target.value});
+};
+
+const Filters = ({classes, filtersChange}) => (
     <div>
-        <Input
-            placeholder="enter a filter..."
-            inputProps={{
-            'aria-label': 'Description',
-            }}
-        />
+        <NativeSelect id="year-filter" onChange={onYearChange(filtersChange)} className= {classes.select}>
+            {years.map(val => <option key={val} value={val}>{val}</option> )}
+        </NativeSelect>
+        <NativeSelect id="month-filter" onChange={onMonthChange(filtersChange)}  className= {classes.select}>
+            {months.map(month => <option key={month.value} value={month.value}>{month.name}</option> )}
+        </NativeSelect>
     </div>
 );
 
-export default Filters;
+Filters.propTypes = {
+    classes: PropTypes.object.isRequired,
+    filtersChange: PropTypes.func.isRequired
+};
+
+export default withStyles(styles)(Filters);

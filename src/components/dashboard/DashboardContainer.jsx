@@ -5,6 +5,7 @@ import { fetchDashboard } from '../../state/actions/DashboardActions';
 import Grid from '@material-ui/core/Grid';
 import { Bar, Radar, Pie } from 'react-chartjs-2';
 import { ChartModelBuilder } from './ChartModelBuilder';
+import _ from 'lodash';
 
 class DashboardContainer extends Component {
 
@@ -22,12 +23,19 @@ class DashboardContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchDashboard({})).then(this.fetchComplete);
+    this.props.dispatch(fetchDashboard({}));
     this.chartModelBuilder = ChartModelBuilder();
   }
 
-  fetchComplete =(data) => {
-    const chartModel = this.chartModelBuilder.build(data.dashboard);
+  componentDidUpdate(prevProps) {
+    const dashboardUpdated = !_.isEqual(prevProps.dashboard.charts, this.props.dashboard.charts);
+    if(dashboardUpdated) {
+      this.updateChartModel(this.props.dashboard);
+    }
+  }
+
+  updateChartModel = (dashboard) => {
+    const chartModel = this.chartModelBuilder.build(dashboard);
     this.setState({
       chartModel
     });

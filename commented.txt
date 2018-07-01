@@ -59,3 +59,24 @@
     //     }
     //   ]
     // };
+
+            {/* <Input
+            placeholder="enter a filter..."
+            inputProps={{
+            'aria-label': 'Description',
+            }}
+        /> */}
+
+        //import Input from '@material-ui/core/Input';
+
+
+          fetchComplete =(data) => {
+    // const chartModel = this.chartModelBuilder.build(data.dashboard);
+    // this.setState({
+    //   chartModel
+    // });
+    this.updateChartModel(data.dashboard);
+  }
+
+      console.log('dashboard componentDidUpdate', prevProps.dashboard.charts, this.props.dashboard.charts);
+    console.log(_.isEqual(prevProps.dashboard.charts, this.props.dashboard.charts));

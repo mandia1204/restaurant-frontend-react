@@ -1,4 +1,5 @@
 import dashboardJson from '../../api/mocks/FullResponse';
+import dashboardJson2 from '../../api/mocks/FullResponse2';
 
 export const GET_DASHBOARD = 'GET_DASHBOARD';
 export const ADD_CHART = 'ADD_CHART';
@@ -7,7 +8,11 @@ export const RECEIVE_DASHBOARD = 'RECEIVE_DASHBOARD';
 
 const asyncOperation = (filters) => { // eslint-disable-line no-unused-vars
     return new Promise((resolve) => {
-        setTimeout(function(){ resolve(dashboardJson); }, 200);
+        if(filters.year){
+            setTimeout(function(){ resolve(dashboardJson2); }, 100);
+        }else{
+            setTimeout(function(){ resolve(dashboardJson); }, 100);
+        }
     });
 };
 

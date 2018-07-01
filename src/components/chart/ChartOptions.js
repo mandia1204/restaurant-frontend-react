@@ -20,7 +20,6 @@ const barOptions = (opts) => ({
 const radarOptions = (opts) => ({
     fontSize: 20,
     scale: {
-      //reverse: true,
       ticks: {
         beginAtZero: true,
         display: true
