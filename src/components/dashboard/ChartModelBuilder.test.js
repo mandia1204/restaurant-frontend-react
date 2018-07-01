@@ -1,7 +1,7 @@
 import test from 'tape';
 import { ChartModelBuilder } from './ChartModelBuilder';
 
-test('ChartModelBuilder.build(), passing data for VENTAS_ANUALES and ANULACIONES_DEL_MES, returns chart final model', (assert) => {
+test('ChartModelBuilder.build(), passing data for VENTAS_ANUALES and ANULACIONES_DEL_MES, returns chart data', (assert) => {
     const data = {
         charts: [
             {

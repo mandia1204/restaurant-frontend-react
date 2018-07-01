@@ -4,7 +4,7 @@ export const ChartColors = {
     'pie': ['blue', 'red', 'green', 'purple']
 };
   
-export const ChartOptions = {
+export const ChartOptionsConfig = {
     'VENTAS_ANUALES': { title: { text: 'Ventas anuales', position: 'left'} },
     'ANULACIONES_DEL_MES': { title: { text: 'Anulaciones del mes', position: 'top'} },
     'PRODUCTOS_VENDIDOS_DEL_MES': { title: { text: 'Productos vendidos', position: 'top'} },

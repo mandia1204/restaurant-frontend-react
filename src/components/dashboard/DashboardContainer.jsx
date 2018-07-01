@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchDashboard } from '../../state/actions/DashboardActions';
 import Grid from '@material-ui/core/Grid';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Radar, Pie } from 'react-chartjs-2';
 import { ChartModelBuilder } from './ChartModelBuilder';
 
 class DashboardContainer extends Component {
@@ -11,11 +11,12 @@ class DashboardContainer extends Component {
   constructor(props){
     super(props);
     this.state = { 
-      chartModel: {  
-        anulacionesMes: null, 
-        mozoMes: { data: {} }, 
-        platoMes: null , 
-        productosMes: null
+      chartModel: {
+        ventasAnuales:  { data: {}, options: {} },
+        anulacionesMes: { data: {}, options: {} }, 
+        mozoMes: { data: {}, options: {} }, 
+        platoMes: { data: {}, options: {} } , 
+        productosMes: { data: {}, options: {} }
       } 
     };
   }
@@ -33,97 +34,62 @@ class DashboardContainer extends Component {
   }
 
   render() {
-    //console.log('render');
-    // console.log('render: ',this.props.dashboard);
-    //this.chartModelBuilder.build();
-    // const data = {
-    //   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    //   datasets: [
-    //     {
-    //       label: 'My First dataset',
-    //       backgroundColor: 'rgba(255,99,132,0.2)',
-    //       borderColor: 'rgba(255,99,132,1)',
-    //       borderWidth: 1,
-    //       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-    //       hoverBorderColor: 'rgba(255,99,132,1)',
-    //       data: [65, 59, 80, 81, 56, 55, 40]
-    //     }
-    //   ]
-    // };
-
-    const data = this.state.chartModel.mozoMes.data;
-
     const height = 140;
-
+    const itemWitdh = 4;
     return (
-      <div>
+      <Fragment>
         <Grid container spacing={0}>
-          <Grid item xs={4}>
+          <Grid item xs={itemWitdh}>
               <Bar
-              data={data}
+              data={this.state.chartModel.mozoMes.data}
               height={height}
-              options={{
-                maintainAspectRatio: true
-              }}
+              options={this.state.chartModel.mozoMes.options}
             />
           </Grid>
-          {/* <Grid item xs={4}>
+           <Grid item xs={itemWitdh}>
               <Bar
-              data={data}
+              data={this.state.chartModel.ventasAnuales.data}
               height={height}
-              options={{
-                maintainAspectRatio: true
-              }}
+              options={this.state.chartModel.ventasAnuales.options} 
+              />
+          </Grid>
+          <Grid item xs={itemWitdh}>
+              <Bar
+              data={this.state.chartModel.platoMes.data}
+              height={height}
+              options={this.state.chartModel.platoMes.options} 
             />
           </Grid>
-          <Grid item xs={4}>
-              <Bar
-              data={data}
+          <Grid item xs={itemWitdh}>
+              <Radar
+              data={this.state.chartModel.anulacionesMes.data}
               height={height}
-              options={{
-                maintainAspectRatio: true
-              }}
+              options={this.state.chartModel.anulacionesMes.options}
             />
           </Grid>
-          <Grid item xs={4}>
-              <Bar
-              data={data}
+          <Grid item xs={itemWitdh}>
+              <Pie
+              data={this.state.chartModel.productosMes.data}
               height={height}
-              options={{
-                maintainAspectRatio: true
-              }}
+              options={this.state.chartModel.productosMes.options}
             />
           </Grid>
-          <Grid item xs={4}>
-              <Bar
-              data={data}
+          <Grid item xs={itemWitdh}>
+              <Pie
+              data={this.state.chartModel.productosMes.data}
               height={height}
-              options={{
-                maintainAspectRatio: true
-              }}
+              options={this.state.chartModel.productosMes.options}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={itemWitdh}>
               <Bar
-              data={data}
+              data={this.state.chartModel.platoMes.data}
               height={height}
-              options={{
-                maintainAspectRatio: true
-              }}
+              options={this.state.chartModel.platoMes.options} 
             />
           </Grid>
-          <Grid item xs={4}>
-              <Bar
-              data={data}
-              height={height}
-              options={{
-                maintainAspectRatio: true
-              }}
-            />
-          </Grid> */}
         </Grid>
-        
-      </div>
+      </Fragment>
     );
   }
 }

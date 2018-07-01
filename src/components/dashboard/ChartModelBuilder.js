@@ -1,12 +1,14 @@
 import { ChartFormatter } from '../chart/ChartFormatter';
+import { ChartOptions } from '../chart/ChartOptions';
+import { ChartOptionsConfig } from '../chart/ChartConfig';
 
 //converts data from api to chart model
-const generateChartModel = (data, par, type) => {
-    const chartFormatter = ChartFormatter();
-    const chart = data.charts.filter(c=> c.name === par)[0];
+const generateChartModel = (data, chartName, type) => {
+    const chart = data.charts.filter(c=> c.name === chartName)[0];
     if (!chart) return null;
     return {
-        data: chartFormatter.format(chart.data, type)
+        data: ChartFormatter().format(chart.data, type),
+        options: ChartOptions()[type](ChartOptionsConfig[chartName])
     };
 };
 
