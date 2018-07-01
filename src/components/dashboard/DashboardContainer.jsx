@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchDashboard } from '../../state/actions/DashboardActions';
+import { showFilters } from '../../state/actions/AppActions';
 import Grid from '@material-ui/core/Grid';
 import { Bar, Radar, Pie } from 'react-chartjs-2';
 import { ChartModelBuilder } from './ChartModelBuilder';
@@ -15,6 +16,11 @@ class DashboardContainer extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchDashboard({}));
+    this.props.dispatch(showFilters(true));
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(showFilters(false));
   }
   
   render() {
