@@ -5,7 +5,7 @@ import { ChartOptionsConfig } from '../chart/ChartConfig';
 //converts data from api to chart model
 const generateChartModel = (data, chartName, type) => {
     const chart = data.charts.filter(c=> c.name === chartName)[0];
-    if (!chart) return null;
+    if (!chart) return { data: {}, options: {}};
     return {
         data: ChartFormatter().format(chart.data, type),
         options: ChartOptions()[type](ChartOptionsConfig[chartName])
