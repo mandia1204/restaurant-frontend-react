@@ -4,9 +4,18 @@ import Home from './home/Home';
 import DashboardContainer from './dashboard/DashboardContainer';
 import PrivateRoute from './routing/PrivateRoute';
 import Login from './login/Login';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
-const Main = () => (
-  <main>
+const styles = {
+  main: {
+    padding: '5px 10px 0 10px'
+  }
+};
+
+const Main = ({classes}) => (
+
+  <main className={classes.main}>
     <Switch>
       <PrivateRoute exact path='/' component={Home}/>
       <PrivateRoute path='/dashboard' component={DashboardContainer}/>
@@ -15,4 +24,8 @@ const Main = () => (
   </main>
 );
 
-export default Main;
+Main.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Main);

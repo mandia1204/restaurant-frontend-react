@@ -27,6 +27,7 @@ module.exports = {
             'always'
         ],
         'react/jsx-uses-vars': ['error'],
-        //'no-console':'off'
+        //'no-console':'off',
+        //'no-unused-vars':'off'
     }
 };
