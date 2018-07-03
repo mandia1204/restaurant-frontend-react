@@ -1,6 +1,6 @@
 import test from 'tape';
 import { CardModelBuilder } from './CardModelBuilder';
-import { CardOptions } from '../../util/Constants';
+import { CardOptions } from '../../../util/Constants';
 
 test('CardModelBuilder.build(), passing dashboard cards, returns cards formatted data', (assert) => {
     const data = {

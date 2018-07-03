@@ -1,6 +1,6 @@
-import { ChartFormatter } from '../chart/ChartFormatter';
-import { ChartOptions } from '../chart/ChartOptions';
-import { ChartOptionsConfig } from '../chart/ChartConfig';
+import { ChartFormatter } from '../../chart/ChartFormatter';
+import { ChartOptions } from '../../chart/ChartOptions';
+import { ChartOptionsConfig } from '../../chart/ChartConfig';
 
 //converts data from api to chart model
 const generateChartModel = (charts, chartName, type) => {

@@ -1,4 +1,4 @@
-import { CardOptions } from '../../util/Constants';
+import { CardOptions } from '../../../util/Constants';
 
 const generateCardModel = (cards, cardName) => {
     const options = CardOptions[cardName];
