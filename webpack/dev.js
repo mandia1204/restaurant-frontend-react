@@ -23,6 +23,7 @@ module.exports = merge(baseConfig('dev'), {
   ],
   devServer: {
     contentBase: './build',
-    hot: true
+    hot: true,
+    historyApiFallback: true
   }
 });
