@@ -1,13 +1,19 @@
+import  CompareArrows from '@material-ui/icons/CompareArrows';
+import  LocalBar from '@material-ui/icons/LocalBar';
+import  Keyboard from '@material-ui/icons/Keyboard';
+import  Error from '@material-ui/icons/Error';
+import  Warning from '@material-ui/icons/Warning';
+
 const propsByType = {
-    'cambio': { icon: 'compare_arrows', color: 'green'},
-    'derrame': { icon: 'local_bar', color: 'light-blue'},
-    'digitación': { icon: 'keyboard', color: 'black'},
-    'producción': { icon: 'error', color: 'red'},
-    'default': { icon: 'warning', color: 'amber'}
+    'cambio': { icon: CompareArrows, color: 'green'},
+    'derrame': { icon: LocalBar, color: 'lightBlue'},
+    'digitación': { icon: Keyboard, color: 'indigo'},
+    'producción': { icon: Error, color: 'red'},
+    'default': { icon: Warning, color: 'amber'}
 };
 
 export const AnulacionesFormatter = () => {
-    const getTipo = (tipo) => propsByType[tipo] === undefined ? 'default' : tipo;
+    const getTipo = (tipo) => !propsByType[tipo] ? 'default' : tipo;
     
     const format = (anulaciones) => {
         return anulaciones.map(a => {

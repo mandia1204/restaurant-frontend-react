@@ -1,35 +1,32 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import PropTypes from 'prop-types';
+import List from '@material-ui/core/List';
+import AnulacionesItem from './AnulacionesItem';
 
 const styles = {
-    card: {
-        width: '100%',
-        backgroundColor: 'Yellow'
+    root: {
+      backgroundColor: 'white'
     },
-    cardAction: {
-        backgroundColor: 'orange'
+    list: {
+        maxHeight: '350px',
+        overflow:'auto'
     }
 };
 
-const Anulaciones = ({classes}) => (
-    <div>
-        <Card className={classes.card}>
-            <CardContent>
-                ANULACIONES
-            </CardContent>
-            <CardActions className={classes.cardAction}>
-                <span>Lista de anulaciones ...soon</span>
-            </CardActions>
-        </Card>
+const Anulaciones = ({classes, anulaciones}) => (
+    <div className={classes.root}>
+        <List className={classes.list}>
+            {anulaciones.map((a, k) => (
+                <AnulacionesItem key={k} anulacion={a} />
+            ))}
+      </List>
     </div>
 );
 
 Anulaciones.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    anulaciones: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(Anulaciones);

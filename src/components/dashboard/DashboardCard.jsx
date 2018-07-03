@@ -10,10 +10,10 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = {
     card: {
-        backgroundColor: props => colors[props.card.color][400]
+        backgroundColor: props => props.card.color? colors[props.card.color][400]: colors['amber']
     },
     cardAction: {
-        backgroundColor: props => colors[props.card.color][800]
+        backgroundColor: props => props.card.color? colors[props.card.color][800]: colors['amber']
     },
     cardContent: {
         color:'white'

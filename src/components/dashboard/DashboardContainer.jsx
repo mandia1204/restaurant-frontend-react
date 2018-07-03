@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import { Bar, Radar, Pie } from 'react-chartjs-2';
 import { ChartModelBuilder } from './ChartModelBuilder';
 import { CardModelBuilder } from './CardModelBuilder';
+import { AnulacionesFormatter } from './formatters/AnulacionesFormatter';
 import DashboardCard from './DashboardCard';
 import Anulaciones from './Anulaciones';
 
@@ -16,6 +17,7 @@ class DashboardContainer extends Component {
     super(props);
     this.chartModelBuilder = ChartModelBuilder();
     this.cardModelBuilder = CardModelBuilder();
+    this.anulacionesFormatter = AnulacionesFormatter();
   }
 
   componentDidMount() {
@@ -30,6 +32,7 @@ class DashboardContainer extends Component {
   render() {
     const chartModel = this.chartModelBuilder.build(this.props.dashboard.charts);
     const cardModel = this.cardModelBuilder.build(this.props.dashboard.cards);
+    const anulaciones  = this.anulacionesFormatter.format(this.props.dashboard.anulaciones);
     const height = 140;
     const itemWitdh = 4;
     return (
@@ -57,7 +60,7 @@ class DashboardContainer extends Component {
               />
           </Grid>
           <Grid item xs={itemWitdh}>
-              <Anulaciones/>
+              <Anulaciones anulaciones={anulaciones}/>
           </Grid>
           <Grid item xs={itemWitdh}>
               <Radar
@@ -73,7 +76,7 @@ class DashboardContainer extends Component {
               options={chartModel.productosMes.options}
               />
           </Grid>
-          <Grid item xs={3} justify="center">
+          <Grid item xs={3}>
             <DashboardCard card={cardModel.produccionDia} />
           </Grid>
           <Grid item xs={3}>
