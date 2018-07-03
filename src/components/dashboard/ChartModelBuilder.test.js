@@ -2,31 +2,29 @@ import test from 'tape';
 import { ChartModelBuilder } from './ChartModelBuilder';
 
 test('ChartModelBuilder.build(), passing data for VENTAS_ANUALES and ANULACIONES_DEL_MES, returns chart data', (assert) => {
-    const data = {
-        charts: [
-            {
-                name: 'VENTAS_ANUALES',
-                data: {
-                    2018: {
-                        'Septiembre': 70611,
-                        'Marzo': 42356
-                    }
-                }
-            },
-            {
-                name: 'ANULACIONES_DEL_MES',
-                data: {
-                    Mayo: {
-                        'otro': 15,
-                        'digitación': 20,
-                        'falta producción': 6,
-                        'derrame': 10,
-                        'cambio': 16
-                    }
+    const data = [
+        {
+            name: 'VENTAS_ANUALES',
+            data: {
+                2018: {
+                    'Septiembre': 70611,
+                    'Marzo': 42356
                 }
             }
-        ]
-    };
+        },
+        {
+            name: 'ANULACIONES_DEL_MES',
+            data: {
+                Mayo: {
+                    'otro': 15,
+                    'digitación': 20,
+                    'falta producción': 6,
+                    'derrame': 10,
+                    'cambio': 16
+                }
+            }
+        }
+    ];
     
     const result = ChartModelBuilder().build(data);
     
@@ -37,9 +35,7 @@ test('ChartModelBuilder.build(), passing data for VENTAS_ANUALES and ANULACIONES
 });
 
 test('ChartModelBuilder.build(), passing empty charts, returns empty chart data', (assert) => {
-    const data = {
-        charts: []
-    };
+    const data = [];
 
     const result = ChartModelBuilder().build(data);
     const expected = { 

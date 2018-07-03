@@ -1,4 +1,3 @@
-
 const LocalStorageWrapper = () => {
     const save = (key, value)=> {
         localStorage.setItem(key, value);

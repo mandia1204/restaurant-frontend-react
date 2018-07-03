@@ -3,8 +3,8 @@ import { ChartOptions } from '../chart/ChartOptions';
 import { ChartOptionsConfig } from '../chart/ChartConfig';
 
 //converts data from api to chart model
-const generateChartModel = (data, chartName, type) => {
-    const chart = data.charts.filter(c=> c.name === chartName)[0];
+const generateChartModel = (charts, chartName, type) => {
+    const chart = charts.filter(c=> c.name === chartName)[0];
     if (!chart) return { data: {}, options: {}};
     return {
         data: ChartFormatter().format(chart.data, type),
@@ -12,12 +12,12 @@ const generateChartModel = (data, chartName, type) => {
     };
 };
 
-const build = (data) => ({
-    ventasAnuales: generateChartModel(data, 'VENTAS_ANUALES', 'bar'),
-    anulacionesMes: generateChartModel(data, 'ANULACIONES_DEL_MES', 'radar'),
-    productosMes: generateChartModel(data, 'PRODUCTOS_VENDIDOS_DEL_MES', 'pie'),
-    mozoMes: generateChartModel(data, 'MOZO_DEL_MES', 'bar'),
-    platoMes: generateChartModel(data, 'PLATOS_VENDIDOS_DEL_MES', 'bar')
+const build = (charts) => ({
+    ventasAnuales: generateChartModel(charts, 'VENTAS_ANUALES', 'bar'),
+    anulacionesMes: generateChartModel(charts, 'ANULACIONES_DEL_MES', 'radar'),
+    productosMes: generateChartModel(charts, 'PRODUCTOS_VENDIDOS_DEL_MES', 'pie'),
+    mozoMes: generateChartModel(charts, 'MOZO_DEL_MES', 'bar'),
+    platoMes: generateChartModel(charts, 'PLATOS_VENDIDOS_DEL_MES', 'bar')
 });
 
 export const ChartModelBuilder = () => {

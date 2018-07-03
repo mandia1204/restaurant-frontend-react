@@ -1,7 +1,7 @@
 import { GET_DASHBOARD, RECEIVE_DASHBOARD , ADD_CHART } from '../actions/DashboardActions';
 
 const initialState = {
-    cards: null,
+    cards: {},
     charts: [],
     anulaciones: []
 };

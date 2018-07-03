@@ -6,6 +6,7 @@ import { showFilters } from '../../state/actions/AppActions';
 import Grid from '@material-ui/core/Grid';
 import { Bar, Radar, Pie } from 'react-chartjs-2';
 import { ChartModelBuilder } from './ChartModelBuilder';
+import { CardModelBuilder } from './CardModelBuilder';
 import DashboardCard from './DashboardCard';
 import Anulaciones from './Anulaciones';
 
@@ -14,6 +15,7 @@ class DashboardContainer extends Component {
   constructor(props){
     super(props);
     this.chartModelBuilder = ChartModelBuilder();
+    this.cardModelBuilder = CardModelBuilder();
   }
 
   componentDidMount() {
@@ -26,7 +28,8 @@ class DashboardContainer extends Component {
   }
   
   render() {
-    const chartModel = this.chartModelBuilder.build(this.props.dashboard);
+    const chartModel = this.chartModelBuilder.build(this.props.dashboard.charts);
+    const cardModel = this.cardModelBuilder.build(this.props.dashboard.cards);
     const height = 140;
     const itemWitdh = 4;
     return (
@@ -70,17 +73,17 @@ class DashboardContainer extends Component {
               options={chartModel.productosMes.options}
               />
           </Grid>
-          <Grid item xs={3}>
-            <DashboardCard />
+          <Grid item xs={3} justify="center">
+            <DashboardCard card={cardModel.produccionDia} />
           </Grid>
           <Grid item xs={3}>
-            <DashboardCard />
+            <DashboardCard card={cardModel.paxDia} />
           </Grid>
           <Grid item xs={3}>
-            <DashboardCard />
+            <DashboardCard card={cardModel.ticketPromedioDia} />
           </Grid>
           <Grid item xs={3}>
-            <DashboardCard />
+            <DashboardCard card={cardModel.ventaDia} />
           </Grid>
         </Grid>
       </Fragment>

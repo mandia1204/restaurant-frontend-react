@@ -38,3 +38,20 @@ test('CardModelBuilder.build(), passing dashboard cards, returns cards formatted
 
     assert.end();
 });
+
+test('CardModelBuilder.build(), passing empty cards object, returns cards with empty values', (assert) => {
+    const data = {};
+    
+    const result = CardModelBuilder().build(data);
+
+    const expected = {
+        produccionDia: {},
+        ventaDia: {},
+        paxDia: {},
+        ticketPromedioDia: {}
+    };
+
+    assert.deepEqual(result, expected, 'structures should be equal.');
+
+    assert.end();
+});

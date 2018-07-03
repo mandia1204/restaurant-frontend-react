@@ -3,6 +3,11 @@ import { CardOptions } from '../../util/Constants';
 const generateCardModel = (cards, cardName) => {
     const options = CardOptions[cardName];
     const card = cards[cardName];
+
+    if(!card) {
+        return {};
+    }
+
     return {...card, ...options, ...{ valueFormatted: options.format.replace('${0}', card.value)}};
 };
 
