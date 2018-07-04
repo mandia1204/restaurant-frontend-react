@@ -1,7 +1,6 @@
 //import { DashboardClient } from '../../api/DashboardClient';
 import { DashboardClient } from '../../api/mocks/DashboardClient';
 export const GET_DASHBOARD = 'GET_DASHBOARD';
-export const ADD_CHART = 'ADD_CHART';
 export const RECEIVE_DASHBOARD = 'RECEIVE_DASHBOARD';
 
 const client = DashboardClient();
@@ -16,8 +15,4 @@ export const getDashboard = () => {
 
 export const receiveDashboard = (dashboard) => {
     return { type: RECEIVE_DASHBOARD, dashboard };
-};
-
-export const addChart = (chart) => {
-    return { type: ADD_CHART, chart };
 };

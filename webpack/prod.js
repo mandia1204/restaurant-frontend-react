@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const merge = require('webpack-merge');
 const baseConfig = require('./base.js');
+const webpack = require('webpack');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(baseConfig('prod'), {
@@ -29,8 +30,12 @@ module.exports = merge(baseConfig('prod'), {
       new MiniCssExtractPlugin({
         filename: "[name].css",
         chunkFilename: "[id].css"
-      })
-      //,new BundleAnalyzerPlugin()
+      }),
+      new webpack.ContextReplacementPlugin(
+        /moment[\/\\]locale$/,
+        /es/
+      )
+      // ,new BundleAnalyzerPlugin()
     ],
     output: {
       filename: '[name].js'

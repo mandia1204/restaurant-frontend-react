@@ -1,4 +1,4 @@
-import { GET_DASHBOARD, RECEIVE_DASHBOARD , ADD_CHART } from '../actions/DashboardActions';
+import { GET_DASHBOARD, RECEIVE_DASHBOARD } from '../actions/DashboardActions';
 
 const initialState = {
     cards: {},
@@ -12,8 +12,6 @@ export const DashboardReducer = (state = initialState, action) => {
             return state;
         case RECEIVE_DASHBOARD:
             return action.dashboard;
-        case ADD_CHART:
-            return {...state, charts: [...state.charts, action.chart] };
         default:
             return state;
     }

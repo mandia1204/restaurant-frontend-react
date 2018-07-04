@@ -1,15 +1,19 @@
 {
   "name": "my-app",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "version": "0.1.0",
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack/dev.js --mode development",
-    "build": "webpack --config ./webpack/prod.js",
-    "build-dev": "webpack --config ./webpack/dev.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack/dev.js --mode development",
+    "build": "cross-env BABEL_ENV=production webpack --config ./webpack/prod.js",
+    "build-dev": "cross-env NODE_ENV=development webpack --config ./webpack/dev.js",
     "start-prod": "lws --port=9000 --dir=dist/",
-    "build-backup": "webpack --config ./webpack.config.js",
-    "test": "babel-tape-runner src/**/*.test.js | faucet"
+    "build-backup": "cross-env BABEL_ENV=production webpack --config ./webpack.config.js",
+    "test": "cross-env BABEL_ENV=test babel-tape-runner src/**/*.test.js | faucet"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -20,6 +24,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-tape-runner": "^2.0.1",
     "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",

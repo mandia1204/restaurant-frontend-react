@@ -3,7 +3,7 @@ import React from 'react';
 class Home extends React.Component {
   render() {
     return (
-      <div>
+      <div className="colortest">
         Welcome to the jungle!!!
       </div>
     );

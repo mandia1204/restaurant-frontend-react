@@ -43,14 +43,18 @@ module.exports = {
         template: './webpack/index.template.html'
       }),
       new CleanWebpackPlugin(['dist'], {
-        // exclude:  ['oli.html'],
+        exclude:  ['Favicon.ico'],
         verbose:  true,
         dry:      false
      }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[id].css'
-      })
+      }),
+      new webpack.ContextReplacementPlugin(
+        /moment[\/\\]locale$/,
+        /es/
+      )
     ]
     ,
     output: {

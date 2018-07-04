@@ -1,7 +1,17 @@
 {
-  "presets": [
-    "env",
-    "react",
-    "stage-2"
-  ]
+  "env": {
+    "production": {
+      "presets": [
+        [ "env", { "modules": false } ], 
+        "react", 
+        "stage-2"
+      ]
+    },
+    "test": {
+      "presets": ["env", "react", "stage-2"]
+    },
+    "development": {
+      "presets": ["env", "react", "stage-2"]
+    }
+  }
 }

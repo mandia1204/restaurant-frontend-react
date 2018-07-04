@@ -186,3 +186,5 @@ export default connect(mapStateToProps)(DashboardContainer);
       // this.setState({
       //   filters: filters
       // });
+
+  "react-scripts": "1.1.4",

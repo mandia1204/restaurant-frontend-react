@@ -7,3 +7,6 @@ https://redux.js.org/advanced/async-actions
 
 colors:
 https://material-ui.com/style/color/
+
+webpack treeshaking with babel:
+https://medium.com/@johnstew/webpack-tree-shaking-20914b7a9ca5
