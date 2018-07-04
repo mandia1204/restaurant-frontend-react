@@ -3,6 +3,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import { years, months } from '../../util/Constants';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
     select: {
@@ -20,14 +21,14 @@ const onMonthChange = (filtersChange) => (e) => {
 };
 
 const Filters = ({classes, filtersChange}) => (
-    <div>
+    <Grid item>
         <NativeSelect id="year-filter" onChange={onYearChange(filtersChange)} className= {classes.select}>
             {years.map(val => <option key={val} value={val}>{val}</option> )}
         </NativeSelect>
         <NativeSelect id="month-filter" onChange={onMonthChange(filtersChange)}  className= {classes.select}>
             {months.map(month => <option key={month.value} value={month.value}>{month.name}</option> )}
         </NativeSelect>
-    </div>
+    </Grid>
 );
 
 Filters.propTypes = {

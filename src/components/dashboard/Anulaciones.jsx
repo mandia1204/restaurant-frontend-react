@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import AnulacionesItem from './AnulacionesItem';
-
+import Divider from '@material-ui/core/Divider';
 const styles = {
     root: {
       backgroundColor: 'white'
@@ -18,7 +18,10 @@ const Anulaciones = ({classes, anulaciones}) => (
     <div className={classes.root}>
         <List className={classes.list}>
             {anulaciones.map((a, k) => (
-                <AnulacionesItem key={k} anulacion={a} />
+                <Fragment key={k}>
+                    <AnulacionesItem anulacion={a} />
+                    <Divider />
+                </Fragment>
             ))}
       </List>
     </div>

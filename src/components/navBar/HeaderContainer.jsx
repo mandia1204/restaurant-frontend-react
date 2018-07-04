@@ -44,10 +44,18 @@ class HeaderContainer extends Component {
                   { this.props.appState.showHeaderLinks && <NavBar showLinks={this.props.appState.showHeaderLinks} /> }  
                 </Grid>
                 <Grid item xs={6}>
-                  { this.props.appState.showHeaderLinks && this.props.appState.showFilters && <Filters filtersChange={this.onFiltersChange} /> }
+                  { this.props.appState.showHeaderLinks && this.props.appState.showFilters && 
+                    <Grid container alignItems="center" style={{ height: '100%' }}>
+                      <Filters filtersChange={this.onFiltersChange} />
+                    </Grid> 
+                  }
                 </Grid>
                 <Grid item xs>
-                  { this.props.appState.showHeaderLinks && <UserInfo logout={this.logout} /> }
+                  { this.props.appState.showHeaderLinks && 
+                    <Grid container justify="flex-end">
+                      <UserInfo logout={this.logout} /> 
+                    </Grid>
+                  }
                 </Grid>
               </Grid>
             </Toolbar>
