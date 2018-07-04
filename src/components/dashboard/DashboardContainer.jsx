@@ -10,6 +10,7 @@ import { CardModelBuilder } from './builders/CardModelBuilder';
 import { AnulacionesFormatter } from './formatters/AnulacionesFormatter';
 import DashboardCard from './DashboardCard';
 import Anulaciones from './Anulaciones';
+import { Ops } from '../../util/Constants';
 
 class DashboardContainer extends Component {
 
@@ -21,7 +22,8 @@ class DashboardContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchDashboard({}));
+    const filters = {...this.props.appState.dashboardFilters, ops: Ops.all };
+    this.props.dispatch(fetchDashboard(filters));
     this.props.dispatch(showFilters(true));
   }
 
@@ -95,14 +97,16 @@ class DashboardContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  const { dashboard } = state;
+  const { dashboard, appState } = state;
   return {
-    dashboard
+    dashboard,
+    appState
   };
 };
 
 DashboardContainer.propTypes = {
   dashboard: PropTypes.object.isRequired,
+  appState: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 

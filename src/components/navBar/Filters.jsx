@@ -13,19 +13,19 @@ const styles = {
 };
 
 const onYearChange = (filtersChange) => (e) => {
-    filtersChange({year: e.target.value});
+    filtersChange({year: parseInt(e.target.value)});
 };
 
 const onMonthChange = (filtersChange) => (e) => {
-    filtersChange({month: e.target.value});
+    filtersChange({month: parseInt(e.target.value)});
 };
 
-const Filters = ({classes, filtersChange}) => (
+const Filters = ({classes, values, filtersChange}) => (
     <Grid item>
-        <NativeSelect id="year-filter" onChange={onYearChange(filtersChange)} className= {classes.select}>
+        <NativeSelect id="year-filter" value={values.year} onChange={onYearChange(filtersChange)} className= {classes.select}>
             {years.map(val => <option key={val} value={val}>{val}</option> )}
         </NativeSelect>
-        <NativeSelect id="month-filter" onChange={onMonthChange(filtersChange)}  className= {classes.select}>
+        <NativeSelect id="month-filter" value={values.month} onChange={onMonthChange(filtersChange)}  className= {classes.select}>
             {months.map(month => <option key={month.value} value={month.value}>{month.name}</option> )}
         </NativeSelect>
     </Grid>
@@ -33,6 +33,7 @@ const Filters = ({classes, filtersChange}) => (
 
 Filters.propTypes = {
     classes: PropTypes.object.isRequired,
+    values: PropTypes.object.isRequired,
     filtersChange: PropTypes.func.isRequired
 };
 

@@ -163,3 +163,26 @@ DashboardContainer.propTypes = {
 };
 
 export default connect(mapStateToProps)(DashboardContainer);
+
+// const asyncOperation = (filters) => { // eslint-disable-line no-unused-vars
+//     return new Promise((resolve) => {
+//         if(filters.year){
+//             setTimeout(function(){ resolve(dashboardJson2); }, 100);
+//         }else{
+//             setTimeout(function(){ resolve(dashboardJson); }, 100);
+//         }
+//     });
+// };
+
+// export const fetchDashboard = filters => dispatch => {
+//     return asyncOperation(filters).then(dashboard => dispatch(receiveDashboard(dashboard)));
+// };
+
+// import dashboardJson from '../../api/mocks/FullResponse';
+// import dashboardJson2 from '../../api/mocks/FullResponse2';
+
+ //this.props.appState.dashboardFilters
+      //const filters = Object.assign({}, this.state.filters, filter);
+      // this.setState({
+      //   filters: filters
+      // });
