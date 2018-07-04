@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const merge = require('webpack-merge');
 const baseConfig = require('./base.js');
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(baseConfig('prod'), {
     entry: {
@@ -29,6 +30,7 @@ module.exports = merge(baseConfig('prod'), {
         filename: "[name].css",
         chunkFilename: "[id].css"
       })
+      //,new BundleAnalyzerPlugin()
     ],
     output: {
       filename: '[name].js'
