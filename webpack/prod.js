@@ -32,7 +32,7 @@ module.exports = merge(baseConfig('prod'), {
         chunkFilename: "[id].css"
       }),
       new webpack.ContextReplacementPlugin(
-        /moment[\/\\]locale$/,
+        /moment[/\\]locale$/,
         /es/
       )
       // ,new BundleAnalyzerPlugin()

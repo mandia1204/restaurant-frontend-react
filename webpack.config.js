@@ -52,7 +52,7 @@ module.exports = {
         chunkFilename: '[id].css'
       }),
       new webpack.ContextReplacementPlugin(
-        /moment[\/\\]locale$/,
+        /moment[/\\]locale$/,
         /es/
       )
     ]
