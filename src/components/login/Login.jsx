@@ -10,10 +10,6 @@ import { Formik } from 'formik';
 class Login extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      userName: 'matt',
-      password: '1234'
-    };
     this.authClient = AuthClient();
   }
 
@@ -43,7 +39,10 @@ class Login extends React.Component {
   render() {
     return (
       <Formik
-        initialValues = {this.state}
+        initialValues = {{
+          userName: 'matt',
+          password: '1234'
+        }}
         render={(props) => (<LoginForm {...props} />)}
         onSubmit= {this.onSubmit}
         validate= {this.validate}

@@ -1,44 +1,29 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import InputText from '../controls/InputText';
 
-const styles = theme => ({
+const styles = {
     container: {
       display: 'flex',
       flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
-      width: 200,
     }
-  });
+};
 
 const LoginForm = ({ classes, values , handleChange, handleBlur, handleSubmit, isSubmitting, touched, errors}) => {
-    const handlers = {onChange: handleChange, onBlur: handleBlur};
+    const textProps = {onChange: handleChange, onBlur: handleBlur, errors, touched};
     return (
         <form className={classes.container}  onSubmit={handleSubmit} autoComplete="off">
           <h1>Login please</h1>
           <Grid container direction='column'>
             <Grid item>
-              <TextField
-                label="User name" name="userName" className={classes.textField} margin="normal"
-                value={values.userName}
-                {...handlers}
-              />
+              <InputText fieldName='userName' label='User name' value={values.userName} {...textProps} />
             </Grid>
             <Grid item>
-              <TextField type="password" label="Password" name="password" margin="normal" autoComplete="current-password"
-                className={classes.textField}
-                value={values.password}
-                {...handlers}
-              />
+              <InputText type="password" autoComplete="current-password" fieldName='password' label='Password' value={values.password} {...textProps} />
             </Grid>
-            { touched.userName && errors.userName && <div>{errors.userName}</div>}
-            { touched.password && errors.password && <div>{errors.password}</div>}
             <Grid item>
               <Button color="primary" type="submit" disabled={isSubmitting}>Login</Button>
             </Grid>
