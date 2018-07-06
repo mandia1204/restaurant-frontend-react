@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import AuthClient from '../../api/security/AuthClient';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
@@ -14,18 +14,27 @@ class Login extends React.Component {
       userName: 'matt',
       password: '1234'
     };
-    this.authClient = AuthClient();
   }
 
   login = () => {
-    this.authClient.authenticate();
+    const authClient = AuthClient();
+    authClient.authenticate();
     this.props.history.push('/');
     this.props.dispatch(showNavLinks(true));
   }
 
-  onSubmit = (...args) => {
-    this.login();
-    args[1].setSubmitting(false);
+  onFieldChange =  (handleChange) => e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+
+    return handleChange(e);
+  };
+
+  onSubmit = (values, { setSubmitting }) => {
+    setTimeout(() => {
+                setSubmitting(false);
+    }, 3000);
   }
 
   validate = (values) => {
@@ -42,13 +51,23 @@ class Login extends React.Component {
 
   render() {
     return (
+      <Fragment>
       <Formik
         initialValues = {this.state}
-        render={(props) => (<LoginForm {...props} />)}
+        render={
+          (props) => (
+          <LoginForm
+            loginData={this.state}
+            {...props}
+            handleChange={this.onFieldChange(props.handleChange)}
+           />)
+        }
         onSubmit= {this.onSubmit}
         validate= {this.validate}
         validateOnChange={false}
       />
+      <div>{this.state.userName}</div>
+      </Fragment>
     );
   }
 }
