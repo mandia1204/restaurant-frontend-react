@@ -1,8 +1,9 @@
 import axios from 'axios';
+import config from './apiConfig';
 
 const http = axios.create({
-    baseURL: 'http://localhost:5000/api/',
-    timeout: 1000
+    baseURL: config.dashboardUri,
+    timeout: config.timeout
 });
 
 export const DashboardClient = () => {

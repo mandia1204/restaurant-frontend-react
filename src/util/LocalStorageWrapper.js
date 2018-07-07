@@ -7,9 +7,14 @@ const LocalStorageWrapper = () => {
         return localStorage.getItem(key);
     };
 
+    const remove = (key) => {
+        localStorage.removeItem(key);
+    };
+
     return {
-        save: save,
-        get: get
+        save,
+        get,
+        remove
     };
 };
 

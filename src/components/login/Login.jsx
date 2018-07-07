@@ -13,15 +13,28 @@ class Login extends React.Component {
     this.authClient = AuthClient();
   }
 
-  login = () => {
-    this.authClient.authenticate();
+  login = (user, setSubmitting) => {
+    this.authClient.authenticate(user).then(response => {
+      setSubmitting(false);
+      if(response.success) {
+        this.loginSuccess();
+      }else {
+        this.loginFail();
+      }
+    });
+  }
+
+  loginSuccess = () => {
     this.props.history.push('/');
     this.props.dispatch(showNavLinks(true));
   }
 
-  onSubmit = (...args) => {
-    this.login();
-    args[1].setSubmitting(false);
+  loginFail = () => {
+    alert('auth failed');
+  }
+
+  onSubmit = (values, ...args) => {
+    this.login(values, args[0].setSubmitting);
   }
 
   validate = (values) => {
