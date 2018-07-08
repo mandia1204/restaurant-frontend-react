@@ -1,5 +1,5 @@
-//import { DashboardClient } from '../../api/DashboardClient';
-import { DashboardClient } from '../../api/mocks/DashboardClient';
+import { DashboardClient } from '../../api/DashboardClient';
+//import { DashboardClient } from '../../api/mocks/DashboardClient';
 export const GET_DASHBOARD = 'GET_DASHBOARD';
 export const RECEIVE_DASHBOARD = 'RECEIVE_DASHBOARD';
 

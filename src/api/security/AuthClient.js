@@ -1,13 +1,10 @@
-import LocalStorageWrapper from '../../util/LocalStorageWrapper';
+import LocalStorageWrapper from '../../wrappers/LocalStorageWrapper';
 import config from '../apiConfig';
-import axios from 'axios';
-const http = axios.create({
-    baseURL: config.authUri,
-    timeout: config.timeout
-});
+import { HttpWrapper } from '../../wrappers/HttpWrapper';
 
 const AuthClient = () => {
     const localStorageWrapper = LocalStorageWrapper();
+    const http = HttpWrapper(config.authUri);
     const authenticate = (credentials) => {
         return http.post('/token', credentials)
             .then(onAuthSuccess)
