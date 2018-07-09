@@ -38,7 +38,7 @@ class HeaderContainer extends Component {
             <Toolbar>
               <Grid container spacing={8}>
                 <Grid item xs>
-                  { this.props.appState.showHeaderLinks && <NavBar showLinks={this.props.appState.showHeaderLinks} /> }  
+                  { this.props.appState.showHeaderLinks && <NavBar /> }  
                 </Grid>
                 <Grid item xs={6}>
                   { this.props.appState.showHeaderLinks && this.props.appState.showFilters && 

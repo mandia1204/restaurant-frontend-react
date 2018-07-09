@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import './App.scss';
-import HeaderContainer from './navBar/HeaderContainer';
+import HeaderContainer from './header/HeaderContainer';
 import Main from './Main';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
