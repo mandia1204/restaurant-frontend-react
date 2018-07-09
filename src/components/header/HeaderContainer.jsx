@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import NavBar from './NavBar';
-import Filters from './Filters';
-import UserInfo from './UserInfo';
 import AuthClient from '../../api/security/AuthClient';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showNavLinks, updateDashboardFilter } from '../../state/actions/AppActions';
 import { fetchDashboard } from '../../state/actions/DashboardActions';
-import Toolbar from '@material-ui/core/Toolbar';
-import Grid from '@material-ui/core/Grid';
 import { Ops } from '../../util/Constants';
+import Header from './Header';
 
 class HeaderContainer extends Component {
     constructor(props){
@@ -33,30 +28,10 @@ class HeaderContainer extends Component {
     }
 
     render() {
+      const {showHeaderLinks, showFilters, dashboardFilters} = this.props.appState;
       return (
-        <AppBar position="static">
-            <Toolbar>
-              <Grid container spacing={8}>
-                <Grid item xs>
-                  { this.props.appState.showHeaderLinks && <NavBar /> }  
-                </Grid>
-                <Grid item xs={6}>
-                  { this.props.appState.showHeaderLinks && this.props.appState.showFilters && 
-                    <Grid container alignItems="center" style={{ height: '100%' }}>
-                      <Filters values={this.props.appState.dashboardFilters} filtersChange={this.onFiltersChange} />
-                    </Grid> 
-                  }
-                </Grid>
-                <Grid item xs>
-                  { this.props.appState.showHeaderLinks && 
-                    <Grid container justify="flex-end">
-                      <UserInfo logout={this.logout} /> 
-                    </Grid>
-                  }
-                </Grid>
-              </Grid>
-            </Toolbar>
-        </AppBar>
+        <Header showHeaderLinks={showHeaderLinks} showFilters={showFilters} 
+                dashboardFilters={dashboardFilters} onFiltersChange={this.onFiltersChange} logout={this.logout}  />
       );
     }
   }

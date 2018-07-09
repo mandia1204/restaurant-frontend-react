@@ -25,7 +25,7 @@ const AuthClient = () => {
     };
 
     const isAuthenticated = () => {
-        return LocalStorageWrapper.get('AUTH_TOKEN');
+        return LocalStorageWrapper.get('AUTH_TOKEN') != null;
     };
 
     return {

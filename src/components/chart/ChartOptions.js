@@ -41,7 +41,7 @@ const radarOptions = (opts) => ({
       padding: 5
     },
     legend: {
-      position: 'right',
+      position: 'left',
       labels: {
         fontSize: 12,
         boxWidth: 10
