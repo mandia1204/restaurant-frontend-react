@@ -3,7 +3,7 @@ import AuthClient from '../../api/security/AuthClient';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showNavLinks } from '../../state/actions/AppActions';
+import { updateLoginData } from '../../state/actions/AppActions';
 import LoginForm from './LoginForm';
 import { Formik } from 'formik';
 
@@ -20,7 +20,7 @@ class Login extends React.Component {
     const authClient = AuthClient();
     authClient.authenticate();
     this.props.history.push('/');
-    this.props.dispatch(showNavLinks(true));
+    this.props.dispatch(updateLoginData({user:{ name: 'matt'}, authenticated: true}));
   }
 
   onFieldChange =  (handleChange) => e => {

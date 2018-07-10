@@ -10,7 +10,7 @@ import NavBar from './NavBar';
 import PropTypes from 'prop-types';
 import FiltersPopup from './FiltersPopup';
 
-const Header = ({showHeaderLinks, showFilters, dashboardFilters, onFiltersChange, logout}) => {
+const Header = ({showHeaderLinks, showFilters, dashboardFilters, onFiltersChange, logout, loggedUser}) => {
     return (
     <AppBar position="static">
         <Toolbar>
@@ -38,7 +38,7 @@ const Header = ({showHeaderLinks, showFilters, dashboardFilters, onFiltersChange
                     { showHeaderLinks && 
                     <Grid container justify="flex-end">
                         <Hidden smDown>
-                            <UserInfo logout={logout} />
+                            <UserInfo logout={logout} user={loggedUser} />
                         </Hidden>
                         <Hidden mdUp>
                             <Grid item>
@@ -58,7 +58,8 @@ Header.propTypes = {
     showFilters: PropTypes.bool.isRequired,
     dashboardFilters: PropTypes.object.isRequired,
     onFiltersChange: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    loggedUser: PropTypes.object.isRequired
 };
 
 export default Header;

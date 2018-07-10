@@ -3,7 +3,7 @@ import AuthClient from '../../api/security/AuthClient';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showNavLinks } from '../../state/actions/AppActions';
+import { updateLoginData } from '../../state/actions/AppActions';
 import LoginForm from './LoginForm';
 import { Formik } from 'formik';
 
@@ -17,16 +17,16 @@ class Login extends React.Component {
     this.authClient.authenticate(user).then(response => {
       setSubmitting(false);
       if(response.success) {
-        this.loginSuccess();
+        this.loginSuccess(user);
       }else {
         this.loginFail();
       }
     });
   }
 
-  loginSuccess = () => {
+  loginSuccess = (user) => {
     this.props.history.push('/');
-    this.props.dispatch(showNavLinks(true));
+    this.props.dispatch(updateLoginData({user:{ name: user.userName}, authenticated: true}));
   }
 
   loginFail = () => {

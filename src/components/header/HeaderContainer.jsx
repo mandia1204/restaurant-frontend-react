@@ -3,7 +3,7 @@ import AuthClient from '../../api/security/AuthClient';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showNavLinks, updateDashboardFilter } from '../../state/actions/AppActions';
+import { userLoggedOut, updateDashboardFilter } from '../../state/actions/AppActions';
 import { fetchDashboard } from '../../state/actions/DashboardActions';
 import { Ops } from '../../util/Constants';
 import Header from './Header';
@@ -18,7 +18,7 @@ class HeaderContainer extends Component {
     logout() {
       this.authClient.logout();
       this.props.history.push('/login');
-      this.props.dispatch(showNavLinks(false));
+      this.props.dispatch(userLoggedOut());
     }
 
     onFiltersChange = (filter) => {
@@ -31,7 +31,9 @@ class HeaderContainer extends Component {
       const {showHeaderLinks, showFilters, dashboardFilters} = this.props.appState;
       return (
         <Header showHeaderLinks={showHeaderLinks} showFilters={showFilters} 
-                dashboardFilters={dashboardFilters} onFiltersChange={this.onFiltersChange} logout={this.logout}  />
+                dashboardFilters={dashboardFilters} onFiltersChange={this.onFiltersChange} logout={this.logout}  
+                loggedUser={this.props.appState.loggedUser}
+                />
       );
     }
   }
