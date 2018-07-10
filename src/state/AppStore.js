@@ -12,10 +12,19 @@ const enhancer = composeEnhancers(
     // other store enhancers if any
 );
 const authClient = AuthClient();
-const store = createStore(RootReducer, enhancer);
-const loginData = { user: { name: 'mattTest'}, authenticated: authClient.isAuthenticated()};
 
-store.dispatch(updateLoginData(loginData));
+const getLoginData = () => {
+    const decoded = authClient.getAuthData();
+
+    if(decoded !== null) {
+        return { user: { name: decoded.userName}, authenticated: true };
+    }
+    return { user: { name: ''}, authenticated: false };
+};
+
+const store = createStore(RootReducer, enhancer);
+
+store.dispatch(updateLoginData(getLoginData()));
 
 export const createAppStore = () => {
     return store;

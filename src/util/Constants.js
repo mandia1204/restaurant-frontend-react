@@ -34,3 +34,5 @@ export const CardOptions = {
     PAX_DIA: { title: 'Pax del día', color: 'green', format: FieldFormat.unidades },
     TICKET_PROMEDIO_DIA: { title: 'Ticket prom. del día', color: 'blueGrey', format: FieldFormat.soles }
 };
+
+export const tokenKey = 'AUTH_TOKEN';

@@ -1,6 +1,8 @@
 import LocalStorageWrapper from '../../wrappers/LocalStorageWrapper';
 import config from '../apiConfig';
 import { HttpWrapper } from '../../wrappers/HttpWrapper';
+import { tokenKey } from '../../util/Constants';
+import jwtParser from '../../util/jwtParser';
 
 const http = HttpWrapper(config.authUri);
 const AuthClient = () => {
@@ -11,27 +13,32 @@ const AuthClient = () => {
     };
 
     const onAuthSuccess = (response) => {
-        LocalStorageWrapper.save('AUTH_TOKEN', response.data.token);
+        LocalStorageWrapper.save(tokenKey, response.data.token);
         return { success: true};
     };
 
     const onAuthFail = (error) => {
-        LocalStorageWrapper.remove('AUTH_TOKEN');
+        LocalStorageWrapper.remove(tokenKey);
         return { success: false, error};
     };
 
     const logout = () => {
-        LocalStorageWrapper.remove('AUTH_TOKEN');
+        LocalStorageWrapper.remove(tokenKey);
     };
 
     const isAuthenticated = () => {
-        return LocalStorageWrapper.get('AUTH_TOKEN') != null;
+        return LocalStorageWrapper.get(tokenKey) != null;
+    };
+
+    const getAuthData = () => {
+        return jwtParser.parse(LocalStorageWrapper.get(tokenKey));
     };
 
     return {
-        authenticate: authenticate,
-        logout: logout,
-        isAuthenticated: isAuthenticated
+        authenticate,
+        logout,
+        isAuthenticated,
+        getAuthData
     };
 };
 

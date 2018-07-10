@@ -1,5 +1,6 @@
 import axios from 'axios';
 import LocalStorageWrapper from './LocalStorageWrapper';
+import { tokenKey } from '../util/Constants';
 
 export const HttpWrapper = (uri) => {
     const getHttp = () => {
@@ -8,7 +9,7 @@ export const HttpWrapper = (uri) => {
             timeout: 3000,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Authorization': `Bearer ${LocalStorageWrapper.get('AUTH_TOKEN')}`
+                'Authorization': `Bearer ${LocalStorageWrapper.get(tokenKey)}`
             }
         });
     };
