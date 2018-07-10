@@ -2,11 +2,13 @@ import { SHOW_NAV_LINKS, SHOW_FILTERS, UPDATE_DASHBOARD_FILTER, UPDATE_LOGIN_DAT
 
 const date = new Date();
 
+const getDefaultFilters = () =>({ year: date.getFullYear(), month: date.getMonth()});
+
 const initialState = {
     showHeaderLinks: false,
     showFilters: false,
     loggedUser: { name: ''},
-    dashboardFilters: { year: date.getFullYear(), month: date.getMonth()}
+    dashboardFilters: getDefaultFilters()
 };
 
 export const AppReducer = (state = initialState, action) => {
@@ -19,8 +21,8 @@ export const AppReducer = (state = initialState, action) => {
             return {...state, dashboardFilters: {...state.dashboardFilters, ...action.filter} };
         case UPDATE_LOGIN_DATA:
             return {...state, loggedUser: action.data.user, showHeaderLinks: action.data.authenticated}; 
-        case LOGOUT:
-            return {...state, loggedUser: { name: ''}, showHeaderLinks: false}; 
+        case LOGOUT: 
+            return {...initialState, dashboardFilters: getDefaultFilters()}; 
         default:
             return state;
     }
