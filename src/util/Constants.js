@@ -17,7 +17,7 @@ export const months = [
 ];
   
 export const Ops = {
-    all: 'PDD,VA,VDD,PXD,ANL,ANM',
+    all: 'PDD,VA,VDD,PXD,ANL,ANM,PVM',
     monthly: 'ANM',
     yearly: 'VA,ANM',
     daily: 'PDD,VDD,PXD,ANL'
