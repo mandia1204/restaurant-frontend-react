@@ -7,10 +7,14 @@ import IconButton from '@material-ui/core/IconButton';
 const NavBar = () => (
   <Fragment>
     <IconButton color="inherit" aria-label="Menu">
-      <Link to='/'><Home /></Link>
+      <Link to="/">
+        <Home />
+      </Link>
     </IconButton>
     <IconButton color="inherit" aria-label="Menu">
-      <Link to='/dashboard'><Dashboard /></Link>
+      <Link to="/dashboard">
+        <Dashboard />
+      </Link>
     </IconButton>
   </Fragment>
 );

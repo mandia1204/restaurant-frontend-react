@@ -1,56 +1,63 @@
 import React, { Component } from 'react';
-import AuthClient from '../../api/security/AuthClient';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import AuthClient from '../../api/security/AuthClient';
 import { userLoggedOut, updateDashboardFilter } from '../../state/actions/AppActions';
 import { fetchDashboard } from '../../state/actions/DashboardActions';
 import { Ops } from '../../util/Constants';
 import Header from './Header';
 
 class HeaderContainer extends Component {
-    constructor(props){
-      super(props);
-      this.authClient = AuthClient();
-      this.logout = this.logout.bind(this);
+  constructor(props) {
+    super(props);
+    this.authClient = AuthClient();
+    this.logout = this.logout.bind(this);
+  }
+
+    onFiltersChange = (filter) => {
+      const { appState, dispatch } = this.props;
+      const filters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
+      dispatch(updateDashboardFilter(filter));
+      dispatch(fetchDashboard(filters));
     }
 
     logout() {
+      const { history, dispatch } = this.props;
       this.authClient.logout();
-      this.props.history.push('/login');
-      this.props.dispatch(userLoggedOut());
-    }
-
-    onFiltersChange = (filter) => {
-      const filters = {...this.props.appState.dashboardFilters, ...filter, ops: Ops.all };
-      this.props.dispatch(updateDashboardFilter(filter));
-      this.props.dispatch(fetchDashboard(filters));
+      history.push('/login');
+      dispatch(userLoggedOut());
     }
 
     render() {
-      const {showHeaderLinks, showFilters, dashboardFilters} = this.props.appState;
+      const { appState } = this.props;
+      const {
+        showHeaderLinks, showFilters, dashboardFilters, loggedUser,
+      } = appState;
       return (
-        <Header showHeaderLinks={showHeaderLinks} showFilters={showFilters} 
-                dashboardFilters={dashboardFilters} onFiltersChange={this.onFiltersChange} logout={this.logout}  
-                loggedUser={this.props.appState.loggedUser}
-                />
+        <Header
+          showHeaderLinks={showHeaderLinks}
+          showFilters={showFilters}
+          dashboardFilters={dashboardFilters}
+          onFiltersChange={this.onFiltersChange}
+          logout={this.logout}
+          loggedUser={loggedUser}
+        />
       );
     }
-  }
+}
 
-  const mapStateToProps = state => {
-    const { dashboard, appState } = state;
-    return {
-      dashboard,
-      appState
-    };
+const mapStateToProps = (state) => {
+  const { appState } = state;
+  return {
+    appState,
   };
+};
 
-  HeaderContainer.propTypes = {
-    history: PropTypes.object,
-    dashboard: PropTypes.object.isRequired,
-    appState: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
-  };
+HeaderContainer.propTypes = {
+  history: PropTypes.object.isRequired,
+  appState: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
-  export default connect(mapStateToProps)(withRouter(HeaderContainer));
+export default connect(mapStateToProps)(withRouter(HeaderContainer));

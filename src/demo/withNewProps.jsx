@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 const withNewProps  = (WrappedComponent) => {
     return class enhanced extends React.Component {

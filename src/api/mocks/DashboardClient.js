@@ -1,18 +1,16 @@
-import dashboardJson from '../../api/mocks/FullResponse';
-import dashboardJson2 from '../../api/mocks/FullResponse2';
+import dashboardJson from './FullResponse';
+import dashboardJson2 from './FullResponse2';
 
 export const DashboardClient = () => {
-    const getDashboard = (filters) => {
-        return new Promise((resolve) => {
-            if(filters.year < 2018){
-                setTimeout(function(){ resolve({ data: dashboardJson2 }); }, 100);
-            }else{
-                setTimeout(function(){ resolve({ data: dashboardJson }); }, 100);
-            }
-        });
-    };
+  const getDashboard = filters => new Promise((resolve) => {
+    if (filters.year < 2018) {
+      setTimeout(() => { resolve({ data: dashboardJson2 }); }, 100);
+    } else {
+      setTimeout(() => { resolve({ data: dashboardJson }); }, 100);
+    }
+  });
 
-    return {
-        getDashboard
-    };
+  return {
+    getDashboard,
+  };
 };

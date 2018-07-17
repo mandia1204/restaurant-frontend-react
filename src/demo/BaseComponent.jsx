@@ -3,23 +3,24 @@ import PropTypes from 'prop-types';
 import withNewProps from './withNewProps';
 
 class BaseComponent extends React.Component {
-    render() {
-        return (
-            <div>
-                {this.props.loggedIn}: {this.props.user}  - {this.props.info}
-            </div>
-        );
-    }
+  mytest() { //eslint-disable-line
+    console.log('mytest'); //eslint-disable-line
+  }
 
-    mytest() {
-        console.log('mytest');
-    }
+  render() {
+    const { loggedIn, user, info } = this.props;
+    return (
+      <div>
+        { `${loggedIn} : ${user} - ${info}` }
+      </div>
+    );
+  }
 }
 
 BaseComponent.propTypes = {
-    loggedIn: PropTypes.string.isRequired,
-    user: PropTypes.string.isRequired,
-    info: PropTypes.string.isRequired
+  loggedIn: PropTypes.string.isRequired,
+  user: PropTypes.string.isRequired,
+  info: PropTypes.string.isRequired,
 };
 
 export default withNewProps(BaseComponent);

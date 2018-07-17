@@ -9,45 +9,42 @@ import Grid from '@material-ui/core/Grid';
 
 
 const styles = {
-    card: {
-        backgroundColor: props => props.card.color? colors[props.card.color][400]: colors['amber']
-    },
-    cardAction: {
-        backgroundColor: props => props.card.color? colors[props.card.color][800]: colors['amber']
-    },
-    cardContent: {
-        color:'white'
-    },
-    title: {
-        fontSize: '20pt'
-    },
-    cardValue: {
-        fontSize: '40pt'
-    }
+  card: {
+    backgroundColor: ({ card }) => (card.color ? colors[card.color][400] : colors.amber),
+  },
+  cardAction: {
+    backgroundColor: ({ card }) => (card.color ? colors[card.color][800] : colors.amber),
+  },
+  cardContent: {
+    color: 'white',
+  },
+  title: {
+    fontSize: '20pt',
+  },
+  cardValue: {
+    fontSize: '40pt',
+  },
 };
 
-const DashboardCard = ({classes, card}) => {
-    return (
-        <Card className={classes.card}>
-            <CardContent className={classes.cardContent}>
-                <Grid container direction="column" alignItems="center" justify="center">
-                    <Grid item className= {classes.title}>
-                        {card.title}
-                    </Grid>
-                    <Grid item className= {classes.cardValue}>
-                        {card.valueFormatted}
-                    </Grid>
-                </Grid>
-            </CardContent>
-            <CardActions className={classes.cardAction}>
-            </CardActions>
-        </Card>
-    ); 
-};
+const DashboardCard = ({ classes, card }) => (
+  <Card className={classes.card}>
+    <CardContent className={classes.cardContent}>
+      <Grid container direction="column" alignItems="center" justify="center">
+        <Grid item className={classes.title}>
+          {card.title}
+        </Grid>
+        <Grid item className={classes.cardValue}>
+          {card.valueFormatted}
+        </Grid>
+      </Grid>
+    </CardContent>
+    <CardActions className={classes.cardAction} />
+  </Card>
+);
 
 DashboardCard.propTypes = {
-    classes: PropTypes.object.isRequired,
-    card: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  card: PropTypes.object.isRequired,
 };
 
 export default injectSheet(styles)(DashboardCard);

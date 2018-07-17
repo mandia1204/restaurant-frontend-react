@@ -10,8 +10,7 @@ import { Ops } from '../../util/Constants';
 import Dashboard from './Dashboard';
 
 class DashboardContainer extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.chartModelBuilder = ChartModelBuilder();
     this.cardModelBuilder = CardModelBuilder();
@@ -19,37 +18,40 @@ class DashboardContainer extends Component {
   }
 
   componentDidMount() {
-    const filters = {...this.props.appState.dashboardFilters, ops: Ops.all };
-    this.props.dispatch(fetchDashboard(filters));
-    this.props.dispatch(showFilters(true));
+    const { appState, dispatch } = this.props;
+    const filters = { ...appState.dashboardFilters, ops: Ops.all };
+    dispatch(fetchDashboard(filters));
+    dispatch(showFilters(true));
   }
 
   componentWillUnmount() {
-    this.props.dispatch(showFilters(false));
+    const { dispatch } = this.props;
+    dispatch(showFilters(false));
   }
-  
+
   render() {
-    const chartModel = this.chartModelBuilder.build(this.props.dashboard.charts);
-    const cardModel = this.cardModelBuilder.build(this.props.dashboard.cards);
-    const anulaciones  = this.anulacionesFormatter.format(this.props.dashboard.anulaciones);
+    const { dashboard } = this.props;
+    const chartModel = this.chartModelBuilder.build(dashboard.charts);
+    const cardModel = this.cardModelBuilder.build(dashboard.cards);
+    const anulaciones = this.anulacionesFormatter.format(dashboard.anulaciones);
     return (
-        <Dashboard chartModel={chartModel} anulaciones={anulaciones} cardModel={cardModel} />
+      <Dashboard chartModel={chartModel} anulaciones={anulaciones} cardModel={cardModel} />
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { dashboard, appState } = state;
   return {
     dashboard,
-    appState
+    appState,
   };
 };
 
 DashboardContainer.propTypes = {
   dashboard: PropTypes.object.isRequired,
   appState: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(DashboardContainer);

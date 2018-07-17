@@ -4,22 +4,12 @@ export const UPDATE_DASHBOARD_FILTER = 'UPDATE_DASHBOARD_FILTER';
 export const UPDATE_LOGIN_DATA = 'UPDATE_LOGIN_DATA';
 export const LOGOUT = 'LOGOUT';
 
-export const showNavLinks = (showLinks) => {
-    return { type: SHOW_NAV_LINKS, showLinks };
-};
+export const showNavLinks = showLinks => ({ type: SHOW_NAV_LINKS, showLinks });
 
-export const showFilters = (show) => {
-    return { type: SHOW_FILTERS, show };
-};
+export const showFilters = show => ({ type: SHOW_FILTERS, show });
 
-export const updateDashboardFilter = (filter) => {
-    return { type: UPDATE_DASHBOARD_FILTER, filter };
-};
+export const updateDashboardFilter = filter => ({ type: UPDATE_DASHBOARD_FILTER, filter });
 
-export const updateLoginData = (data) => {
-    return { type: UPDATE_LOGIN_DATA, data };
-};
+export const updateLoginData = data => ({ type: UPDATE_LOGIN_DATA, data });
 
-export const userLoggedOut = () => {
-    return { type: LOGOUT, payload: null };
-};
+export const userLoggedOut = () => ({ type: LOGOUT, payload: null });

@@ -1,5 +1,18 @@
 {
     "files.exclude": {
         "node_modules/": true
+    },
+    "eslint.enable": true,
+    "eslint.provideLintTask": true,
+    "editor.tabSize": 2,
+    "eslint.autoFixOnSave": true,
+    "eslint.validate":[
+        "javascript",
+        "javascriptreact"
+    ],"eslint.options": {
+        "extensions": [
+            ".jsx",
+            ".js"
+        ]
     }
 }

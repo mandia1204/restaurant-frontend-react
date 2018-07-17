@@ -1,29 +1,22 @@
 import React, { Fragment } from 'react';
-import AuthClient from '../../api/security/AuthClient';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router';// eslint-disable-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { updateLoginData } from '../../state/actions/AppActions';
-import LoginForm from './LoginForm';
 import { Formik } from 'formik';
+import { updateLoginData } from '../state/actions/AppActions';
+import LoginForm from './LoginFormAlter';
+import AuthClient from '../api/security/AuthClient';
 
 class Login extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       userName: 'matt',
-      password: '1234'
+      password: '1234', //eslint-disable-line
     };
   }
 
-  login = () => {
-    const authClient = AuthClient();
-    authClient.authenticate();
-    this.props.history.push('/');
-    this.props.dispatch(updateLoginData({user:{ name: 'matt'}, authenticated: true}));
-  }
-
-  onFieldChange =  (handleChange) => e => {
+  onFieldChange = handleChange => (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -33,48 +26,59 @@ class Login extends React.Component {
 
   onSubmit = (values, { setSubmitting }) => {
     setTimeout(() => {
-                setSubmitting(false);
+      setSubmitting(false);
     }, 3000);
   }
 
-  validate = (values) => {
-    let errors = {};
+  login = () => {
+    const authClient = AuthClient();
+    const { history, dispatch } = this.props;
+    authClient.authenticate();
+    history.push('/');
+    dispatch(updateLoginData({ user: { name: 'matt' }, authenticated: true }));
+  }
 
-    if(!values.userName) {
+  validate = (values) => {
+    const errors = {};
+
+    if (!values.userName) {
       errors.userName = 'User name required';
     }
-    if(!values.password) {
+    if (!values.password) {
       errors.password = 'Password required';
     }
     return errors;
   }
 
   render() {
+    const { userName } = this.state;
     return (
       <Fragment>
-      <Formik
-        initialValues = {this.state}
-        render={
-          (props) => (
-          <LoginForm
-            loginData={this.state}
-            {...props}
-            handleChange={this.onFieldChange(props.handleChange)}
-           />)
+        <Formik
+          initialValues={this.state}
+          render={
+          props => (
+            <LoginForm
+              loginData={this.state}
+              {...props}
+              handleChange={this.onFieldChange(props.handleChange)}
+            />)
         }
-        onSubmit= {this.onSubmit}
-        validate= {this.validate}
-        validateOnChange={false}
-      />
-      <div>{this.state.userName}</div>
+          onSubmit={this.onSubmit}
+          validate={this.validate}
+          validateOnChange={false}
+        />
+        <div>
+          {userName}
+        </div>
       </Fragment>
     );
   }
 }
 
 Login.propTypes = {
-  history: PropTypes.object,
-  dispatch: PropTypes.func.isRequired
+  history: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(withRouter(Login));
