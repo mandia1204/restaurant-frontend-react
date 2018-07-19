@@ -45,7 +45,6 @@
     "light-web-server": "^1.2.4",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.2",
-    "proxyquire": "^2.0.1",
     "react-hot-loader": "^4.1.1",
     "sass-loader": "^7.0.3",
     "sinon": "^6.1.3",
