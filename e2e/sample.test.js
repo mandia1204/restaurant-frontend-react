@@ -1,7 +1,6 @@
-/*eslint-disable */
-var test = require('tape');
+import test from 'tape';
 
-test('Sample test', function(assert) {
+test('Sample test', (assert) => {
   assert.pass('Passing test');
   assert.end();
 });

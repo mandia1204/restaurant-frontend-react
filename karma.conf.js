@@ -1,51 +1,58 @@
-// Karma configuration
-// Generated on Wed Jul 18 2018 21:06:15 GMT-0500 (SA Pacific Standard Time)
-const path = require('path');
-//var test = require('tape');
-//console.log(test);
+const webpack = require('webpack');
+
 module.exports = function(config) {
   config.set({
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     basePath: '',
     plugins: [
       require('karma-tap'),
       'karma-chrome-launcher',
-      'karma-tap-pretty-reporter'
+      'karma-tap-pretty-reporter',
+      'karma-webpack'
     ],
-    frameworks: ['tap'],
-    // list of files / patterns to load in the browser
+    frameworks: ['tap'], // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     files: [
-      'e2e/**/*.js'
+      'src/api/DashboardClient.test.js',
+      //'e2e/**/*.js'
     ],
-    // list of files / patterns to exclude
-    exclude: [
-    ],
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
+    preprocessors: { 
+      'src/api/DashboardClient.test.js': ['webpack'],
+      //'e2e/**/*.js': ['webpack'] // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     },
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['tap-pretty'],
+    client: {
+      captureConsole: false
+    }
+    ,
+    webpack: {
+      module: {
+        rules: [
+          {
+              test: /\.js|jsx?$/,
+              exclude: /node_modules/,
+              use: ['babel-loader']
+          }
+        ]
+      },
+      resolve: {
+        extensions: ['*', '.js', '.jsx']
+      },
+      node: {
+        fs: 'empty'
+      },
+      mode: 'production'
+    },
+    webpackMiddleware: {
+      stats: 'errors-only'
+    },
+    reporters: ['tap-pretty'], // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     tapReporter: {
-      prettifier: 'tap-spec',
-      sepparator: true
+      prettify: require('faucet'),
+      sepparator: '****************************'
     },
-    // web server port
     port: 9876,
-    // enable / disable colors in the output (reporters and logs)
     colors: true,
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    logLevel: config.LOG_DISABLE, // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    autoWatch: false, // enable / disable watching file and executing tests whenever any file changes
+    browsers: ['Chrome'],// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
