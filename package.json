@@ -13,8 +13,8 @@
     "build-dev": "cross-env NODE_ENV=development webpack --config ./webpack/dev.js",
     "start-prod": "lws --port=9000 --dir=dist/",
     "build-backup": "cross-env BABEL_ENV=production webpack --config ./webpack.config.js",
-    "test": "cross-env BABEL_ENV=test babel-tape-runner src/**/*.test.js | faucet",
-    "e2e": "cross-env BABEL_ENV=test NODE_ENV=test karma start"
+    "node-test": "cross-env BABEL_ENV=test babel-tape-runner src/**/*.test.js | faucet",
+    "test": "cross-env BABEL_ENV=test NODE_ENV=test karma start"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

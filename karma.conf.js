@@ -11,17 +11,14 @@ module.exports = function(config) {
     ],
     frameworks: ['tap'], // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     files: [
-      'src/api/DashboardClient.test.js',
-      //'e2e/**/*.js'
+      'indexTest.js'
     ],
     preprocessors: { 
-      'src/api/DashboardClient.test.js': ['webpack'],
-      //'e2e/**/*.js': ['webpack'] // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+      'indexTest.js': ['webpack']
     },
     client: {
       captureConsole: false
-    }
-    ,
+    },
     webpack: {
       module: {
         rules: [
