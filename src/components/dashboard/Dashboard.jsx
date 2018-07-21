@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Bar, Radar, Pie } from 'react-chartjs-2';
+import { HorizontalBar, Bar, Radar, Pie } from 'react-chartjs-2'; // eslint-disable-line object-curly-newline
 import PropTypes from 'prop-types';
 import DashboardCard from './DashboardCard';
 import Anulaciones from './Anulaciones';
@@ -31,7 +31,7 @@ const Dashboard = ({ chartModel, anulaciones, cardModel }) => {
         />
       </Grid>
       <Grid item {...chartWidth}>
-        <Bar
+        <HorizontalBar
           data={chartModel.platoMes.data}
           height={height}
           options={chartModel.platoMes.options}

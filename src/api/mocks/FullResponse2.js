@@ -17,6 +17,20 @@ export default {
           Noviembre: 10000,
           Agosto: 10500,
         },
+        2017: {
+          Septiembre: 1000.11,
+          Marzo: 2000.22,
+          Diciembre: 3000.33,
+          Junio: 4000.44,
+          Julio: 5000.55,
+          Enero: 6000.66,
+          Octubre: 7000.77,
+          Abril: 8000.88,
+          Mayo: 9000.99,
+          Febrero: 10000,
+          Noviembre: 11000,
+          Agosto: 15000,
+        },
       },
     },
     {
@@ -55,7 +69,7 @@ export default {
       },
     },
     {
-      name: 'PLATOS_VENDIDOS_DEL_MES',
+      name: 'PLATOS_MAS_VENDIDOS_DEL_MES',
       data: {
         Mayo: {
           ceviche: 1500,

@@ -17,7 +17,7 @@ const build = charts => ({
   anulacionesMes: generateChartModel(charts, 'ANULACIONES_DEL_MES', 'radar'),
   productosMes: generateChartModel(charts, 'PRODUCTOS_VENDIDOS_DEL_MES', 'pie'),
   mozoMes: generateChartModel(charts, 'MOZO_DEL_MES', 'bar'),
-  platoMes: generateChartModel(charts, 'PLATOS_VENDIDOS_DEL_MES', 'bar'),
+  platoMes: generateChartModel(charts, 'PLATOS_MAS_VENDIDOS_DEL_MES', 'bar'),
 });
 
 export const ChartModelBuilder = () => ({

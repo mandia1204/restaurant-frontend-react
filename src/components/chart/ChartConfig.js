@@ -9,5 +9,5 @@ export const ChartOptionsConfig = {
   ANULACIONES_DEL_MES: { title: { text: 'Anulaciones del mes', position: 'top' } },
   PRODUCTOS_VENDIDOS_DEL_MES: { title: { text: 'Productos vendidos', position: 'top' } },
   MOZO_DEL_MES: { title: { text: 'Mozo del mes', position: 'left' } },
-  PLATOS_VENDIDOS_DEL_MES: { title: { text: 'Plato del mes', position: 'left' } },
+  PLATOS_MAS_VENDIDOS_DEL_MES: { title: { text: 'Plato del mes', position: 'right' } },
 };
