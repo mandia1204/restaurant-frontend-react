@@ -1,19 +1,19 @@
 import test from 'tape';
 import { CardModelBuilder } from './CardModelBuilder';
-import { CardOptions } from '../../../util/Constants';
+import { CardOptions, Cards } from '../../../util/Constants';
 
 test('CardModelBuilder.build(), passing dashboard cards, returns cards formatted data', (assert) => {
   const data = {
-    PRODUCCION_DIA: {
+    [Cards.produccionDia]: {
       value: 2500,
     },
-    VENTA_DIA: {
+    [Cards.ventaDia]: {
       value: 1500,
     },
-    PAX_DIA: {
+    [Cards.paxDia]: {
       value: 58,
     },
-    TICKET_PROMEDIO_DIA: {
+    [Cards.ticketPromedioDia]: {
       value: 177,
     },
   };
@@ -25,7 +25,7 @@ test('CardModelBuilder.build(), passing dashboard cards, returns cards formatted
   assert.ok(result.paxDia, 'should have paxDia.');
   assert.ok(result.ticketPromedioDia, 'should have ticketPromedioDia.');
 
-  const options = CardOptions.PRODUCCION_DIA;
+  const options = CardOptions.produccionDia;
 
   const expected = {
     value: 2500,

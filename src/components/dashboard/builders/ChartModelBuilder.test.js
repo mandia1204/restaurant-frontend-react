@@ -1,10 +1,11 @@
 import test from 'tape';
 import { ChartModelBuilder } from './ChartModelBuilder';
+import { Charts } from '../../../util/Constants';
 
-test('ChartModelBuilder.build(), passing data for VENTAS_ANUALES and ANULACIONES_DEL_MES, returns chart data', (assert) => {
+test('ChartModelBuilder.build(), passing data for ventasAnuales and anulacionesDelMes, returns chart data', (assert) => {
   const data = [
     {
-      name: 'VENTAS_ANUALES',
+      name: Charts.ventasAnuales,
       data: {
         2018: {
           Septiembre: 70611,
@@ -13,7 +14,7 @@ test('ChartModelBuilder.build(), passing data for VENTAS_ANUALES and ANULACIONES
       },
     },
     {
-      name: 'ANULACIONES_DEL_MES',
+      name: Charts.anulacionesDelMes,
       data: {
         Mayo: {
           otro: 15,
@@ -40,10 +41,10 @@ test('ChartModelBuilder.build(), passing empty charts, returns empty chart data'
   const result = ChartModelBuilder().build(data);
   const expected = {
     ventasAnuales: { data: {}, options: {} },
-    anulacionesMes: { data: {}, options: {} },
-    productosMes: { data: {}, options: {} },
-    mozoMes: { data: {}, options: {} },
-    platoMes: { data: {}, options: {} },
+    anulacionesDelMes: { data: {}, options: {} },
+    productosVendidosMes: { data: {}, options: {} },
+    mozoDelMes: { data: {}, options: {} },
+    platosMasVendidosMes: { data: {}, options: {} },
   };
 
   assert.deepEqual(result, expected, 'structures should be equal');

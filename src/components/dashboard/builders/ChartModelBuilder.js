@@ -1,6 +1,7 @@
 import { ChartFormatter } from '../../chart/ChartFormatter';
 import { ChartOptions } from '../../chart/ChartOptions';
 import { ChartOptionsConfig } from '../../chart/ChartConfig';
+import { Charts } from '../../../util/Constants';
 
 // converts data from api to chart model
 const generateChartModel = (charts, chartName, type) => {
@@ -13,11 +14,11 @@ const generateChartModel = (charts, chartName, type) => {
 };
 
 const build = charts => ({
-  ventasAnuales: generateChartModel(charts, 'VENTAS_ANUALES', 'bar'),
-  anulacionesMes: generateChartModel(charts, 'ANULACIONES_DEL_MES', 'radar'),
-  productosMes: generateChartModel(charts, 'PRODUCTOS_VENDIDOS_DEL_MES', 'pie'),
-  mozoMes: generateChartModel(charts, 'MOZO_DEL_MES', 'bar'),
-  platoMes: generateChartModel(charts, 'PLATOS_MAS_VENDIDOS_DEL_MES', 'bar'),
+  [Charts.ventasAnuales]: generateChartModel(charts, Charts.ventasAnuales, 'bar'),
+  [Charts.anulacionesDelMes]: generateChartModel(charts, Charts.anulacionesDelMes, 'radar'),
+  [Charts.productosVendidosMes]: generateChartModel(charts, Charts.productosVendidosMes, 'pie'),
+  [Charts.mozoDelMes]: generateChartModel(charts, Charts.mozoDelMes, 'bar'),
+  [Charts.platosMasVendidosMes]: generateChartModel(charts, Charts.platosMasVendidosMes, 'bar'),
 });
 
 export const ChartModelBuilder = () => ({

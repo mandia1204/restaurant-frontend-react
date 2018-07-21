@@ -1,7 +1,9 @@
+import { Charts, Cards } from '../../util/Constants';
+
 export default {
   charts: [
     {
-      name: 'VENTAS_ANUALES',
+      name: Charts.ventasAnuales,
       data: {
         2016: {
           Septiembre: 1500,
@@ -34,7 +36,7 @@ export default {
       },
     },
     {
-      name: 'ANULACIONES_DEL_MES',
+      name: Charts.anulacionesDelMes,
       data: {
         Mayo: {
           otro: 15,
@@ -46,7 +48,7 @@ export default {
       },
     },
     {
-      name: 'PRODUCTOS_VENDIDOS_DEL_MES',
+      name: Charts.productosVendidosMes,
       data: {
         Mayo: {
           alimentos: 4500,
@@ -57,7 +59,7 @@ export default {
       },
     },
     {
-      name: 'MOZO_DEL_MES',
+      name: Charts.mozoDelMes,
       data: {
         Mayo: {
           marcos: 100,
@@ -69,7 +71,7 @@ export default {
       },
     },
     {
-      name: 'PLATOS_MAS_VENDIDOS_DEL_MES',
+      name: Charts.platosMasVendidosMes,
       data: {
         Mayo: {
           ceviche: 1500,
@@ -82,16 +84,16 @@ export default {
     },
   ],
   cards: {
-    PRODUCCION_DIA: {
+    [Cards.produccionDia]: {
       value: '2500',
     },
-    VENTA_DIA: {
+    [Cards.ventaDia]: {
       value: '1500',
     },
-    PAX_DIA: {
+    [Cards.paxDia]: {
       value: '58',
     },
-    TICKET_PROMEDIO_DIA: {
+    [Cards.ticketPromedioDia]: {
       value: '177',
     },
   },

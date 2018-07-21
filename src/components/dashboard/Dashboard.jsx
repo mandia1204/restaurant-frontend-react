@@ -25,16 +25,16 @@ const Dashboard = ({ chartModel, anulaciones, cardModel }) => {
       </Grid>
       <Grid item {...chartWidth}>
         <Bar
-          data={chartModel.mozoMes.data}
+          data={chartModel.mozoDelMes.data}
           height={height}
-          options={chartModel.mozoMes.options}
+          options={chartModel.mozoDelMes.options}
         />
       </Grid>
       <Grid item {...chartWidth}>
         <HorizontalBar
-          data={chartModel.platoMes.data}
+          data={chartModel.platosMasVendidosMes.data}
           height={height}
-          options={chartModel.platoMes.options}
+          options={chartModel.platosMasVendidosMes.options}
         />
       </Grid>
       <Grid item {...chartWidth}>
@@ -42,16 +42,16 @@ const Dashboard = ({ chartModel, anulaciones, cardModel }) => {
       </Grid>
       <Grid item {...chartWidth}>
         <Radar
-          data={chartModel.anulacionesMes.data}
+          data={chartModel.anulacionesDelMes.data}
           height={height}
-          options={chartModel.anulacionesMes.options}
+          options={chartModel.anulacionesDelMes.options}
         />
       </Grid>
       <Grid item {...chartWidth}>
         <Pie
-          data={chartModel.productosMes.data}
+          data={chartModel.productosVendidosMes.data}
           height={height}
-          options={chartModel.productosMes.options}
+          options={chartModel.productosVendidosMes.options}
         />
       </Grid>
       <Grid item {...cardWidth}>

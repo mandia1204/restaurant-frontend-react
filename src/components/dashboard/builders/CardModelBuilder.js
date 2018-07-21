@@ -1,4 +1,4 @@
-import { CardOptions } from '../../../util/Constants';
+import { CardOptions, Cards } from '../../../util/Constants';
 
 const generateCardModel = (cards, cardName) => {
   const options = CardOptions[cardName];
@@ -12,10 +12,10 @@ const generateCardModel = (cards, cardName) => {
 };
 
 const build = cards => ({
-  produccionDia: generateCardModel(cards, 'PRODUCCION_DIA'),
-  ventaDia: generateCardModel(cards, 'VENTA_DIA'),
-  paxDia: generateCardModel(cards, 'PAX_DIA'),
-  ticketPromedioDia: generateCardModel(cards, 'TICKET_PROMEDIO_DIA'),
+  [Cards.produccionDia]: generateCardModel(cards, Cards.produccionDia),
+  [Cards.ventaDia]: generateCardModel(cards, Cards.ventaDia),
+  [Cards.paxDia]: generateCardModel(cards, Cards.paxDia),
+  [Cards.ticketPromedioDia]: generateCardModel(cards, Cards.ticketPromedioDia),
 });
 
 export const CardModelBuilder = () => ({

@@ -28,11 +28,26 @@ const FieldFormat = {
   unidades: '${0} und.', // eslint-disable-line no-template-curly-in-string
 };
 
+export const Charts = {
+  ventasAnuales: 'ventasAnuales',
+  anulacionesDelMes: 'anulacionesDelMes',
+  productosVendidosMes: 'productosVendidosMes',
+  mozoDelMes: 'mozoDelMes',
+  platosMasVendidosMes: 'platosMasVendidosMes',
+};
+
+export const Cards = {
+  produccionDia: 'produccionDia',
+  ventaDia: 'ventaDia',
+  paxDia: 'paxDia',
+  ticketPromedioDia: 'ticketPromedioDia',
+};
+
 export const CardOptions = {
-  PRODUCCION_DIA: { title: 'Producción del día', color: 'deepOrange', format: FieldFormat.soles },
-  VENTA_DIA: { title: 'Ventas del día', color: 'purple', format: FieldFormat.soles },
-  PAX_DIA: { title: 'Pax del día', color: 'green', format: FieldFormat.unidades },
-  TICKET_PROMEDIO_DIA: { title: 'Ticket prom. del día', color: 'blueGrey', format: FieldFormat.soles },
+  [Cards.produccionDia]: { title: 'Producción del día', color: 'deepOrange', format: FieldFormat.soles },
+  [Cards.ventaDia]: { title: 'Ventas del día', color: 'purple', format: FieldFormat.soles },
+  [Cards.paxDia]: { title: 'Pax del día', color: 'green', format: FieldFormat.unidades },
+  [Cards.ticketPromedioDia]: { title: 'Ticket prom. del día', color: 'blueGrey', format: FieldFormat.soles },
 };
 
 export const tokenKey = 'AUTH_TOKEN';
