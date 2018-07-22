@@ -17,10 +17,10 @@ export const months = [
 ];
 
 export const Ops = {
-  all: 'PDD,VA,VDD,PXD,ANL,ANM,PVM,PMV',
+  all: 'PDD,VA,VDD,PXD,ANL,ANM,PVM,PMV,TPD',
   monthly: 'ANM,PMV',
   yearly: 'VA,ANM',
-  daily: 'PDD,VDD,PXD,ANL',
+  daily: 'PDD,VDD,PXD,ANL,TPD',
 };
 
 const FieldFormat = {
