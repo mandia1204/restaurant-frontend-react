@@ -1,6 +1,6 @@
 import { DataSetFormatter } from './DataSetFormatter';
 
-export const ChartFormatter = () => {
+export const ChartBuilder = () => {
   const generateChartBody = (data) => {
     const chart = { labels: [], datasets: [] };
     Object.keys(data).forEach((k, index) => {
@@ -17,7 +17,7 @@ export const ChartFormatter = () => {
     return chart;
   };
 
-  const format = (data, type) => {
+  const build = (data, type) => {
     const chart = generateChartBody(data);
     const dataSetFormatted = DataSetFormatter()[type](chart.datasets);
     return Object.assign({}, chart, { datasets: dataSetFormatted });
@@ -25,6 +25,6 @@ export const ChartFormatter = () => {
 
   return {
     generateChartBody,
-    format,
+    build,
   };
 };
