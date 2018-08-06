@@ -24,6 +24,20 @@ module.exports = merge(baseConfig('dev'), {
   devServer: {
     contentBase: './build',
     hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/dashboardApi': {
+        target: 'http://localhost:5000',
+        pathRewrite: {'^/dashboardApi' : '/api'},
+        secure: false,
+        changeOrigin: true
+      },
+      '/securityApi': {
+        target: 'http://localhost:3001',
+        pathRewrite: {'^/securityApi' : '/'},
+        secure: false,
+        changeOrigin: true
+      }
+    }
   }
 });
