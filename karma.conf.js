@@ -4,10 +4,10 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     plugins: [
-      require('karma-tap'),
+      'karma-webpack',
       'karma-chrome-launcher',
-      'karma-tap-pretty-reporter',
-      'karma-webpack'
+      require('karma-tap'),
+      'karma-tap-pretty-reporter'
     ],
     frameworks: ['tap'], // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     files: [
