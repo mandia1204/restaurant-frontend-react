@@ -49,7 +49,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_DISABLE, // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     autoWatch: false, // enable / disable watching file and executing tests whenever any file changes
-    browsers: ['Chrome'],// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['ChromeHeadless'],// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
