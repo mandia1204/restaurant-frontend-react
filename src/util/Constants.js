@@ -17,8 +17,8 @@ export const months = [
 ];
 
 export const Ops = {
-  all: 'PDD,VA,VDD,PXD,ANL,ANM,PVM,PMV,TPD',
-  monthly: 'ANM,PMV',
+  all: 'PDD,VA,VDD,PXD,ANL,ANM,PVM,PMV,TPD,MPM',
+  monthly: 'ANM,PMV,MPM',
   yearly: 'VA,ANM',
   daily: 'PDD,VDD,PXD,ANL,TPD',
 };
@@ -32,7 +32,7 @@ export const Charts = {
   ventasAnuales: 'ventasAnuales',
   anulacionesDelMes: 'anulacionesDelMes',
   productosVendidosMes: 'productosVendidosMes',
-  mozoDelMes: 'mozoDelMes',
+  mozoDelMes: 'mozoProduccionMes',
   platosMasVendidosMes: 'platosMasVendidosMes',
 };
 

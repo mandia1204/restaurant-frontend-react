@@ -14,11 +14,11 @@ const generateChartModel = (charts, chartName, type) => {
 };
 
 const build = charts => ({
-  [Charts.ventasAnuales]: generateChartModel(charts, Charts.ventasAnuales, 'bar'),
-  [Charts.anulacionesDelMes]: generateChartModel(charts, Charts.anulacionesDelMes, 'radar'),
-  [Charts.productosVendidosMes]: generateChartModel(charts, Charts.productosVendidosMes, 'pie'),
-  [Charts.mozoDelMes]: generateChartModel(charts, Charts.mozoDelMes, 'bar'),
-  [Charts.platosMasVendidosMes]: generateChartModel(charts, Charts.platosMasVendidosMes, 'bar'),
+  ventasAnuales: generateChartModel(charts, Charts.ventasAnuales, 'bar'),
+  anulacionesDelMes: generateChartModel(charts, Charts.anulacionesDelMes, 'radar'),
+  productosVendidosMes: generateChartModel(charts, Charts.productosVendidosMes, 'pie'),
+  mozoDelMes: generateChartModel(charts, Charts.mozoDelMes, 'bar'),
+  platosMasVendidosMes: generateChartModel(charts, Charts.platosMasVendidosMes, 'bar'),
 });
 
 export const ChartModelBuilder = () => ({

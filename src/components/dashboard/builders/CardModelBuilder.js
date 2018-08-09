@@ -12,10 +12,10 @@ const generateCardModel = (cards, cardName) => {
 };
 
 const build = cards => ({
-  [Cards.produccionDia]: generateCardModel(cards, Cards.produccionDia),
-  [Cards.ventaDia]: generateCardModel(cards, Cards.ventaDia),
-  [Cards.paxDia]: generateCardModel(cards, Cards.paxDia),
-  [Cards.ticketPromedioDia]: generateCardModel(cards, Cards.ticketPromedioDia),
+  produccionDia: generateCardModel(cards, Cards.produccionDia),
+  ventaDia: generateCardModel(cards, Cards.ventaDia),
+  paxDia: generateCardModel(cards, Cards.paxDia),
+  ticketPromedioDia: generateCardModel(cards, Cards.ticketPromedioDia),
 });
 
 export const CardModelBuilder = () => ({

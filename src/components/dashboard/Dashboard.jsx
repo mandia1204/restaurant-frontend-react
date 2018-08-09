@@ -24,7 +24,7 @@ const Dashboard = ({ chartModel, anulaciones, cardModel }) => {
         />
       </Grid>
       <Grid item {...chartWidth}>
-        <Bar
+        <HorizontalBar
           data={chartModel.mozoDelMes.data}
           height={height}
           options={chartModel.mozoDelMes.options}
