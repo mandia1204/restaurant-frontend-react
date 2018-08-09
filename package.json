@@ -14,9 +14,11 @@
     "start-prod": "lws --port=9000 --dir=dist/",
     "build-backup": "cross-env BABEL_ENV=production webpack --config ./webpack.config.js",
     "node-test": "cross-env BABEL_ENV=test babel-tape-runner src/**/*.test.js | faucet",
-    "test": "cross-env BABEL_ENV=test NODE_ENV=test karma start"
+    "test": "cross-env BABEL_ENV=test NODE_ENV=test karma start",
+    "debug": "babel-node --nolazy --inspect-brk=9229 src/api/DashboardClient.test.js"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.5",
