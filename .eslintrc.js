@@ -30,6 +30,7 @@ module.exports = {
     'linebreak-style': ['error', 'windows'],
     'import/prefer-default-export': 'off',
     'react/forbid-prop-types': 'off',
+    'react/jsx-filename-extension': 'off',
     // 'no-console':'off',
     // 'no-unused-vars':'off'
   },
