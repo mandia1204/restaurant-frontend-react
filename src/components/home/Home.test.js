@@ -5,7 +5,7 @@ import Home from './Home';
 import '../../../setupTest';
 
 test('Home', (t) => {
-  t.test('should render a div', (a) => {
+  t.test('--should render a div', (a) => {
     const wrapper = shallow(<Home />);
     const el = wrapper.find('div');
 

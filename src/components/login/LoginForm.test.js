@@ -7,7 +7,7 @@ import '../../../setupTest';
 import InputText from '../controls/InputText';
 
 test('LoginForm', (t) => {
-  t.test('should render the form with all props', (a) => {
+  t.test('--should render the form with all props', (a) => {
     const props = {
       values: { userName: 'mateo', password: '1234' },
       handleChange: () => ({}),
@@ -37,5 +37,5 @@ test('LoginForm', (t) => {
     a.end();
   });
 
-  t.end();
+  t.skip('');
 });

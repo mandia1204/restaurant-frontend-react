@@ -43,7 +43,8 @@ module.exports = function(config) {
     reporters: ['tap-pretty'], // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     tapReporter: {
       prettify: require('faucet'),
-      sepparator: '****************************'
+      sepparator: '****************************',
+      outputFile: './report/test/test.out.tap'
     },
     port: 9876,
     colors: true,
