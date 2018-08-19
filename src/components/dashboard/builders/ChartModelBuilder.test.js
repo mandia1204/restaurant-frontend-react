@@ -2,7 +2,7 @@ import test from 'tape';
 import { ChartModelBuilder } from './ChartModelBuilder';
 import { Charts } from '../../../util/Constants';
 
-test('ChartModelBuilder', (t) => {
+test('[ChartModelBuilder]', (t) => {
   t.test('--build, passing data for ventasAnuales and anulacionesDelMes, returns chart data', (a) => {
     const data = [
       {
@@ -51,6 +51,5 @@ test('ChartModelBuilder', (t) => {
     a.deepEqual(result, expected, 'structures should be equal');
     a.end();
   });
-
-  t.end();
+  t.skip('');
 });

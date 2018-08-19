@@ -1,7 +1,7 @@
 import test from 'tape';
 import { AnulacionesFormatter } from './AnulacionesFormatter';
 
-test('AnulacionesFormatter', (t) => {
+test('[AnulacionesFormatter]', (t) => {
   t.test('--format, passing anulaciones array, returns formatted data', (a) => {
     const data = [
       {
@@ -40,6 +40,5 @@ test('AnulacionesFormatter', (t) => {
     a.equal(result.length, 0, 'array should be empty.');
     a.end();
   });
-
-  t.end();
+  t.skip('');
 });

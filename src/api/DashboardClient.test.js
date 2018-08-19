@@ -5,7 +5,7 @@ import * as wrapperFunctions from '../wrappers/HttpWrapper';
 
 const test = _test(tape);
 
-test('DashboardClient', (t) => {
+test('[DashboardClient]', (t) => {
   t.test('--getDashboard, passing filters, calls the api and returns promise', (a) => {
     const filters = { year: 2018, month: 2, ops: 'ABC' };
 
@@ -27,6 +27,5 @@ test('DashboardClient', (t) => {
       a.end();
     });
   });
-
-  t.end();
+  t.skip('');
 });

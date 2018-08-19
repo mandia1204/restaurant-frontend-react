@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Home from './Home';
 import '../../../setupTest';
 
-test('Home', (t) => {
+test('[Home]', (t) => {
   t.test('--should render a div', (a) => {
     const wrapper = shallow(<Home />);
     const el = wrapper.find('div');
@@ -12,6 +12,5 @@ test('Home', (t) => {
     a.equal(el.length, 1);
     a.end();
   });
-
-  t.end();
+  t.skip('');
 });

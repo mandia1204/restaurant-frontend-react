@@ -1,7 +1,7 @@
 import test from 'tape';
 import { ChartBuilder } from './ChartBuilder';
 
-test('ChartBuilder', (t) => {
+test('[ChartBuilder]', (t) => {
   t.test('--generateChartBody, passing chartData, returns chart with labels and ds', (a) => {
     const data = {
       2018: {
@@ -88,6 +88,5 @@ test('ChartBuilder', (t) => {
     a.deepEqual(result, expected, 'result structure should match expected.');
     a.end();
   });
-
-  t.end();
+  t.skip('');
 });

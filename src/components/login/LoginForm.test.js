@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 import '../../../setupTest';
 import InputText from '../controls/InputText';
 
-test('LoginForm', (t) => {
+test('[LoginForm]', (t) => {
   t.test('--should render the form with all props', (a) => {
     const props = {
       values: { userName: 'mateo', password: '1234' },

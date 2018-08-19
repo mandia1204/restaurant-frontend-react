@@ -3,7 +3,7 @@ import { DataSetFormatter } from './DataSetFormatter';
 import { ChartColors } from './ChartConfig';
 import Colors from '../../util/Colors';
 
-test('DataSetFormatter', (t) => {
+test('[DataSetFormatter]', (t) => {
   t.test('--line, passing datasets, returns datasets with style props', (a) => {
     const datasets = [
       {
@@ -69,6 +69,5 @@ test('DataSetFormatter', (t) => {
     a.deepEqual(result[0].hoverBackgroundColor, expected, 'hoverBackgroundColor and array colors should match.');
     a.end();
   });
-
-  t.end();
+  t.skip('');
 });

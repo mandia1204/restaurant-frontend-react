@@ -2,7 +2,7 @@ import test from 'tape';
 import { CardModelBuilder } from './CardModelBuilder';
 import { CardOptions, Cards } from '../../../util/Constants';
 
-test('CardModelBuilder', (t) => {
+test('[CardModelBuilder]', (t) => {
   t.test('--build, passing dashboard cards, returns cards formatted data', (a) => {
     const data = {
       [Cards.produccionDia]: {
@@ -56,6 +56,5 @@ test('CardModelBuilder', (t) => {
 
     a.end();
   });
-
-  t.end();
+  t.skip('');
 });
