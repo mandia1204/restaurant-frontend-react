@@ -17,7 +17,7 @@ pipeline {
                 ansiColor('xterm') {
                     sh 'npm run test'
                 }
-                step([$class: "TapPublisher", testResults: "**/report/test/test.out.tap"])
+                step([$class: "TapPublisher", testResults: "**/report/test/test.out.tap", outputTapToConsole:false, enableSubtests:true ])
             }
         }
     }
