@@ -17,8 +17,13 @@ pipeline {
                 ansiColor('xterm') {
                     sh 'npm run test'
                 }
-                step([$class: "TapPublisher", testResults: "**/report/test/test.out.tap", outputTapToConsole:false, enableSubtests:true ])
             }
+        }
+    }
+    post {
+        always {
+            step([$class: "TapPublisher", testResults: "report/test/test.out.tap", outputTapToConsole:false, enableSubtests:true ])
+            archiveArtifacts 'dist/**/*'
         }
     }
 }
