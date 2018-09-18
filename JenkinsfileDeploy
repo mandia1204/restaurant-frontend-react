@@ -1,0 +1,4 @@
+#!/usr/bin/groovy
+
+@Library('jenkins-library') _
+nodeAppDeployPipeline(serviceName: 'web', servicePath: env.WEB_SERVICE_PATH, projectName: 'rs-dboard-fe-build/master', skipInstallDependencies: true)
