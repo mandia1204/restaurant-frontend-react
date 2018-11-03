@@ -27,7 +27,7 @@ module.exports = {
       'always',
     ],
     'react/jsx-uses-vars': ['error'],
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': ['error', 'unix'],
     'import/prefer-default-export': 'off',
     'react/forbid-prop-types': 'off',
     'react/jsx-filename-extension': 'off',
