@@ -1,6 +1,6 @@
-import { ChartBuilder } from '../../chart/ChartBuilder';
-import { ChartOptions } from '../../chart/ChartOptions';
-import { ChartOptionsConfig } from '../../chart/ChartConfig';
+import { ChartBuilder } from './ChartBuilder';
+import { ChartOptions } from '../config/ChartOptions';
+import { ChartOptionsConfig } from '../config/ChartConfig';
 import { Charts } from '../../../util/Constants';
 
 // converts data from api to chart model

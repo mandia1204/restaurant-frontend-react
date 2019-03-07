@@ -1,5 +1,5 @@
-import Colors from '../../util/Colors';
-import { ChartColors } from './ChartConfig';
+import Colors from '../../../util/Colors';
+import { ChartColors } from '../config/ChartConfig';
 
 const barFormat = (datasets) => {
   const formatProps = {

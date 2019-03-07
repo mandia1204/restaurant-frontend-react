@@ -1,7 +1,7 @@
 import test from 'tape';
 import { DataSetFormatter } from './DataSetFormatter';
-import { ChartColors } from './ChartConfig';
-import Colors from '../../util/Colors';
+import { ChartColors } from '../config/ChartConfig';
+import Colors from '../../../util/Colors';
 
 test('[DataSetFormatter]', (t) => {
   t.test('--line, passing datasets, returns datasets with style props', (a) => {

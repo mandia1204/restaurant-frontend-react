@@ -1,4 +1,4 @@
-import { DataSetFormatter } from './DataSetFormatter';
+import { DataSetFormatter } from '../formatters/DataSetFormatter';
 
 export const ChartBuilder = () => {
   const generateChartBody = (data) => {
