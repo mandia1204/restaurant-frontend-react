@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { updateLoginData } from '../state/actions/AppActions';
 import LoginForm from './LoginFormAlter';
-import AuthClient from '../api/security/AuthClient';
+import SecurityService from '../services/SecurityService';
 
 class Login extends React.Component {
   constructor(props) {
@@ -31,9 +31,9 @@ class Login extends React.Component {
   }
 
   login = () => {
-    const authClient = AuthClient();
+    const securityService = SecurityService();
     const { history, dispatch } = this.props;
-    authClient.authenticate();
+    securityService.authenticate();
     history.push('/');
     dispatch(updateLoginData({ user: { name: 'matt' }, authenticated: true }));
   }

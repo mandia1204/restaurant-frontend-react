@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import AuthClient from '../../api/security/AuthClient';
+import SecurityService from '../../services/SecurityService';
 import { userLoggedOut, updateDashboardFilter } from '../../state/actions/AppActions';
 import { fetchDashboard } from '../../state/actions/DashboardActions';
 import { Ops } from '../../util/Constants';
@@ -11,7 +11,7 @@ import Header from './Header';
 class HeaderContainer extends Component {
   constructor(props) {
     super(props);
-    this.authClient = AuthClient();
+    this.securityService = SecurityService();
     this.logout = this.logout.bind(this);
   }
 
@@ -24,7 +24,7 @@ class HeaderContainer extends Component {
 
     logout() {
       const { history, dispatch } = this.props;
-      this.authClient.logout();
+      this.securityService.logout();
       history.push('/login');
       dispatch(userLoggedOut());
     }

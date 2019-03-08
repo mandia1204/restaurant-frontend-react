@@ -1,11 +1,10 @@
-import LocalStorageWrapper from '../../wrappers/LocalStorageWrapper';
-import config from '../apiConfig';
-import { HttpWrapper } from '../../wrappers/HttpWrapper';
-import { tokenKey } from '../../util/Constants';
-import jwtParser from '../../util/jwtParser';
+import LocalStorageWrapper from '../wrappers/LocalStorageWrapper';
+import { tokenKey } from '../util/Constants';
+import jwtParser from '../util/jwtParser';
+import SecurityApi from '../api/SecurityApi';
 
-const http = HttpWrapper(config.authUri);
-const AuthClient = () => {
+const securityApi = SecurityApi();
+const SecurityService = () => {
   const onAuthSuccess = (response) => {
     LocalStorageWrapper.save(tokenKey, response.data.token);
     return { success: true };
@@ -16,7 +15,7 @@ const AuthClient = () => {
     return { success: false, error };
   };
 
-  const authenticate = credentials => http.post('/token', credentials)
+  const authenticate = credentials => securityApi.authenticate(credentials)
     .then(onAuthSuccess)
     .catch(onAuthFail);
 
@@ -36,4 +35,4 @@ const AuthClient = () => {
   };
 };
 
-export default AuthClient;
+export default SecurityService;

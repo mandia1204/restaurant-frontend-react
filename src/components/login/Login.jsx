@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { updateLoginData } from '../../state/actions/AppActions';
 import LoginForm from './LoginForm';
-import AuthClient from '../../api/security/AuthClient';
+import SecurityService from '../../services/SecurityService';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.authClient = AuthClient();
+    this.securityService = SecurityService();
   }
 
   onSubmit = (values, ...args) => {
@@ -28,7 +28,7 @@ class Login extends React.Component {
   }
 
   login = (user, setSubmitting) => {
-    this.authClient.authenticate(user).then((response) => {
+    this.securityService.authenticate(user).then((response) => {
       setSubmitting(false);
       if (response.success) {
         this.loginSuccess(user);

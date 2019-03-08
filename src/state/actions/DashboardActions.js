@@ -1,10 +1,9 @@
-import { DashboardClient } from '../../api/DashboardClient';
-// import { DashboardClient } from '../../api/mocks/DashboardClient';
+import { DashboardApi } from '../../api/DashboardApi';
 
 export const GET_DASHBOARD = 'GET_DASHBOARD';
 export const RECEIVE_DASHBOARD = 'RECEIVE_DASHBOARD';
 
-const client = DashboardClient();
+const client = DashboardApi();
 
 export const receiveDashboard = dashboard => ({ type: RECEIVE_DASHBOARD, dashboard });
 

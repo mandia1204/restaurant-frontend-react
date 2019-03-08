@@ -1,7 +1,7 @@
 import dashboardJson from './FullResponse';
 import dashboardJson2 from './FullResponse2';
 
-export const DashboardClient = () => {
+export const DashboardApi = () => {
   const getDashboard = filters => new Promise((resolve) => {
     if (filters.year < 2018) {
       setTimeout(() => { resolve({ data: dashboardJson2 }); }, 100);
