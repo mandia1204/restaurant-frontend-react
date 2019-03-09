@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Home from './home/Home';
 import DashboardContainer from './dashboard/DashboardContainer';
+import Settings from './settings/Main';
 import PrivateRoute from './routing/PrivateRoute';
 import Login from './login/Login';
 
@@ -19,6 +20,7 @@ const Main = ({ classes }) => (
     <Switch>
       <PrivateRoute exact path="/" component={Home} />
       <PrivateRoute path="/dashboard" component={DashboardContainer} />
+      <PrivateRoute path="/settings" component={Settings} />
       <Route path="/login" component={Login} />
     </Switch>
   </main>
