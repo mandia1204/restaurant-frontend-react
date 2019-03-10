@@ -31,6 +31,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/forbid-prop-types': 'off',
     'react/jsx-filename-extension': 'off',
+    'react/jsx-one-expression-per-line': 'off',
     // 'no-console':'off',
     // 'no-unused-vars':'off'
   },

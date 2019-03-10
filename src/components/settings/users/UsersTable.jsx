@@ -27,29 +27,17 @@ const UsersTable = (props) => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>
-             Id
-            </TableCell>
-            <TableCell>
-             User Name1
-            </TableCell>
-            <TableCell>
-             Name
-            </TableCell>
+            <TableCell>Id</TableCell>
+            <TableCell>User Name</TableCell>
+            <TableCell>Name</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {users.map(user => (
             <TableRow key={user.id}>
-              <TableCell align="right">
-                {user.id}
-              </TableCell>
-              <TableCell align="right">
-                {user.userName}
-              </TableCell>
-              <TableCell>
-                {user.name}
-              </TableCell>
+              <TableCell>{user.id}</TableCell>
+              <TableCell>{user.userName}</TableCell>
+              <TableCell>{user.name}</TableCell>
             </TableRow>
           ))}
         </TableBody>

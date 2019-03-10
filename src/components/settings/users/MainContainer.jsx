@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../../state/actions/UserActions';
 import UsersTable from './UsersTable';
+import SearchFilters from './SearchFilters';
 
 class MainContainer extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchUsers());
@@ -19,17 +15,9 @@ class MainContainer extends Component {
     const { users } = this.props;
     return (
       <div>
-        <h2>
-          users page
-        </h2>
-        <div>
-          <TextField
-            label="User Name"
-            margin="normal"
-          />
-        </div>
+        <h2>Users</h2>
+        <SearchFilters />
         <UsersTable users={users} />
-
       </div>
     );
   }
