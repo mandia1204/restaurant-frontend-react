@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import PrivateRoute from '../routing/PrivateRoute';
-import Users from './users/MainContainer';
+import UsersMainContainer from './users/UsersMainContainer';
 import Groups from './groups/Main';
 
 const styles = {
@@ -16,7 +16,7 @@ const Content = ({ classes }) => (
 
   <main className={classes.main}>
     <Switch>
-      <PrivateRoute path="/settings/users" component={Users} />
+      <PrivateRoute path="/settings/users" component={UsersMainContainer} />
       <PrivateRoute path="/settings/groups" component={Groups} />
     </Switch>
   </main>

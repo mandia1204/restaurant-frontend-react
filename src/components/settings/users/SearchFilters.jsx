@@ -13,12 +13,12 @@ const styles = () => ({
 });
 
 const SearchFilters = (props) => {
-  const { classes } = props;
+  const { classes, userNameFilter, onChange } = props;
   return (
     <div className={classes.root}>
       <Grid alignItems="flex-end" container spacing={24}>
         <Grid item xs={8}>
-          <TextField fullWidth label="User Name" margin="normal" />
+          <TextField name="userNameFilter" onChange={onChange} value={userNameFilter} fullWidth label="User Name" margin="normal" />
         </Grid>
         <Grid item xs={4}>
           <Fab size="small" color="primary" aria-label="Add">
@@ -32,6 +32,8 @@ const SearchFilters = (props) => {
 
 SearchFilters.propTypes = {
   classes: PropTypes.object.isRequired,
+  userNameFilter: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SearchFilters);
