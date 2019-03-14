@@ -1,13 +1,13 @@
-import { DashboardApi } from '../../api/DashboardApi';
+import { createActions } from 'reduxsauce';
 
-export const GET_DASHBOARD = 'GET_DASHBOARD';
-export const RECEIVE_DASHBOARD = 'RECEIVE_DASHBOARD';
+const { Types, Creators } = createActions({
+  getDashboard: null,
+  receiveDashboard: ['dashboard'],
+}, {});
 
-const client = DashboardApi();
+const Actions = {
+  Types,
+  Creators,
+};
 
-export const receiveDashboard = dashboard => ({ type: RECEIVE_DASHBOARD, dashboard });
-
-export const fetchDashboard = filters => dispatch => client.getDashboard(filters)
-  .then(response => dispatch(receiveDashboard(response.data)));
-
-export const getDashboard = () => ({ type: GET_DASHBOARD });
+export default Actions;

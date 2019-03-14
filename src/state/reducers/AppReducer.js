@@ -1,31 +1,45 @@
-import {
-  SHOW_NAV_LINKS, SHOW_FILTERS, UPDATE_DASHBOARD_FILTER, UPDATE_LOGIN_DATA, LOGOUT,
-} from '../actions/AppActions';
+import { createReducer } from 'reduxsauce';
+import Actions from '../actions/AppActions';
+
+const { Types } = Actions;
+
+// import {
+//   SHOW_NAV_LINKS, SHOW_FILTERS, UPDATE_DASHBOARD_FILTER, UPDATE_LOGIN_DATA, LOGOUT,
+// } from '../actions/AppActions';
 
 const date = new Date();
 
 const getDefaultFilters = () => ({ year: date.getFullYear(), month: date.getMonth() });
 
-const initialState = {
+const INITIAL_STATE = {
   showHeaderLinks: false,
   showFilters: false,
   loggedUser: { name: '' },
   dashboardFilters: getDefaultFilters(),
 };
 
-export const AppReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SHOW_NAV_LINKS:
-      return { ...state, showHeaderLinks: action.showLinks };
-    case SHOW_FILTERS:
-      return { ...state, showFilters: action.show };
-    case UPDATE_DASHBOARD_FILTER:
-      return { ...state, dashboardFilters: { ...state.dashboardFilters, ...action.filter } };
-    case UPDATE_LOGIN_DATA:
-      return { ...state, loggedUser: action.data.user, showHeaderLinks: action.data.authenticated };
-    case LOGOUT:
-      return { ...initialState, dashboardFilters: getDefaultFilters() };
-    default:
-      return state;
-  }
-};
+const showNavLinks = (state, action) => ({ ...state, showHeaderLinks: action.showLinks });
+const showFilters = (state, action) => ({ ...state, showFilters: action.show });
+const updateDashboardFilter = (state, action) => ({
+  ...state,
+  dashboardFilters: {
+    ...state.dashboardFilters,
+    ...action.filter,
+  },
+});
+const updateLoginData = (state, action) => ({
+  ...state,
+  loggedUser: action.data.user,
+  showHeaderLinks: action.data.authenticated,
+});
+
+const logout = () => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
+
+export const AppReducer = createReducer(INITIAL_STATE,
+  {
+    [Types.SHOW_NAV_LINKS]: showNavLinks,
+    [Types.SHOW_FILTERS]: showFilters,
+    [Types.UPDATE_DASHBOARD_FILTER]: updateDashboardFilter,
+    [Types.UPDATE_LOGIN_DATA]: updateLoginData,
+    [Types.LOGOUT]: logout,
+  });

@@ -1,14 +1,14 @@
-import { GET_USERS, RECEIVE_USERS } from '../actions/UserActions';
+import { createReducer } from 'reduxsauce';
+import Actions from '../actions/UserActions';
 
-const initialState = [];
+const { Types } = Actions;
+const INITIAL_STATE = [];
 
-export const UserReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_USERS:
-      return state;
-    case RECEIVE_USERS:
-      return action.users;
-    default:
-      return state;
-  }
-};
+const getUsers = state => state;
+const receiveUsers = (state, action) => action.users;
+
+export const UserReducer = createReducer(INITIAL_STATE,
+  {
+    [Types.GET_USERS]: getUsers,
+    [Types.RECEIVE_USERS]: receiveUsers,
+  });

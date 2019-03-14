@@ -78,6 +78,7 @@
     "recompose": "^0.27.1",
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "reduxsauce": "^1.0.1"
   }
 }

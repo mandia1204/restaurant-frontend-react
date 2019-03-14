@@ -1,13 +1,13 @@
-import UserService from '../../services/UserService';
+import { createActions } from 'reduxsauce';
 
-export const GET_USERS = 'GET_USERS';
-export const RECEIVE_USERS = 'RECEIVE_USERS';
+const { Types, Creators } = createActions({
+  receiveUsers: ['users'],
+  getUsers: null,
+}, {});
 
-const service = UserService();
+const Actions = {
+  Types,
+  Creators,
+};
 
-export const receiveUsers = users => ({ type: RECEIVE_USERS, users });
-
-export const fetchUsers = () => dispatch => service.getUsers()
-  .then(response => dispatch(receiveUsers(response.data)));
-
-export const getUsers = () => ({ type: GET_USERS });
+export default Actions;

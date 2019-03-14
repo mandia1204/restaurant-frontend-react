@@ -1,18 +1,18 @@
-import { GET_DASHBOARD, RECEIVE_DASHBOARD } from '../actions/DashboardActions';
+import { createReducer } from 'reduxsauce';
+import Actions from '../actions/DashboardActions';
 
-const initialState = {
+const { Types } = Actions;
+const INITIAL_STATE = {
   cards: {},
   charts: [],
   anulaciones: [],
 };
 
-export const DashboardReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_DASHBOARD:
-      return state;
-    case RECEIVE_DASHBOARD:
-      return action.dashboard;
-    default:
-      return state;
-  }
-};
+const getDashboard = state => state;
+const receiveDashboard = (state, action) => action.dashboard;
+
+export const DashboardReducer = createReducer(INITIAL_STATE,
+  {
+    [Types.GET_DASHBOARD]: getDashboard,
+    [Types.RECEIVE_DASHBOARD]: receiveDashboard,
+  });

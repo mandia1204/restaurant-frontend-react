@@ -3,8 +3,8 @@ import { withRouter } from 'react-router'; // eslint-disable-line import/no-extr
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SecurityService from '../../services/SecurityService';
-import { userLoggedOut, updateDashboardFilter } from '../../state/actions/AppActions';
-import { fetchDashboard } from '../../state/actions/DashboardActions';
+import Actions from '../../state/actions/AppActions';
+import { fetchDashboard } from '../../state/actions/DashboardSagaActions';
 import { Ops } from '../../util/Constants';
 import Header from './Header';
 
@@ -18,7 +18,7 @@ class HeaderContainer extends Component {
     onFiltersChange = (filter) => {
       const { appState, dispatch } = this.props;
       const filters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
-      dispatch(updateDashboardFilter(filter));
+      dispatch(Actions.Creators.updateDashboardFilter(filter));
       dispatch(fetchDashboard(filters));
     }
 
@@ -26,7 +26,7 @@ class HeaderContainer extends Component {
       const { history, dispatch } = this.props;
       this.securityService.logout();
       history.push('/login');
-      dispatch(userLoggedOut());
+      dispatch(Actions.Creators.logout());
     }
 
     render() {

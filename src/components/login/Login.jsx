@@ -3,7 +3,7 @@ import { withRouter } from 'react-router'; // eslint-disable-line import/no-extr
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
-import { updateLoginData } from '../../state/actions/AppActions';
+import Actions from '../../state/actions/AppActions';
 import LoginForm from './LoginForm';
 import SecurityService from '../../services/SecurityService';
 
@@ -20,7 +20,8 @@ class Login extends React.Component {
   loginSuccess = (user) => {
     const { history, dispatch } = this.props;
     history.push('/');
-    dispatch(updateLoginData({ user: { name: user.userName }, authenticated: true }));
+    const { Creators } = Actions;
+    dispatch(Creators.updateLoginData({ user: { name: user.userName }, authenticated: true }));
   }
 
   loginFail = () => {
