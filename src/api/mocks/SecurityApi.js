@@ -4,9 +4,15 @@ const SecurityApi = () => {
     resolve({ data: { token } });
   });
 
-  const users = [{ id: 1, userName: 'mandia', name: 'Marvin Andia' },
-    { id: 2, userName: 'jperez', name: 'Jose Perez' },
-    { id: 3, userName: 'mlopez', name: 'Mario Lopez' }];
+  const users = [{
+    id: 1, userName: 'mandia', name: 'Marvin Andia', isAdmin: true,
+  },
+  {
+    id: 2, userName: 'jperez', name: 'Jose Perez', isAdmin: false,
+  },
+  {
+    id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false,
+  }];
 
   const getUsers = () => new Promise((resolve) => {
     resolve({ data: users });
