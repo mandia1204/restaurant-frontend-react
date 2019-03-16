@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SecurityService from '../../services/SecurityService';
 import Actions from '../../state/actions/AppActions';
-import { fetchDashboard } from '../../state/actions/DashboardSagaActions';
+import DashboardActions from '../../state/actions/DashboardActions';
 import { Ops } from '../../util/Constants';
 import Header from './Header';
 
@@ -19,7 +19,7 @@ class HeaderContainer extends Component {
       const { appState, dispatch } = this.props;
       const filters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
       dispatch(Actions.Creators.updateDashboardFilter(filter));
-      dispatch(fetchDashboard(filters));
+      dispatch(DashboardActions.Creators.fetchDashboard(filters));
     }
 
     logout() {

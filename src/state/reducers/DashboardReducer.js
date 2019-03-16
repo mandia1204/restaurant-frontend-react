@@ -10,9 +10,11 @@ const INITIAL_STATE = {
 
 const getDashboard = state => state;
 const receiveDashboard = (state, action) => action.dashboard;
+const fetchDashboard = state => state;
 
 export const DashboardReducer = createReducer(INITIAL_STATE,
   {
     [Types.GET_DASHBOARD]: getDashboard,
     [Types.RECEIVE_DASHBOARD]: receiveDashboard,
+    [Types.FETCH_DASHBOARD]: fetchDashboard,
   });

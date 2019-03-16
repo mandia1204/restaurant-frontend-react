@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import { fetchUsers } from '../../../state/actions/UserSagaActions';
+import Actions from '../../../state/actions/UserActions';
 import UsersTable from './UsersTable';
 import SearchFilters from './SearchFilters';
 import AddUser from './AddUser';
@@ -15,7 +15,7 @@ class UsersMainContainer extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchUsers());
+    dispatch(Actions.Creators.fetchUsers());
   }
 
   updateFiltersState = (event) => {

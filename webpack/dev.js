@@ -5,7 +5,7 @@ const baseConfig = require('./base.js');
 module.exports = merge(baseConfig('dev'), {
   devtool : 'cheap-module-eval-source-map',
   entry: {
-    bundle: ['react-hot-loader/patch', './src/index.js']
+    bundle: ['react-hot-loader/patch','babel-polyfill', './src/index.js']
   },
   module: {
     rules: [

@@ -6,7 +6,7 @@ const webpack = require('webpack');
 
 module.exports = merge(baseConfig('prod'), {
     entry: {
-      bundle: ['./src/index.js']
+      bundle: ['babel-polyfill','./src/index.js']
     },
     module: {
       rules: [

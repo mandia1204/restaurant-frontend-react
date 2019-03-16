@@ -3,10 +3,6 @@ import Actions from '../actions/AppActions';
 
 const { Types } = Actions;
 
-// import {
-//   SHOW_NAV_LINKS, SHOW_FILTERS, UPDATE_DASHBOARD_FILTER, UPDATE_LOGIN_DATA, LOGOUT,
-// } from '../actions/AppActions';
-
 const date = new Date();
 
 const getDefaultFilters = () => ({ year: date.getFullYear(), month: date.getMonth() });
@@ -33,6 +29,8 @@ const updateLoginData = (state, action) => ({
   showHeaderLinks: action.data.authenticated,
 });
 
+const fetchLoginData = state => state;
+
 const logout = () => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
 
 export const AppReducer = createReducer(INITIAL_STATE,
@@ -42,4 +40,5 @@ export const AppReducer = createReducer(INITIAL_STATE,
     [Types.UPDATE_DASHBOARD_FILTER]: updateDashboardFilter,
     [Types.UPDATE_LOGIN_DATA]: updateLoginData,
     [Types.LOGOUT]: logout,
+    [Types.FETCH_LOGIN_DATA]: fetchLoginData,
   });

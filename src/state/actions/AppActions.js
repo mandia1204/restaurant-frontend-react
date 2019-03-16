@@ -5,6 +5,7 @@ const { Types, Creators } = createActions({
   showFilters: ['show'],
   updateDashboardFilter: ['filter'],
   updateLoginData: ['data'],
+  fetchLoginData: null,
   logout: null,
 }, {});
 

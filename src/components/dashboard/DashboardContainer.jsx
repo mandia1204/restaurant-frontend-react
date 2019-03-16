@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchDashboard } from '../../state/actions/DashboardSagaActions';
+import DashboardActions from '../../state/actions/DashboardActions';
 import Actions from '../../state/actions/AppActions';
 import { ChartModelBuilder } from './builders/ChartModelBuilder';
 import { CardModelBuilder } from './builders/CardModelBuilder';
@@ -20,7 +20,7 @@ class DashboardContainer extends Component {
   componentDidMount() {
     const { appState, dispatch } = this.props;
     const filters = { ...appState.dashboardFilters, ops: Ops.all };
-    dispatch(fetchDashboard(filters));
+    dispatch(DashboardActions.Creators.fetchDashboard(filters));
     dispatch(Actions.Creators.showFilters(true));
   }
 
