@@ -2,7 +2,7 @@ import {
   put, call, all, takeEvery, fork,
 } from 'redux-saga/effects';
 import Actions from '../actions/DashboardActions';
-import { DashboardApi } from '../../api/mocks/DashboardApi';
+import { DashboardApi } from '../../api/DashboardApi';
 
 const { Creators, Types } = Actions;
 const client = DashboardApi();

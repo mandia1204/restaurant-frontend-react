@@ -1,4 +1,4 @@
-import SecurityApi from '../api/mocks/SecurityApi';
+import SecurityApi from '../api/SecurityApi';
 
 const securityApi = SecurityApi();
 const UserService = () => {
