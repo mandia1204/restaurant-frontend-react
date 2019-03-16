@@ -1,7 +1,7 @@
 import LocalStorageWrapper from '../wrappers/LocalStorageWrapper';
 import { tokenKey } from '../util/Constants';
 import jwtParser from '../util/jwtParser';
-import SecurityApi from '../api/SecurityApi';
+import SecurityApi from '../api/mocks/SecurityApi';
 
 const securityApi = SecurityApi();
 const SecurityService = () => {
