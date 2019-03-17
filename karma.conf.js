@@ -17,7 +17,7 @@ module.exports = function(config) {
       'indexTest.js': ['webpack']
     },
     client: {
-      captureConsole: false
+      captureConsole: true
     },
     webpack: {
       module: {
