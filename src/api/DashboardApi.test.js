@@ -1,29 +1,21 @@
 import tape from 'tape';
 import _test from 'tape-promise';
-import sinon from 'sinon';
-import * as wrapperFunctions from '../wrappers/HttpWrapper';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+import { DashboardApi } from './DashboardApi';
 
 const test = _test(tape);
 
 test('[DashboardApi]', (t) => {
-  t.test('--getDashboard, passing filters, calls the api and returns promise', (a) => {
+  t.test('--getDashboard, passing filters, calls the api and returns response', (a) => {
+    const mock = new MockAdapter(axios);
+    const data = { chart: [], cards: {} };
+    mock.onGet('/dashboard?anio=2018&mes=2&ops=ABC').reply(200, data);
     const filters = { year: 2018, month: 2, ops: 'ABC' };
 
-    const spyGet = sinon.spy(url => new Promise((resolve) => {
-      resolve({ data: url });
-    }));
-
-    const httpWrapperStub = sinon.stub(wrapperFunctions, 'HttpWrapper').callsFake(() => ({
-      get: spyGet,
-    }));
-
-    const dashboardApi = require('./DashboardApi').DashboardApi;// eslint-disable-line global-require
-
-    const expectedUrl = '/dashboard?anio=2018&mes=2&ops=ABC';
-    return dashboardApi().getDashboard(filters).then((response) => {
-      a.ok(spyGet.calledOnceWith(expectedUrl), 'http called once with correct url');
-      a.equal(response.data, expectedUrl, 'Data should be returned');
-      httpWrapperStub.restore();
+    return DashboardApi().getDashboard(filters).then((response) => {
+      a.deepEqual(response.data, data, 'Data should be returned');
+      mock.restore();
       a.end();
     });
   });

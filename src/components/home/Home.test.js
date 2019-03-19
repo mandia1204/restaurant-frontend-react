@@ -1,8 +1,8 @@
 import React from 'react';
 import test from 'tape';
 import { shallow } from 'enzyme';
-import Home from './Home';
 import '../../../setupTest';
+import Home from './Home';
 
 test('[Home]', (t) => {
   t.test('--should render a div', (a) => {
