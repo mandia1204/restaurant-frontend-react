@@ -22,43 +22,47 @@ const Header = ({
         <Grid item xs={6}>
           { showHeaderLinks && showFilters
                         && (
-                        <Fragment>
-                          <Hidden smDown>
-                            <Grid container alignItems="center" style={{ height: '100%' }}>
-                              <Filters values={dashboardFilters} filtersChange={onFiltersChange} />
-                            </Grid>
-                          </Hidden>
-                          <Hidden mdUp>
-                            <Grid item>
-                              <FiltersPopup
-                                values={dashboardFilters}
-                                filtersChange={onFiltersChange}
-                              />
-                            </Grid>
-                          </Hidden>
-                        </Fragment>
+                          <Fragment>
+                            <Hidden smDown>
+                              <Grid container alignItems="center" style={{ height: '100%' }}>
+                                <Filters
+                                  values={dashboardFilters}
+                                  filtersChange={onFiltersChange}
+                                />
+                              </Grid>
+                            </Hidden>
+                            <Hidden mdUp>
+                              <Grid item>
+                                <FiltersPopup
+                                  values={dashboardFilters}
+                                  filtersChange={onFiltersChange}
+                                />
+                              </Grid>
+                            </Hidden>
+                          </Fragment>
                         )
-            }
+          }
         </Grid>
         <Grid item xs>
           { showHeaderLinks
                     && (
-                    <Grid container justify="flex-end">
-                      <Hidden smDown>
-                        <UserInfo logout={logout} user={loggedUser} />
-                      </Hidden>
-                      <Hidden mdUp>
-                        <Grid item>
-                          <Menu />
-                        </Grid>
-                      </Hidden>
-                    </Grid>
+                      <Grid container justify="flex-end">
+                        <Hidden smDown>
+                          <UserInfo logout={logout} user={loggedUser} />
+                        </Hidden>
+                        <Hidden mdUp>
+                          <Grid item>
+                            <Menu />
+                          </Grid>
+                        </Hidden>
+                      </Grid>
                     )
-                    }
+          }
         </Grid>
       </Grid>
     </Toolbar>
-  </AppBar>);
+  </AppBar>
+);
 
 Header.propTypes = {
   showHeaderLinks: PropTypes.bool.isRequired,

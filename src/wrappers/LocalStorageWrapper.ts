@@ -1,9 +1,9 @@
 const LocalStorageWrapper = {
-  save: (key, value) => {
+  save: (key: string, value: string) => {
     localStorage.setItem(key, value);
   },
-  get: key => localStorage.getItem(key),
-  remove: (key) => {
+  get: (key: string) => localStorage.getItem(key),
+  remove: (key: string) => {
     localStorage.removeItem(key);
   },
 };

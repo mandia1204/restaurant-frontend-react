@@ -15,36 +15,36 @@ class HeaderContainer extends Component {
     this.logout = this.logout.bind(this);
   }
 
-    onFiltersChange = (filter) => {
-      const { appState, dispatch } = this.props;
-      const filters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
-      dispatch(Actions.Creators.updateDashboardFilter(filter));
-      dispatch(DashboardActions.Creators.fetchDashboard(filters));
-    }
+  onFiltersChange = (filter) => {
+    const { appState, dispatch } = this.props;
+    const filters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
+    dispatch(Actions.Creators.updateDashboardFilter(filter));
+    dispatch(DashboardActions.Creators.fetchDashboard(filters));
+  }
 
-    logout() {
-      const { history, dispatch } = this.props;
-      this.securityService.logout();
-      history.push('/login');
-      dispatch(Actions.Creators.logout());
-    }
+  logout() {
+    const { history, dispatch } = this.props;
+    this.securityService.logout();
+    history.push('/login');
+    dispatch(Actions.Creators.logout());
+  }
 
-    render() {
-      const { appState } = this.props;
-      const {
-        showHeaderLinks, showFilters, dashboardFilters, loggedUser,
-      } = appState;
-      return (
-        <Header
-          showHeaderLinks={showHeaderLinks}
-          showFilters={showFilters}
-          dashboardFilters={dashboardFilters}
-          onFiltersChange={this.onFiltersChange}
-          logout={this.logout}
-          loggedUser={loggedUser}
-        />
-      );
-    }
+  render() {
+    const { appState } = this.props;
+    const {
+      showHeaderLinks, showFilters, dashboardFilters, loggedUser,
+    } = appState;
+    return (
+      <Header
+        showHeaderLinks={showHeaderLinks}
+        showFilters={showFilters}
+        dashboardFilters={dashboardFilters}
+        onFiltersChange={this.onFiltersChange}
+        logout={this.logout}
+        loggedUser={loggedUser}
+      />
+    );
+  }
 }
 
 const mapStateToProps = (state) => {

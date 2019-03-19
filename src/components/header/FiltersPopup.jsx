@@ -13,35 +13,35 @@ class FiltersPopup extends Component {
     this.state = { popupOpen: false };
   }
 
-    togglePopup = (open) => {
-      this.setState({
-        popupOpen: open,
-      });
-    }
+  togglePopup = (open) => {
+    this.setState({
+      popupOpen: open,
+    });
+  }
 
-    render() {
-      const { values, filtersChange } = this.props;
-      const { popupOpen } = this.state;
-      return (
-        <Fragment>
-          <IconButton onClick={() => this.togglePopup(true)} color="inherit" aria-label="Menu">
-            <InputIcon />
-          </IconButton>
-          <Drawer anchor="top" open={popupOpen} onClose={() => this.togglePopup(false)}>
-            <Grid container spacing={8} alignItems="center" justify="center">
-              <Grid item>
-                <Filters values={values} filtersChange={filtersChange} />
-              </Grid>
-              <Grid item>
-                <IconButton onClick={() => this.togglePopup(false)} color="inherit" aria-label="Menu">
-                  <CloseIcon />
-                </IconButton>
-              </Grid>
+  render() {
+    const { values, filtersChange } = this.props;
+    const { popupOpen } = this.state;
+    return (
+      <Fragment>
+        <IconButton onClick={() => this.togglePopup(true)} color="inherit" aria-label="Menu">
+          <InputIcon />
+        </IconButton>
+        <Drawer anchor="top" open={popupOpen} onClose={() => this.togglePopup(false)}>
+          <Grid container spacing={8} alignItems="center" justify="center">
+            <Grid item>
+              <Filters values={values} filtersChange={filtersChange} />
             </Grid>
-          </Drawer>
-        </Fragment>
-      );
-    }
+            <Grid item>
+              <IconButton onClick={() => this.togglePopup(false)} color="inherit" aria-label="Menu">
+                <CloseIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
+        </Drawer>
+      </Fragment>
+    );
+  }
 }
 
 FiltersPopup.propTypes = {

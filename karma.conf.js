@@ -23,14 +23,14 @@ module.exports = function(config) {
       module: {
         rules: [
           {
-              test: /\.js|jsx?$/,
+              test: /\.ts|js|jsx?$/,
               exclude: /node_modules/,
               use: ['babel-loader']
           }
         ]
       },
       resolve: {
-        extensions: ['*', '.js', '.jsx']
+        extensions: ['*', '.js', '.ts', '.jsx']
       },
       node: {
         fs: 'empty'
