@@ -2,16 +2,27 @@
   "env": {
     "production": {
       "presets": [
-        [ "env", { "modules": false } ], 
-        "react", 
-        "stage-2"
+        [ "@babel/env", { "modules": false } ], 
+        "@babel/preset-react"
+      ],
+      "plugins": [
+        "@babel/proposal-class-properties",
+        "@babel/proposal-object-rest-spread",
       ]
     },
     "test": {
-      "presets": ["env", "react", "stage-2"]
+      "presets": ["@babel/env", "@babel/preset-react"],
+      "plugins": [
+        "@babel/proposal-class-properties",
+        "@babel/proposal-object-rest-spread",
+      ]
     },
     "development": {
-      "presets": ["env", "react", "stage-2"]
+      "presets": ["@babel/env", "@babel/preset-react"],
+      "plugins": [
+        "@babel/proposal-class-properties",
+        "@babel/proposal-object-rest-spread",
+      ]
     }
   }
 }
