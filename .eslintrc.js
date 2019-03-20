@@ -53,4 +53,12 @@ module.exports = {
     // 'no-console':'off',
     // 'no-unused-vars':'off'
   },
+  overrides: [
+    {
+      files: ['*.itest.js'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+  ],
 };
