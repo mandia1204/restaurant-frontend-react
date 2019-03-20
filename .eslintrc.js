@@ -49,6 +49,7 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/jsx-one-expression-per-line': 'off',
     '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/explicit-function-return-type': 'off',
     // 'no-console':'off',
     // 'no-unused-vars':'off'
   },
