@@ -12,7 +12,9 @@
     ],"eslint.options": {
         "extensions": [
             ".jsx",
-            ".js"
+            ".js",
+            ".ts",
+            ".tsx"
         ]
 	},
 	"files.associations": {"Dockerfile*": "dockerfile"}

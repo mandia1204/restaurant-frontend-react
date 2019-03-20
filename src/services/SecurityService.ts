@@ -1,21 +1,24 @@
+import { AxiosResponse } from 'axios';
 import LocalStorageWrapper from '../wrappers/LocalStorageWrapper';
 import { tokenKey } from '../util/Constants';
 import jwtParser from '../util/jwtParser';
 import SecurityApi from '../api/SecurityApi';
+import LoginCredentials from '../types/LoginCredentials';
+import AuthData from '../types/AuthData';
 
 const securityApi = SecurityApi();
 const SecurityService = () => {
-  const onAuthSuccess = (response) => {
+  const onAuthSuccess = (response: AxiosResponse<any>) => {
     LocalStorageWrapper.save(tokenKey, response.data.token);
     return { success: true };
   };
 
-  const onAuthFail = (error) => {
+  const onAuthFail = (error: any) => {
     LocalStorageWrapper.remove(tokenKey);
     return { success: false, error };
   };
 
-  const authenticate = credentials => securityApi.authenticate(credentials)
+  const authenticate = (credentials:LoginCredentials) => securityApi.authenticate(credentials)
     .then(onAuthSuccess)
     .catch(onAuthFail);
 
@@ -23,9 +26,9 @@ const SecurityService = () => {
     LocalStorageWrapper.remove(tokenKey);
   };
 
-  const isAuthenticated = () => LocalStorageWrapper.get(tokenKey) != null;
+  const isAuthenticated = (): boolean => LocalStorageWrapper.get(tokenKey) != null;
 
-  const getAuthData = () => jwtParser.parse(LocalStorageWrapper.get(tokenKey));
+  const getAuthData = (): AuthData => jwtParser.parse(LocalStorageWrapper.get(tokenKey));
 
   return {
     authenticate,
