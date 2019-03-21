@@ -11,7 +11,7 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.(ts|js|jsx)$/,
+          test: /\.(ts|js|jsx|tsx)$/,
           exclude: /node_modules/,
           use: [
             'babel-loader',
@@ -21,7 +21,7 @@ module.exports = (env) => {
       ]
     },
     resolve: {
-      extensions: ['*', '.js', '.ts', '.jsx']
+      extensions: ['*', '.js', '.ts', '.jsx', '.tsx']
     },
     plugins: [
       new webpack.DefinePlugin({

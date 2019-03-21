@@ -13,8 +13,8 @@ const users: User[] = [{
   id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false,
 }];
 
-const getUsers = () => new Promise((resolve) => {
-  resolve({ data: users });
+const getUsers = () => new Promise<User[]>((resolve) => {
+  resolve(users);
 });
 
 const http = HttpWrapper(config.authUri);

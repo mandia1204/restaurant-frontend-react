@@ -19,5 +19,8 @@
             ".tsx"
         ]
 	},
-	"files.associations": {"Dockerfile*": "dockerfile"}
+    "files.associations": {
+        "Dockerfile*": "dockerfile"
+    },
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }

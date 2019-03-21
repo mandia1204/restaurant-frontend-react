@@ -1,23 +1,28 @@
-import React from 'react';
-import { withRouter } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
-import PropTypes from 'prop-types';
+import React, { Dispatch } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import Actions from '../../state/actions/AppActions';
 import LoginForm from './LoginForm';
 import SecurityService from '../../services/SecurityService';
 
-class Login extends React.Component {
-  constructor(props) {
+interface Props extends RouteComponentProps<any> {
+  dispatch: Dispatch<any>;
+}
+
+class Login extends React.Component<Props, any> {
+  securityService:any;
+
+  constructor(props:Props) {
     super(props);
     this.securityService = SecurityService();
   }
 
-  onSubmit = (values, ...args) => {
+  onSubmit = (values: any, ...args: any[]) => {
     this.login(values, args[0].setSubmitting);
   }
 
-  loginSuccess = (user) => {
+  loginSuccess = (user: any) => {
     const { history, dispatch } = this.props;
     history.push('/');
     const { Creators } = Actions;
@@ -28,8 +33,8 @@ class Login extends React.Component {
     alert('auth failed'); //eslint-disable-line
   }
 
-  login = (user, setSubmitting) => {
-    this.securityService.authenticate(user).then((response) => {
+  login = (user: any, setSubmitting: any) => {
+    this.securityService.authenticate(user).then((response:any) => {
       setSubmitting(false);
       if (response.success) {
         this.loginSuccess(user);
@@ -39,8 +44,8 @@ class Login extends React.Component {
     });
   }
 
-  validate = (values) => {
-    const errors = {};
+  validate = (values: any) => {
+    const errors: any = {};
 
     if (!values.userName) {
       errors.userName = 'User name required';
@@ -58,7 +63,7 @@ class Login extends React.Component {
           userName: 'matt',
           password: '1234',
         }}
-        render={props => (<LoginForm {...props} />)}
+        render={(props:any) => (<LoginForm {...props} />)}
         onSubmit={this.onSubmit}
         validate={this.validate}
         validateOnChange={false}
@@ -66,10 +71,5 @@ class Login extends React.Component {
     );
   }
 }
-
-Login.propTypes = {
-  history: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
 
 export default connect()(withRouter(Login));

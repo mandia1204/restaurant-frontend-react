@@ -8,7 +8,6 @@ const SecurityApi = () => {
     const response: AxiosResponse<any> = {
       data: { token }, status: 200, statusText: 'OK', headers: null, config: {},
     };
-    // resolve({ data: { token } });
     resolve(response);
   });
 
@@ -22,8 +21,8 @@ const SecurityApi = () => {
     id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false,
   }];
 
-  const getUsers = () => new Promise((resolve) => {
-    resolve({ data: users });
+  const getUsers = () => new Promise<User[]>((resolve) => {
+    resolve(users);
   });
 
   return {

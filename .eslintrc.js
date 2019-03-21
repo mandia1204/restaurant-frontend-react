@@ -50,6 +50,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-member-accessibility': 'off',
     // 'no-console':'off',
     // 'no-unused-vars':'off'
   },
@@ -58,6 +59,12 @@ module.exports = {
       files: ['*.itest.js'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+      },
+    },
+    {
+      files: ['*.tsx'],
+      rules: {
+        'react/sort-comp': 'off',
       },
     },
   ],

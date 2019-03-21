@@ -3,6 +3,7 @@ import {
 } from 'redux-saga/effects';
 import UserService from '../../services/UserService';
 import Actions from '../actions/UserActions';
+import User from '../../types/User';
 
 const { Creators, Types } = Actions;
 const service = UserService();
@@ -10,8 +11,8 @@ const service = UserService();
 const getUsers = () => service.getUsers();
 
 function* fetchUsers() {
-  const { data } = yield call(getUsers);
-  yield put(Creators.receiveUsers(data));
+  const users:User[] = yield call(getUsers);
+  yield put(Creators.receiveUsers(users));
 }
 
 const watchSagas = () => function* watch() {
