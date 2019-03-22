@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Drawer from '@material-ui/core/Drawer';
 import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+import { WithStyles } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -11,7 +11,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import GroupIcon from '@material-ui/icons/Group';
 
 const drawerWidth = 200;
-const styles = () => ({
+const styles = createStyles({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -22,9 +22,11 @@ const styles = () => ({
   },
 });
 
-const Menu = (props) => {
-  const { classes } = props;
+interface Props extends WithStyles<typeof styles> {
+}
 
+const Menu = (props: Props) => {
+  const { classes } = props;
   return (
     <Drawer
       className={classes.drawer}
@@ -34,13 +36,15 @@ const Menu = (props) => {
       }}
     >
       <List component="nav">
-        <ListItem component={Link} to="/settings/users" button>
+        {/* eslint-disable-next-line */}
+        <ListItem component={({ innerRef, ...lprops }) => <Link {...lprops} to="/settings/users" />} button>
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
           <ListItemText primary="Users" />
         </ListItem>
-        <ListItem component={Link} to="/settings/groups" button>
+        {/* eslint-disable-next-line */}
+        <ListItem component={({ innerRef, ...lprops }) => <Link {...lprops} to="/settings/groups" />} button>
           <ListItemIcon>
             <GroupIcon />
           </ListItemIcon>
@@ -49,10 +53,6 @@ const Menu = (props) => {
       </List>
     </Drawer>
   );
-};
-
-Menu.propTypes = {
-  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Menu);
