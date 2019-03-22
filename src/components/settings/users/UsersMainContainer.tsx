@@ -1,14 +1,24 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Actions from '../../../state/actions/UserActions';
 import UsersTable from './UsersTable';
 import SearchFilters from './SearchFilters';
 import AddUser from './AddUser';
+import User from '../../../types/User';
 
-class UsersMainContainer extends Component {
-  constructor(props) {
+interface Props {
+  dispatch: Dispatch<any>;
+  users: User[];
+}
+
+interface State {
+  userNameFilter: string;
+  isAdminFilter: boolean;
+}
+
+class UsersMainContainer extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { userNameFilter: '', isAdminFilter: false };
   }
@@ -18,17 +28,21 @@ class UsersMainContainer extends Component {
     dispatch(Actions.Creators.fetchUsers());
   }
 
-  updateFiltersState = (event) => {
+  updateFiltersState = (event:React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     const { name } = target;
-    let { value } = target;
+    let { value } : any = target;
     if (event.target.type === 'checkbox') {
       value = event.target.checked;
     }
-    this.setState({ [name]: value });
+
+    this.setState(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   }
 
-  filterUsers = (users) => {
+  filterUsers = (users:User[]) => {
     const { userNameFilter, isAdminFilter } = this.state;
     return users.filter(u => u.userName.indexOf(userNameFilter) !== -1
         && (!isAdminFilter || (isAdminFilter && u.isAdmin === true)));
@@ -48,9 +62,7 @@ class UsersMainContainer extends Component {
               onChange={this.updateFiltersState}
             />
           </Grid>
-          <Grid item xs={2}>
-            <AddUser />
-          </Grid>
+          <Grid item xs={2}><AddUser /></Grid>
         </Grid>
         <UsersTable users={this.filterUsers(users)} />
       </div>
@@ -58,16 +70,11 @@ class UsersMainContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state:any) => {
   const { users } = state;
   return {
     users,
   };
-};
-
-UsersMainContainer.propTypes = {
-  users: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(UsersMainContainer);

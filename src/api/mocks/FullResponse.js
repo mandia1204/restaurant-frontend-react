@@ -117,7 +117,7 @@ export default {
     {
       fecha: '29/06 13:13',
       tipo: 'otro',
-      observacion: 'Cliente no le gustó la comida. Solicitó el cambio o de lo contrario no iba a cancelar su cuenta, se tuvo que acceder a su petición.',
+      observacion: 'Cliente no le gustó la comida. Solicitó el cambio o de lo contrario no iba a cancelar su cuenta, se tuvo que acceder a su petición.', //eslint-disable-line
     },
     {
       fecha: '29/06 13:13',

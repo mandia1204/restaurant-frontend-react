@@ -1,20 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+import { WithStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const styles = () => ({
+const styles = createStyles({
   root: {
     flexGrow: 1,
   },
 });
 
-const SearchFilters = (props) => {
-  const {
-    classes, userNameFilter, isAdminFilter, onChange,
-  } = props;
+interface Props extends WithStyles<typeof styles> {
+  userNameFilter: string;
+  isAdminFilter: boolean;
+  onChange: (e:React.ChangeEvent<HTMLInputElement>)=>void;
+}
+
+const SearchFilters = (props: Props) => {
+  const { classes, userNameFilter, isAdminFilter, onChange } = props;
   return (
     <div className={classes.root}>
       <Grid alignItems="flex-end" container spacing={24}>
@@ -35,13 +39,6 @@ const SearchFilters = (props) => {
       </Grid>
     </div>
   );
-};
-
-SearchFilters.propTypes = {
-  classes: PropTypes.object.isRequired,
-  userNameFilter: PropTypes.string.isRequired,
-  isAdminFilter: PropTypes.bool.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SearchFilters);
