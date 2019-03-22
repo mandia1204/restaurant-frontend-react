@@ -5,9 +5,10 @@ import jwtParser from '../util/jwtParser';
 import SecurityApi from '../api/SecurityApi';
 import LoginCredentials from '../types/LoginCredentials';
 import AuthData from '../types/AuthData';
+import ISecurityService from '../types/ISecurityService';
 
 const securityApi = SecurityApi();
-const SecurityService = () => {
+const SecurityService = ():ISecurityService => {
   const onAuthSuccess = (response: AxiosResponse<any>) => {
     LocalStorageWrapper.save(tokenKey, response.data.token);
     return { success: true };

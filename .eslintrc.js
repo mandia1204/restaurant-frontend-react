@@ -51,6 +51,7 @@ module.exports = {
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
+    'max-len': ['error', { code: 130 }],
     // 'no-console':'off',
     // 'no-unused-vars':'off'
   },
@@ -65,6 +66,7 @@ module.exports = {
       files: ['*.tsx'],
       rules: {
         'react/sort-comp': 'off',
+        'object-curly-newline': 'off',
       },
     },
   ],

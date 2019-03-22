@@ -8,7 +8,11 @@ const generateCardModel = (cards, cardName) => {
     return {};
   }
 
-  return { ...card, ...options, ...{ valueFormatted: options.format.replace('${0}', card.value) } }; // eslint-disable-line no-template-curly-in-string
+  return {
+    ...card,
+    ...options,
+    ...{ valueFormatted: options.format.replace('${0}', card.value) }, // eslint-disable-line no-template-curly-in-string
+  };
 };
 
 const build = cards => ({

@@ -19,7 +19,14 @@ const SearchFilters = (props) => {
     <div className={classes.root}>
       <Grid alignItems="flex-end" container spacing={24}>
         <Grid item xs={7}>
-          <TextField name="userNameFilter" onChange={onChange} value={userNameFilter} fullWidth label="User Name" margin="normal" />
+          <TextField
+            name="userNameFilter"
+            onChange={onChange}
+            value={userNameFilter}
+            fullWidth
+            label="User Name"
+            margin="normal"
+          />
         </Grid>
         <Grid item xs={3}>
           Is Admin

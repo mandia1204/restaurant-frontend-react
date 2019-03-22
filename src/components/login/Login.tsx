@@ -1,39 +1,41 @@
 import React, { Dispatch } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import { connect } from 'react-redux';
-import { Formik } from 'formik';
+import { Formik, FormikActions, FormikProps } from 'formik';
 import Actions from '../../state/actions/AppActions';
 import LoginForm from './LoginForm';
 import SecurityService from '../../services/SecurityService';
+import ISecurityService from '../../types/ISecurityService';
+import LoginCredentials from '../../types/LoginCredentials';
 
-interface Props extends RouteComponentProps<any> {
+interface LoginProps extends RouteComponentProps<any> {
   dispatch: Dispatch<any>;
 }
 
-class Login extends React.Component<Props, any> {
-  securityService:any;
+class Login extends React.Component<LoginProps, any> {
+  securityService:ISecurityService;
 
-  constructor(props:Props) {
+  constructor(props:LoginProps) {
     super(props);
     this.securityService = SecurityService();
   }
 
-  onSubmit = (values: any, ...args: any[]) => {
-    this.login(values, args[0].setSubmitting);
+  onSubmit = (values: LoginCredentials, { setSubmitting }: FormikActions<LoginCredentials>) => {
+    this.login(values, setSubmitting);
   }
 
-  loginSuccess = (user: any) => {
+  loginSuccess = (credentials: LoginCredentials) => {
     const { history, dispatch } = this.props;
     history.push('/');
     const { Creators } = Actions;
-    dispatch(Creators.updateLoginData({ user: { name: user.userName }, authenticated: true }));
+    dispatch(Creators.updateLoginData({ user: { name: credentials.userName }, authenticated: true }));
   }
 
   loginFail = () => {
     alert('auth failed'); //eslint-disable-line
   }
 
-  login = (user: any, setSubmitting: any) => {
+  login = (user: LoginCredentials, setSubmitting:(isSubmitting:boolean)=>void) => {
     this.securityService.authenticate(user).then((response:any) => {
       setSubmitting(false);
       if (response.success) {
@@ -44,13 +46,13 @@ class Login extends React.Component<Props, any> {
     });
   }
 
-  validate = (values: any) => {
+  validate = (credentials:LoginCredentials) => {
     const errors: any = {};
 
-    if (!values.userName) {
+    if (!credentials.userName) {
       errors.userName = 'User name required';
     }
-    if (!values.password) {
+    if (!credentials.password) {
       errors.password = 'Password required';
     }
     return errors;
@@ -63,7 +65,7 @@ class Login extends React.Component<Props, any> {
           userName: 'matt',
           password: '1234',
         }}
-        render={(props:any) => (<LoginForm {...props} />)}
+        render={(props:FormikProps<LoginCredentials>) => (<LoginForm {...props} />)}
         onSubmit={this.onSubmit}
         validate={this.validate}
         validateOnChange={false}
