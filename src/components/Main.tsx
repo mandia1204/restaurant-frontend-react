@@ -1,20 +1,20 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+import { WithStyles } from '@material-ui/core';
 import Home from './home/Home';
 import DashboardContainer from './dashboard/DashboardContainer';
 import Settings from './settings/Main';
 import PrivateRoute from './routing/PrivateRoute';
 import Login from './login/Login';
 
-const styles = {
+const styles = createStyles({
   main: {
     padding: '5px 10px 0 10px',
   },
-};
+});
 
-const Main = ({ classes }) => (
+const Main = ({ classes }: WithStyles<typeof styles>) => (
 
   <main className={classes.main}>
     <Switch>
@@ -25,9 +25,5 @@ const Main = ({ classes }) => (
     </Switch>
   </main>
 );
-
-Main.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Main);

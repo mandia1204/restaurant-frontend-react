@@ -13,12 +13,13 @@ const styles = createStyles({
 });
 
 interface Props extends WithStyles<typeof styles> {
+  className?: string
 }
 
 const Content = (props: Props) => {
-  const { classes } = props;
+  const { classes, className } = props;
   return (
-    <main className={classes.main}>
+    <main className={`${classes.main} ${className}`}>
       <Switch>
         <PrivateRoute path="/settings/users" component={UsersMainContainer} />
         <PrivateRoute path="/settings/groups" component={Groups} />

@@ -26,11 +26,10 @@ interface Props extends WithStyles<typeof styles> {
 
 const Main = (props: Props) => {
   const { classes } = props;
-  const contentProps = { className: classes.content };
   return (
     <div className={classes.root}>
       <Menu />
-      <Content {...contentProps} />
+      <Content className={classes.content} />
     </div>
   );
 };
