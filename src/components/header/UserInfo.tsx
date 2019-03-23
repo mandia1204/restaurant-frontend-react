@@ -1,9 +1,13 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 
-const UserInfo = ({ logout, user }) => (
+interface Props {
+  logout: () => void;
+  user: any;
+}
+
+const UserInfo = ({ logout, user }: Props) => (
   <Grid item>
     <span>
       { 'User:' }
@@ -16,10 +20,5 @@ const UserInfo = ({ logout, user }) => (
     </Button>
   </Grid>
 );
-
-UserInfo.propTypes = {
-  logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-};
 
 export default UserInfo;

@@ -2,20 +2,28 @@ import React, { Component, Fragment } from 'react';
 import InputIcon from '@material-ui/icons/Input';
 import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
-import PropTypes from 'prop-types';
 import CloseIcon from '@material-ui/icons/Close';
 import Grid from '@material-ui/core/Grid';
 import Filters from './Filters';
 
-class FiltersPopup extends Component {
-  constructor(props) {
+interface Props {
+  values: any;
+  filtersChange: any;
+}
+
+interface State {
+  popupOpen: boolean;
+}
+
+class FiltersPopup extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { popupOpen: false };
   }
 
-  togglePopup = (open) => {
+  togglePopup = (popupOpen: boolean) => {
     this.setState({
-      popupOpen: open,
+      popupOpen,
     });
   }
 
@@ -43,10 +51,5 @@ class FiltersPopup extends Component {
     );
   }
 }
-
-FiltersPopup.propTypes = {
-  values: PropTypes.object.isRequired,
-  filtersChange: PropTypes.func.isRequired,
-};
 
 export default FiltersPopup;

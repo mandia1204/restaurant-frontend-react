@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
 
 const styles = theme => ({
   container: {
@@ -18,7 +17,7 @@ const styles = theme => ({
 });
 
 const LoginForm = ({
-  classes, loginData, handleChange, handleBlur, handleSubmit, isSubmitting, touched, errors,
+  classes, loginData, handleChange, handleBlur, handleSubmit, isSubmitting, touched, errors, //eslint-disable-line
 }) => (
   <form className={classes.container} onSubmit={handleSubmit} autoComplete="off">
     <h1>
@@ -50,14 +49,14 @@ const LoginForm = ({
         />
       </Grid>
       { touched.userName && errors.userName && (
-      <div>
-        {errors.userName}
-      </div>
+        <div>
+          {errors.userName}
+        </div>
       )}
       { touched.password && errors.password && (
-      <div>
-        {errors.password}
-      </div>
+        <div>
+          {errors.password}
+        </div>
       )}
       <Grid item>
         <Button color="primary" type="submit" disabled={isSubmitting}>
@@ -67,16 +66,5 @@ const LoginForm = ({
     </Grid>
   </form>
 );
-
-LoginForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-  loginData: PropTypes.object.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleBlur: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
-  errors: PropTypes.object.isRequired,
-  touched: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(LoginForm);

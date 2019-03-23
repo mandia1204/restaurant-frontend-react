@@ -1,26 +1,32 @@
 import React from 'react';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+import { WithStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { years, months } from '../../util/Constants';
 
-const styles = {
+
+const styles = createStyles({
   select: {
     marginRight: '10px',
     backgroundColor: 'white',
   },
-};
+});
 
-const onYearChange = filtersChange => (e) => {
+const onYearChange = (filtersChange: any) => (e: React.ChangeEvent<HTMLSelectElement>) => {
   filtersChange({ year: parseInt(e.target.value, 10) });
 };
 
-const onMonthChange = filtersChange => (e) => {
+const onMonthChange = (filtersChange: any) => (e: React.ChangeEvent<HTMLSelectElement>) => {
   filtersChange({ month: parseInt(e.target.value, 10) });
 };
 
-const Filters = ({ classes, values, filtersChange }) => (
+interface Props extends WithStyles<typeof styles>{
+  values: any;
+  filtersChange: (a: any)=> void;
+}
+
+const Filters = ({ classes, values, filtersChange } : Props) => (
   <Grid item>
     <NativeSelect id="year-filter" value={values.year} onChange={onYearChange(filtersChange)} className={classes.select}>
       {years.map(val => (
@@ -38,11 +44,5 @@ const Filters = ({ classes, values, filtersChange }) => (
     </NativeSelect>
   </Grid>
 );
-
-Filters.propTypes = {
-  classes: PropTypes.object.isRequired,
-  values: PropTypes.object.isRequired,
-  filtersChange: PropTypes.func.isRequired,
-};
 
 export default withStyles(styles)(Filters);

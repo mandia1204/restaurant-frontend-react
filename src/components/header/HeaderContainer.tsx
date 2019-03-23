@@ -1,21 +1,28 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
-import PropTypes from 'prop-types';
+import React, { Component, Dispatch } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import { connect } from 'react-redux';
 import SecurityService from '../../services/SecurityService';
 import Actions from '../../state/actions/AppActions';
 import DashboardActions from '../../state/actions/DashboardActions';
 import { Ops } from '../../util/Constants';
 import Header from './Header';
+import ISecurityService from '../../types/ISecurityService';
 
-class HeaderContainer extends Component {
-  constructor(props) {
+interface Props extends RouteComponentProps<any> {
+  dispatch: Dispatch<any>;
+  appState: any;
+}
+
+class HeaderContainer extends Component<Props, any> {
+  securityService:ISecurityService;
+
+  constructor(props: Props) {
     super(props);
     this.securityService = SecurityService();
     this.logout = this.logout.bind(this);
   }
 
-  onFiltersChange = (filter) => {
+  onFiltersChange = (filter: any) => {
     const { appState, dispatch } = this.props;
     const filters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
     dispatch(Actions.Creators.updateDashboardFilter(filter));
@@ -31,9 +38,7 @@ class HeaderContainer extends Component {
 
   render() {
     const { appState } = this.props;
-    const {
-      showHeaderLinks, showFilters, dashboardFilters, loggedUser,
-    } = appState;
+    const { showHeaderLinks, showFilters, dashboardFilters, loggedUser } = appState;
     return (
       <Header
         showHeaderLinks={showHeaderLinks}
@@ -47,17 +52,11 @@ class HeaderContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   const { appState } = state;
   return {
     appState,
   };
-};
-
-HeaderContainer.propTypes = {
-  history: PropTypes.object.isRequired,
-  appState: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(withRouter(HeaderContainer));

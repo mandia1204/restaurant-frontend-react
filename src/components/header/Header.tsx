@@ -3,40 +3,38 @@ import Hidden from '@material-ui/core/Hidden';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
-import PropTypes from 'prop-types';
 import Filters from './Filters';
 import UserInfo from './UserInfo';
 import Menu from './Menu';
 import NavBar from './NavBar';
 import FiltersPopup from './FiltersPopup';
 
-const Header = ({
-  showHeaderLinks, showFilters, dashboardFilters, onFiltersChange, logout, loggedUser,
-}) => (
+interface Props {
+  showHeaderLinks: boolean;
+  showFilters: boolean;
+  dashboardFilters: any;
+  onFiltersChange: any;
+  logout: any;
+  loggedUser: any;
+}
+
+const Header = ({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChange, logout, loggedUser } : Props) => (
   <AppBar position="static">
     <Toolbar>
       <Grid container spacing={8}>
-        <Grid item xs>
-          { showHeaderLinks && <NavBar /> }
-        </Grid>
+        <Grid item xs> { showHeaderLinks && <NavBar /> } </Grid>
         <Grid item xs={6}>
           { showHeaderLinks && showFilters
                         && (
                           <Fragment>
                             <Hidden smDown>
                               <Grid container alignItems="center" style={{ height: '100%' }}>
-                                <Filters
-                                  values={dashboardFilters}
-                                  filtersChange={onFiltersChange}
-                                />
+                                <Filters values={dashboardFilters} filtersChange={onFiltersChange} />
                               </Grid>
                             </Hidden>
                             <Hidden mdUp>
                               <Grid item>
-                                <FiltersPopup
-                                  values={dashboardFilters}
-                                  filtersChange={onFiltersChange}
-                                />
+                                <FiltersPopup values={dashboardFilters} filtersChange={onFiltersChange} />
                               </Grid>
                             </Hidden>
                           </Fragment>
@@ -63,14 +61,5 @@ const Header = ({
     </Toolbar>
   </AppBar>
 );
-
-Header.propTypes = {
-  showHeaderLinks: PropTypes.bool.isRequired,
-  showFilters: PropTypes.bool.isRequired,
-  dashboardFilters: PropTypes.object.isRequired,
-  onFiltersChange: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
-  loggedUser: PropTypes.object.isRequired,
-};
 
 export default Header;

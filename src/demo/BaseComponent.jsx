@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import withNewProps from './withNewProps';
 
 class BaseComponent extends React.Component {
@@ -8,7 +7,7 @@ class BaseComponent extends React.Component {
   }
 
   render() {
-    const { loggedIn, user, info } = this.props;
+    const { loggedIn, user, info } = this.props; //eslint-disable-line
     return (
       <div>
         { `${loggedIn} : ${user} - ${info}` }
@@ -16,11 +15,5 @@ class BaseComponent extends React.Component {
     );
   }
 }
-
-BaseComponent.propTypes = {
-  loggedIn: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired,
-  info: PropTypes.string.isRequired,
-};
 
 export default withNewProps(BaseComponent);
