@@ -4,7 +4,7 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 import { WithStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { years, months } from '../../util/Constants';
-
+import DashboardFilters from '../../types/DashboardFilters';
 
 const styles = createStyles({
   select: {
@@ -13,17 +13,17 @@ const styles = createStyles({
   },
 });
 
-const onYearChange = (filtersChange: any) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+const onYearChange = (filtersChange: (f:DashboardFilters)=>void) => (e: React.ChangeEvent<HTMLSelectElement>) => {
   filtersChange({ year: parseInt(e.target.value, 10) });
 };
 
-const onMonthChange = (filtersChange: any) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+const onMonthChange = (filtersChange: (f:DashboardFilters)=>void) => (e: React.ChangeEvent<HTMLSelectElement>) => {
   filtersChange({ month: parseInt(e.target.value, 10) });
 };
 
 interface Props extends WithStyles<typeof styles>{
-  values: any;
-  filtersChange: (a: any)=> void;
+  values: DashboardFilters;
+  filtersChange: (f: DashboardFilters)=> void;
 }
 
 const Filters = ({ classes, values, filtersChange } : Props) => (

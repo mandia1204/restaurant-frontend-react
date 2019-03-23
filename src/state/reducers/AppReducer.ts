@@ -1,37 +1,39 @@
+// @ts-ignore
 import { createReducer } from 'reduxsauce';
 import Actions from '../actions/AppActions';
+import AppState from '../../types/AppState';
+import DashboardFilters from '../../types/DashboardFilters';
 
 const { Types } = Actions;
-
 const date = new Date();
 
-const getDefaultFilters = () => ({ year: date.getFullYear(), month: date.getMonth() });
+const getDefaultFilters = ():DashboardFilters => ({ year: date.getFullYear(), month: date.getMonth() });
 
-const INITIAL_STATE = {
+const INITIAL_STATE: AppState = {
   showHeaderLinks: false,
   showFilters: false,
   loggedUser: { name: '' },
   dashboardFilters: getDefaultFilters(),
 };
 
-const showNavLinks = (state, action) => ({ ...state, showHeaderLinks: action.showLinks });
-const showFilters = (state, action) => ({ ...state, showFilters: action.show });
-const updateDashboardFilter = (state, action) => ({
+const showNavLinks = (state:AppState, action: any):AppState => ({ ...state, showHeaderLinks: action.showLinks });
+const showFilters = (state:AppState, action: any):AppState => ({ ...state, showFilters: action.show });
+const updateDashboardFilter = (state:AppState, action: any):AppState => ({
   ...state,
   dashboardFilters: {
     ...state.dashboardFilters,
     ...action.filter,
   },
 });
-const updateLoginData = (state, action) => ({
+const updateLoginData = (state: AppState, action: any):AppState => ({
   ...state,
   loggedUser: action.data.user,
   showHeaderLinks: action.data.authenticated,
 });
 
-const fetchLoginData = state => state;
+const fetchLoginData = (state: AppState):AppState => state;
 
-const logout = () => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
+const logout = ():AppState => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
 
 export const AppReducer = createReducer(INITIAL_STATE,
   {

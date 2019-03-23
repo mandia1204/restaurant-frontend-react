@@ -8,13 +8,14 @@ import UserInfo from './UserInfo';
 import Menu from './Menu';
 import NavBar from './NavBar';
 import FiltersPopup from './FiltersPopup';
+import DashboardFilters from '../../types/DashboardFilters';
 
 interface Props {
   showHeaderLinks: boolean;
   showFilters: boolean;
   dashboardFilters: any;
-  onFiltersChange: any;
-  logout: any;
+  onFiltersChange: (f:DashboardFilters)=>void;
+  logout: ()=>void;
   loggedUser: any;
 }
 

@@ -7,10 +7,12 @@ import DashboardActions from '../../state/actions/DashboardActions';
 import { Ops } from '../../util/Constants';
 import Header from './Header';
 import ISecurityService from '../../types/ISecurityService';
+import AppState from '../../types/AppState';
+import DashboardFilters from '../../types/DashboardFilters';
 
 interface Props extends RouteComponentProps<any> {
   dispatch: Dispatch<any>;
-  appState: any;
+  appState: AppState;
 }
 
 class HeaderContainer extends Component<Props, any> {
@@ -22,9 +24,9 @@ class HeaderContainer extends Component<Props, any> {
     this.logout = this.logout.bind(this);
   }
 
-  onFiltersChange = (filter: any) => {
+  onFiltersChange = (filter: DashboardFilters) => {
     const { appState, dispatch } = this.props;
-    const filters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
+    const filters: DashboardFilters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
     dispatch(Actions.Creators.updateDashboardFilter(filter));
     dispatch(DashboardActions.Creators.fetchDashboard(filters));
   }
