@@ -14,7 +14,7 @@ const styles = createStyles({
 interface Props extends WithStyles<typeof styles> {
   userNameFilter: string;
   isAdminFilter: boolean;
-  onChange: (e:React.ChangeEvent<HTMLInputElement>)=>void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchFilters = (props: Props) => {

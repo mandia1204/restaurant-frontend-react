@@ -28,10 +28,10 @@ class UsersMainContainer extends Component<Props, State> {
     dispatch(Actions.Creators.fetchUsers());
   }
 
-  updateFiltersState = (event:React.ChangeEvent<HTMLInputElement>) => {
+  updateFiltersState = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     const { name } = target;
-    let { value } : any = target;
+    let { value }: any = target;
     if (event.target.type === 'checkbox') {
       value = event.target.checked;
     }
@@ -42,7 +42,7 @@ class UsersMainContainer extends Component<Props, State> {
     }));
   }
 
-  filterUsers = (users:User[]) => {
+  filterUsers = (users: User[]) => {
     const { userNameFilter, isAdminFilter } = this.state;
     return users.filter(u => u.userName.indexOf(userNameFilter) !== -1
         && (!isAdminFilter || (isAdminFilter && u.isAdmin === true)));
@@ -70,7 +70,7 @@ class UsersMainContainer extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: any) => {
   const { users } = state;
   return {
     users,

@@ -13,20 +13,20 @@ const styles = createStyles({
   },
 });
 
-const onYearChange = (filtersChange: (f:DashboardFilters)=>void) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+const onYearChange = (filtersChange: (f: DashboardFilters) => void) => (e: React.ChangeEvent<HTMLSelectElement>) => {
   filtersChange({ year: parseInt(e.target.value, 10) });
 };
 
-const onMonthChange = (filtersChange: (f:DashboardFilters)=>void) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+const onMonthChange = (filtersChange: (f: DashboardFilters) => void) => (e: React.ChangeEvent<HTMLSelectElement>) => {
   filtersChange({ month: parseInt(e.target.value, 10) });
 };
 
 interface Props extends WithStyles<typeof styles>{
   values: DashboardFilters;
-  filtersChange: (f: DashboardFilters)=> void;
+  filtersChange: (f: DashboardFilters) => void;
 }
 
-const Filters = ({ classes, values, filtersChange } : Props) => (
+const Filters = ({ classes, values, filtersChange }: Props) => (
   <Grid item>
     <NativeSelect id="year-filter" value={values.year} onChange={onYearChange(filtersChange)} className={classes.select}>
       {years.map(val => (

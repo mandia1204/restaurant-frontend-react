@@ -16,7 +16,7 @@ interface Props extends RouteComponentProps<any> {
 }
 
 class HeaderContainer extends Component<Props, any> {
-  securityService:ISecurityService;
+  securityService: ISecurityService;
 
   constructor(props: Props) {
     super(props);

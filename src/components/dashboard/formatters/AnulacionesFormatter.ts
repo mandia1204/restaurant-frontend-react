@@ -16,7 +16,7 @@ const propsByType: Map<string, any> = new Map(
 );
 
 export const AnulacionesFormatter = () => {
-  const getTipo = (tipo:string): string => (!propsByType.get(tipo) ? 'default' : tipo);
+  const getTipo = (tipo: string): string => (!propsByType.get(tipo) ? 'default' : tipo);
 
   const format = (anulaciones: Anulacion[]) => anulaciones.map((a) => {
     const vacio = !a.observacion ? { observacion: '<vacio>' } : { };

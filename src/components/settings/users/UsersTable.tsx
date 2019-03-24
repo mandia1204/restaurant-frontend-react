@@ -24,7 +24,7 @@ interface Props extends WithStyles<typeof styles> {
   users: User[];
 }
 
-const UsersTable = ({ classes, users } : Props) => (
+const UsersTable = ({ classes, users }: Props) => (
   <Paper className={classes.root}>
     <Table className={classes.table}>
       <TableHead>

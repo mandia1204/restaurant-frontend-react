@@ -22,10 +22,7 @@ const styles = createStyles({
   },
 });
 
-interface Props extends WithStyles<typeof styles> {
-}
-
-const Menu = (props: Props) => {
+const Menu = (props: WithStyles<typeof styles>) => {
   const { classes } = props;
   return (
     <Drawer

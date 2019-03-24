@@ -7,7 +7,7 @@ import DashboardFilters from '../../types/DashboardFilters';
 const { Types } = Actions;
 const date = new Date();
 
-const getDefaultFilters = ():DashboardFilters => ({ year: date.getFullYear(), month: date.getMonth() });
+const getDefaultFilters = (): DashboardFilters => ({ year: date.getFullYear(), month: date.getMonth() });
 
 const INITIAL_STATE: AppState = {
   showHeaderLinks: false,
@@ -16,24 +16,24 @@ const INITIAL_STATE: AppState = {
   dashboardFilters: getDefaultFilters(),
 };
 
-const showNavLinks = (state:AppState, action: any):AppState => ({ ...state, showHeaderLinks: action.showLinks });
-const showFilters = (state:AppState, action: any):AppState => ({ ...state, showFilters: action.show });
-const updateDashboardFilter = (state:AppState, action: any):AppState => ({
+const showNavLinks = (state: AppState, action: any): AppState => ({ ...state, showHeaderLinks: action.showLinks });
+const showFilters = (state: AppState, action: any): AppState => ({ ...state, showFilters: action.show });
+const updateDashboardFilter = (state: AppState, action: any): AppState => ({
   ...state,
   dashboardFilters: {
     ...state.dashboardFilters,
     ...action.filter,
   },
 });
-const updateLoginData = (state: AppState, action: any):AppState => ({
+const updateLoginData = (state: AppState, action: any): AppState => ({
   ...state,
   loggedUser: action.data.user,
   showHeaderLinks: action.data.authenticated,
 });
 
-const fetchLoginData = (state: AppState):AppState => state;
+const fetchLoginData = (state: AppState): AppState => state;
 
-const logout = ():AppState => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
+const logout = (): AppState => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
 
 export const AppReducer = createReducer(INITIAL_STATE,
   {

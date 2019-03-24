@@ -14,12 +14,12 @@ interface Props {
   showHeaderLinks: boolean;
   showFilters: boolean;
   dashboardFilters: any;
-  onFiltersChange: (f:DashboardFilters)=>void;
-  logout: ()=>void;
+  onFiltersChange: (f: DashboardFilters) => void;
+  logout: () => void;
   loggedUser: any;
 }
 
-const Header = ({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChange, logout, loggedUser } : Props) => (
+const Header = ({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChange, logout, loggedUser }: Props) => (
   <AppBar position="static">
     <Toolbar>
       <Grid container spacing={8}>

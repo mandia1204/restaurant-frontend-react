@@ -11,7 +11,7 @@ const service = UserService();
 const getUsers = () => service.getUsers();
 
 function* fetchUsers() {
-  const users:User[] = yield call(getUsers);
+  const users: User[] = yield call(getUsers);
   yield put(Creators.receiveUsers(users));
 }
 

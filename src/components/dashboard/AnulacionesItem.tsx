@@ -15,7 +15,7 @@ const styles = {
     color: '#fff',
   },
   avatar: {
-    backgroundColor: ({ anulacion }:{anulacion:Anulacion}) => ((anulacion && anulacion.color)
+    backgroundColor: ({ anulacion }: {anulacion: Anulacion}) => ((anulacion && anulacion.color)
       ? Colors[anulacion.color][400] : Colors.amber[400]),
   },
 };

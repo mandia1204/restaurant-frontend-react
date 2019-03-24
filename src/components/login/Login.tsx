@@ -13,9 +13,9 @@ interface LoginProps extends RouteComponentProps<any> {
 }
 
 class Login extends React.Component<LoginProps, any> {
-  securityService:ISecurityService;
+  securityService: ISecurityService;
 
-  constructor(props:LoginProps) {
+  constructor(props: LoginProps) {
     super(props);
     this.securityService = SecurityService();
   }
@@ -35,8 +35,8 @@ class Login extends React.Component<LoginProps, any> {
     alert('auth failed'); //eslint-disable-line
   }
 
-  login = (user: LoginCredentials, setSubmitting:(isSubmitting:boolean)=>void) => {
-    this.securityService.authenticate(user).then((response:any) => {
+  login = (user: LoginCredentials, setSubmitting: (isSubmitting: boolean) => void) => {
+    this.securityService.authenticate(user).then((response: any) => {
       setSubmitting(false);
       if (response.success) {
         this.loginSuccess(user);
@@ -46,7 +46,7 @@ class Login extends React.Component<LoginProps, any> {
     });
   }
 
-  validate = (credentials:LoginCredentials) => {
+  validate = (credentials: LoginCredentials) => {
     const errors: any = {};
 
     if (!credentials.userName) {
@@ -65,7 +65,7 @@ class Login extends React.Component<LoginProps, any> {
           userName: 'matt',
           password: '1234',
         }}
-        render={(props:FormikProps<LoginCredentials>) => (<LoginForm {...props} />)}
+        render={(props: FormikProps<LoginCredentials>) => (<LoginForm {...props} />)}
         onSubmit={this.onSubmit}
         validate={this.validate}
         validateOnChange={false}

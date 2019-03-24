@@ -8,7 +8,7 @@ import AuthData from '../types/AuthData';
 import ISecurityService from '../types/ISecurityService';
 
 const securityApi = SecurityApi();
-const SecurityService = ():ISecurityService => {
+const SecurityService = (): ISecurityService => {
   const onAuthSuccess = (response: AxiosResponse<any>) => {
     LocalStorageWrapper.save(tokenKey, response.data.token);
     return { success: true };
@@ -19,7 +19,7 @@ const SecurityService = ():ISecurityService => {
     return { success: false, error };
   };
 
-  const authenticate = (credentials:LoginCredentials) => securityApi.authenticate(credentials)
+  const authenticate = (credentials: LoginCredentials) => securityApi.authenticate(credentials)
     .then(onAuthSuccess)
     .catch(onAuthFail);
 

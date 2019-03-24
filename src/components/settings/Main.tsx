@@ -21,10 +21,7 @@ const styles = ({ spacing, palette }: Theme) => createStyles({
   },
 });
 
-interface Props extends WithStyles<typeof styles> {
-}
-
-const Main = (props: Props) => {
+const Main = (props: WithStyles<typeof styles>) => {
   const { classes } = props;
   return (
     <div className={classes.root}>

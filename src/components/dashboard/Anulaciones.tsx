@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+import { WithStyles } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import AnulacionesItem from './AnulacionesItem';
+import Anulacion from '../../types/Anulacion';
 
-const styles = {
+const styles = createStyles({
   root: {
     backgroundColor: 'white',
   },
@@ -13,9 +14,13 @@ const styles = {
     maxHeight: '350px',
     overflow: 'auto',
   },
-};
+});
 
-const Anulaciones = ({ classes, anulaciones }) => (
+interface Props extends WithStyles<typeof styles> {
+  anulaciones: Anulacion[];
+}
+
+const Anulaciones = ({ classes, anulaciones }: Props) => (
   <div className={classes.root}>
     <List className={classes.list}>
       {anulaciones.map((a, k) => (
@@ -28,10 +33,5 @@ const Anulaciones = ({ classes, anulaciones }) => (
     </List>
   </div>
 );
-
-Anulaciones.propTypes = {
-  classes: PropTypes.object.isRequired,
-  anulaciones: PropTypes.array.isRequired,
-};
 
 export default withStyles(styles)(Anulaciones);

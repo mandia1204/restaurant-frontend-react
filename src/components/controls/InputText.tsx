@@ -17,7 +17,7 @@ interface InputProps {
   label: string;
   value: string;
   type?: string;
-  autoComplete?:string;
+  autoComplete?: string;
 }
 
 const InputText = (props: InputProps) => {

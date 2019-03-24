@@ -13,7 +13,7 @@ const styles = createStyles({
 });
 
 interface Props extends WithStyles<typeof styles> {
-  className?: string
+  className?: string;
 }
 
 const Content = (props: Props) => {
