@@ -2,18 +2,22 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import * as colors from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
+import Colors from '../../types/Colors';
+import CardType from '../../types/Card';
 
+interface Props {
+  classes: any;
+  card: CardType;
+}
 
 const styles = {
   card: {
-    backgroundColor: ({ card }) => (card.color ? colors[card.color][400] : colors.amber),
+    backgroundColor: ({ card }: {card: CardType}) => (card.color ? Colors[card.color][400] : Colors.amber[400]),
   },
   cardAction: {
-    backgroundColor: ({ card }) => (card.color ? colors[card.color][800] : colors.amber),
+    backgroundColor: ({ card }: {card: CardType}) => (card.color ? Colors[card.color][800] : Colors.amber[400]),
   },
   cardContent: {
     color: 'white',
@@ -26,7 +30,7 @@ const styles = {
   },
 };
 
-const DashboardCard = ({ classes, card }) => (
+const DashboardCard = ({ classes, card }: Props) => (
   <Card className={classes.card}>
     <CardContent className={classes.cardContent}>
       <Grid container direction="column" alignItems="center" justify="center">
@@ -41,10 +45,5 @@ const DashboardCard = ({ classes, card }) => (
     <CardActions className={classes.cardAction} />
   </Card>
 );
-
-DashboardCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  card: PropTypes.object.isRequired,
-};
 
 export default injectSheet(styles)(DashboardCard);

@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
 import DashboardActions from '../../state/actions/DashboardActions';
 import Actions from '../../state/actions/AppActions';
@@ -8,9 +7,22 @@ import { CardModelBuilder } from './builders/CardModelBuilder';
 import { AnulacionesFormatter } from './formatters/AnulacionesFormatter';
 import { Ops } from '../../util/Constants';
 import Dashboard from './Dashboard';
+import AppState from '../../types/AppState';
 
-class DashboardContainer extends Component {
-  constructor(props) {
+interface Props {
+  dispatch: Dispatch<any>;
+  appState: AppState;
+  dashboard: any;
+}
+
+class DashboardContainer extends Component<Props, any> {
+  chartModelBuilder: any;
+
+  cardModelBuilder: any;
+
+  anulacionesFormatter: any;
+
+  constructor(props: Props) {
     super(props);
     this.chartModelBuilder = ChartModelBuilder();
     this.cardModelBuilder = CardModelBuilder();
@@ -40,18 +52,12 @@ class DashboardContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   const { dashboard, appState } = state;
   return {
     dashboard,
     appState,
   };
-};
-
-DashboardContainer.propTypes = {
-  dashboard: PropTypes.object.isRequired,
-  appState: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(DashboardContainer);

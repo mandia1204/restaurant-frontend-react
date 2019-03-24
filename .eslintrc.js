@@ -45,29 +45,36 @@ module.exports = {
     'react/jsx-uses-vars': ['error'],
     'linebreak-style': ['error', 'unix'],
     'import/prefer-default-export': 'off',
-    'react/forbid-prop-types': 'off',
     'react/jsx-filename-extension': 'off',
     'react/jsx-one-expression-per-line': 'off',
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/interface-name-prefix': 'off',
     'max-len': ['error', { code: 130 }],
     // 'no-console':'off',
     // 'no-unused-vars':'off'
   },
   overrides: [
     {
-      files: ['*.itest.js'],
+      files: ['**/*.itest.js'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
       },
     },
     {
-      files: ['*.tsx'],
+      files: ['**/*.tsx'],
       rules: {
         'react/sort-comp': 'off',
         'object-curly-newline': 'off',
+      },
+    },
+    {
+      files: ['**/*.ts'],
+      rules: {
+        parser: 'typescript-eslint-parser',
+        'no-undef': 'off',
       },
     },
   ],
