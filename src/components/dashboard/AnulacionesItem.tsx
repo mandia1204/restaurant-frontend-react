@@ -1,23 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import injectSheet from 'react-jss';
-import * as colors from '@material-ui/core/colors';
+import Anulacion from '../../types/Anulacion';
+import Colors from '../../types/Colors';
 
+interface Props {
+  classes: any;
+  anulacion: Anulacion;
+}
 const styles = {
   icon: {
     color: '#fff',
   },
   avatar: {
-    backgroundColor: ({ anulacion }) => ((anulacion && anulacion.color)
-      ? colors[anulacion.color][400]
-      : colors.amber),
+    backgroundColor: ({ anulacion }:{anulacion:Anulacion}) => ((anulacion && anulacion.color)
+      ? Colors[anulacion.color][400] : Colors.amber[400]),
   },
 };
 
-const AnulacionesItem = ({ classes, anulacion }) => (
+const AnulacionesItem = ({ classes, anulacion }: Props) => (
   <ListItem>
     <Avatar className={classes.avatar}>
       { <anulacion.icon className={classes.icon} /> }
@@ -25,10 +28,5 @@ const AnulacionesItem = ({ classes, anulacion }) => (
     <ListItemText primary={anulacion.observacion} secondary={anulacion.fecha} />
   </ListItem>
 );
-
-AnulacionesItem.propTypes = {
-  classes: PropTypes.object.isRequired,
-  anulacion: PropTypes.object.isRequired,
-};
 
 export default injectSheet(styles)(AnulacionesItem);
