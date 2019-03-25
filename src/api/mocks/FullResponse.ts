@@ -1,37 +1,24 @@
 import { Charts, Cards } from '../../util/Constants';
+import { Dashboard } from '../../types/Dashboard';
 
-export default {
+const dashboard: Dashboard = {
   charts: [
     {
       name: Charts.ventasAnuales,
       data: {
         2016: {
-          Septiembre: 1500,
-          Marzo: 2000,
-          Diciembre: 2500,
-          Junio: 3500,
-          Julio: 4000,
-          Enero: 5000,
-          Octubre: 6000,
-          Abril: 7000,
-          Mayo: 8000,
-          Febrero: 9000,
-          Noviembre: 10000,
-          Agosto: 10500,
-        },
-        2017: {
-          Septiembre: 1000.11,
-          Marzo: 2000.22,
-          Diciembre: 3000.33,
-          Junio: 4000.44,
-          Julio: 5000.55,
-          Enero: 6000.66,
-          Octubre: 7000.77,
-          Abril: 8000.88,
-          Mayo: 9000.99,
-          Febrero: 10000,
-          Noviembre: 11000,
-          Agosto: 15000,
+          Septiembre: 70611,
+          Marzo: 42356,
+          Diciembre: 66843,
+          Junio: 61640,
+          Julio: 73136,
+          Enero: 42479,
+          Octubre: 55396,
+          Abril: 54790,
+          Mayo: 58968,
+          Febrero: 38636,
+          Noviembre: 45015,
+          Agosto: 61566,
         },
       },
     },
@@ -74,11 +61,16 @@ export default {
       name: Charts.platosMasVendidosMes,
       data: {
         Mayo: {
-          ceviche: 1500,
-          causa: 1200,
-          'papa rellena': 1000,
-          'seco de carne': 900,
-          'lomo saltado': 870,
+          PAM: 94,
+          'Pane all Aglio Speciale': 67,
+          'Pizza Hawaiana': 48,
+          'Pizza Americana': 45,
+          'Pizza 4 Stagioni': 40,
+          'Salsa Alfredo': 34,
+          'Pane all Aglio': 30,
+          'Salsa Bolognesa': 28,
+          'Pizza Nazionale': 26,
+          'helado de cumpleaños': 22,
         },
       },
     },
@@ -101,7 +93,7 @@ export default {
     {
       fecha: '29/06 13:13',
       tipo: 'otro',
-      observacion: '',
+      observacion: 'no pasa naa',
     },
     {
       fecha: '29/06 13:13',
@@ -111,7 +103,7 @@ export default {
     {
       fecha: '29/06 13:13',
       tipo: 'digitación',
-      observacion: '',
+      observacion: 'error digitación',
     },
     {
       fecha: '29/06 13:13',
@@ -126,7 +118,7 @@ export default {
     {
       fecha: '29/06 13:13',
       tipo: 'otro',
-      observacion: 'Cliente no le gustó la comida. Solicitó el cambio...',
+      observacion: 'Cliente no le gustó la comida. Solicitó el cambio o de lo contrario no iba a cancelar su cuenta, se tuvo que acceder a su petición.', //eslint-disable-line
     },
     {
       fecha: '29/06 13:13',
@@ -150,3 +142,5 @@ export default {
     },
   ],
 };
+
+export default dashboard;
