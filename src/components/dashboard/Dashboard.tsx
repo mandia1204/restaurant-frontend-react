@@ -5,9 +5,10 @@ import { HorizontalBar, Bar, Radar, Pie } from 'react-chartjs-2';
 import DashboardCard from './DashboardCard';
 import Anulaciones from './Anulaciones';
 import Anulacion from '../../types/Anulacion';
+import { ChartModel } from '../../types/Dashboard';
 
 interface Props {
-  chartModel: any;
+  chartModel: ChartModel;
   anulaciones: Anulacion[];
   cardModel: any;
 }

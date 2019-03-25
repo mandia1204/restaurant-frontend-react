@@ -8,15 +8,16 @@ import { AnulacionesFormatter } from './formatters/AnulacionesFormatter';
 import { Ops } from '../../util/Constants';
 import Dashboard from './Dashboard';
 import AppState from '../../types/AppState';
+import { DashboardModel, IChartModelBuilder } from '../../types/Dashboard';
 
 interface Props {
   dispatch: Dispatch<any>;
   appState: AppState;
-  dashboard: any;
+  dashboard: DashboardModel;
 }
 
 class DashboardContainer extends Component<Props, any> {
-  chartModelBuilder: any;
+  chartModelBuilder: IChartModelBuilder;
 
   cardModelBuilder: any;
 

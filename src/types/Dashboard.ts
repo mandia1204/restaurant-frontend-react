@@ -1,6 +1,6 @@
 import Anulacion from './Anulacion';
 
-export interface Dashboard {
+export interface DashboardModel {
   charts: DashboardChart[];
   cards: DashboardCard;
   anulaciones: Anulacion[];
@@ -21,4 +21,20 @@ export interface DashboardCard{
   [key: string]: {
     value: string | number;
   };
+}
+
+export interface ChartModel{
+  ventasAnuales: any;
+  anulacionesDelMes: any;
+  productosVendidosMes: any;
+  mozoDelMes: any;
+  platosMasVendidosMes: any;
+}
+
+export interface IChartModelBuilder{
+  build: (charts: DashboardChart[]) => ChartModel;
+}
+
+export interface ChartModelBuilderFactory{
+  (): IChartModelBuilder;
 }

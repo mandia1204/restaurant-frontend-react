@@ -1,4 +1,6 @@
-const barOptions = opts => ({
+import ChartOptionsConfig from '../../../types/ChartOptionsConfig';
+
+const barOptions = (opts: ChartOptionsConfig) => ({
   scales: {
     yAxes: [{
       ticks: {
@@ -17,7 +19,7 @@ const barOptions = opts => ({
   },
 });
 
-const radarOptions = opts => ({
+const radarOptions = (opts: ChartOptionsConfig) => ({
   fontSize: 20,
   scale: {
     ticks: {
@@ -49,7 +51,7 @@ const radarOptions = opts => ({
   },
 });
 
-const pieOptions = opts => ({
+const pieOptions = (opts: ChartOptionsConfig) => ({
   animation: {
     animateScale: true,
   },
@@ -68,7 +70,11 @@ const pieOptions = opts => ({
   },
 });
 
-export const ChartOptions = () => ({
+interface ChartOptions {
+  [index: string]: (o: ChartOptionsConfig) => object;
+}
+
+export const ChartOptions = (): ChartOptions => ({
   bar: barOptions,
   radar: radarOptions,
   pie: pieOptions,

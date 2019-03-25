@@ -1,7 +1,7 @@
 import { Charts, Cards } from '../../util/Constants';
-import { Dashboard } from '../../types/Dashboard';
+import { DashboardModel } from '../../types/Dashboard';
 
-const dashboard: Dashboard = {
+const dashboard: DashboardModel = {
   charts: [
     {
       name: Charts.ventasAnuales,
