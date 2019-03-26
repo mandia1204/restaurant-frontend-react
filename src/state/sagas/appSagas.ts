@@ -1,6 +1,4 @@
-import {
-  put, call, all, takeEvery, fork,
-} from 'redux-saga/effects';
+import { put, call, all, takeEvery, fork } from 'redux-saga/effects';
 import Actions from '../actions/AppActions';
 import SecurityService from '../../services/SecurityService';
 

@@ -11,9 +11,9 @@ export const HttpWrapper = (uri: string) => {
       Authorization: `Bearer ${LocalStorageWrapper.get(tokenKey)}`,
     },
   });
-  const get = (url: string) => getHttp().get(url);
+  const get = <T>(url: string) => getHttp().get<T>(url);
 
-  const post = (url: string, data: any) => getHttp().post(url, data);
+  const post = <T>(url: string, data: any) => getHttp().post<T>(url, data);
 
   return {
     get,

@@ -64,7 +64,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.tsx'],
+      files: ['**/*.tsx', '**/*.ts'],
       rules: {
         'react/sort-comp': 'off',
         'object-curly-newline': 'off',
