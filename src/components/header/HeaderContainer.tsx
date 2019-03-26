@@ -7,7 +7,7 @@ import DashboardActions from '../../state/actions/DashboardActions';
 import { Ops } from '../../util/Constants';
 import Header from './Header';
 import ISecurityService from '../../types/ISecurityService';
-import AppState from '../../types/AppState';
+import { AppState, AppStore } from '../../types/AppStore';
 import DashboardFilters from '../../types/DashboardFilters';
 
 interface Props extends RouteComponentProps<any> {
@@ -15,7 +15,7 @@ interface Props extends RouteComponentProps<any> {
   appState: AppState;
 }
 
-class HeaderContainer extends Component<Props, any> {
+class HeaderContainer extends Component<Props> {
   securityService: ISecurityService;
 
   constructor(props: Props) {
@@ -54,7 +54,7 @@ class HeaderContainer extends Component<Props, any> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppStore) => {
   const { appState } = state;
   return {
     appState,

@@ -5,8 +5,8 @@ import Actions from './actions/AppActions';
 import userSagas from './sagas/userSagas';
 import appSagas from './sagas/appSagas';
 import dashboardSagas from './sagas/dashboardSagas';
-// eslint-disable-next-line no-underscore-dangle
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 const sagaMiddleware = createSagaMiddleware();
 
 const enhancer = composeEnhancers(

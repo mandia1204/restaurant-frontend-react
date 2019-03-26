@@ -13,7 +13,7 @@ import DashboardFilters from '../../types/DashboardFilters';
 interface Props {
   showHeaderLinks: boolean;
   showFilters: boolean;
-  dashboardFilters: any;
+  dashboardFilters: DashboardFilters;
   onFiltersChange: (f: DashboardFilters) => void;
   logout: () => void;
   loggedUser: any;

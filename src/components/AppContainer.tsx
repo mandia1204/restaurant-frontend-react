@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 import { WithStyles } from '@material-ui/core';
-import { createAppStore } from '../state/AppStore';
+import { createAppStore } from '../state/ConfigureStore';
 import Main from './Main';
 import HeaderContainer from './header/HeaderContainer';
 

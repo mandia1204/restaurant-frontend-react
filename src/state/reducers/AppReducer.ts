@@ -1,7 +1,7 @@
 // @ts-ignore
 import { createReducer } from 'reduxsauce';
 import Actions from '../actions/AppActions';
-import AppState from '../../types/AppState';
+import { AppState } from '../../types/AppStore';
 import DashboardFilters from '../../types/DashboardFilters';
 
 const { Types } = Actions;
@@ -16,24 +16,28 @@ const INITIAL_STATE: AppState = {
   dashboardFilters: getDefaultFilters(),
 };
 
-const showNavLinks = (state: AppState, action: any): AppState => ({ ...state, showHeaderLinks: action.showLinks });
-const showFilters = (state: AppState, action: any): AppState => ({ ...state, showFilters: action.show });
-const updateDashboardFilter = (state: AppState, action: any): AppState => ({
+interface ReduceMethod {
+  (state: AppState, action: any): AppState;
+}
+
+const showNavLinks: ReduceMethod = (state, action) => ({ ...state, showHeaderLinks: action.showLinks });
+const showFilters: ReduceMethod = (state, action) => ({ ...state, showFilters: action.show });
+const updateDashboardFilter: ReduceMethod = (state, action) => ({
   ...state,
   dashboardFilters: {
     ...state.dashboardFilters,
     ...action.filter,
   },
 });
-const updateLoginData = (state: AppState, action: any): AppState => ({
+const updateLoginData: ReduceMethod = (state, action) => ({
   ...state,
   loggedUser: action.data.user,
   showHeaderLinks: action.data.authenticated,
 });
 
-const fetchLoginData = (state: AppState): AppState => state;
+const fetchLoginData: ReduceMethod = state => state;
 
-const logout = (): AppState => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
+const logout: ReduceMethod = () => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
 
 export const AppReducer = createReducer(INITIAL_STATE,
   {

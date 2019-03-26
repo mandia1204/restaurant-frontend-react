@@ -7,7 +7,7 @@ import { CardModelBuilder } from './builders/CardModelBuilder';
 import { AnulacionesFormatter } from './formatters/AnulacionesFormatter';
 import { Ops } from '../../util/Constants';
 import Dashboard from './Dashboard';
-import AppState from '../../types/AppState';
+import { AppState, AppStore } from '../../types/AppStore';
 import { DashboardModel, IChartModelBuilder } from '../../types/Dashboard';
 
 interface Props {
@@ -53,7 +53,7 @@ class DashboardContainer extends Component<Props, any> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppStore) => {
   const { dashboard, appState } = state;
   return {
     dashboard,
