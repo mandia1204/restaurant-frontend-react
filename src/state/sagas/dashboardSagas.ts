@@ -8,14 +8,14 @@ import { DashboardModel } from '../../types/Dashboard';
 const { Creators, Types } = Actions;
 const client = DashboardApi();
 
-const getDashboard = (filters: DashboardFilters) => client.getDashboard(filters);
+export const getDashboard = (filters: DashboardFilters) => client.getDashboard(filters);
 
-function* fetchDashboard({ filters }: {filters: DashboardFilters}) {
+export function* fetchDashboard({ filters }: {filters: DashboardFilters}) {
   const { data }: AxiosResponse<DashboardModel> = yield call(getDashboard, filters);
   yield put(Creators.receiveDashboard(data));
 }
 
-const watchSagas = () => function* watch() {
+export const watchSagas = () => function* watch() {
   yield takeEvery(Types.FETCH_DASHBOARD, fetchDashboard);
 };
 
