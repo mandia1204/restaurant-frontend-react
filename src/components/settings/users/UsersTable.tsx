@@ -7,6 +7,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+import { Link } from 'react-router-dom';
 import User from '../../../types/User';
 
 const styles = ({ spacing }: Theme) => createStyles({
@@ -32,6 +37,8 @@ const UsersTable = ({ classes, users }: Props) => (
           <TableCell>Id</TableCell>
           <TableCell>User Name</TableCell>
           <TableCell>Name</TableCell>
+          <TableCell>Is Admin</TableCell>
+          <TableCell />
         </TableRow>
       </TableHead>
       <TableBody>
@@ -40,6 +47,17 @@ const UsersTable = ({ classes, users }: Props) => (
             <TableCell>{user.id}</TableCell>
             <TableCell>{user.userName}</TableCell>
             <TableCell>{user.name}</TableCell>
+            <TableCell>{ user.isAdmin ? <CheckIcon /> : ''}</TableCell>
+            <TableCell>
+              <IconButton>
+                <Link to={`/settings/users/manage/${user.id}`}>
+                  <EditIcon />
+                </Link>
+              </IconButton>
+              <IconButton>
+                <DeleteIcon />
+              </IconButton>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

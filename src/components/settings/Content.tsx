@@ -4,6 +4,7 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 import { WithStyles } from '@material-ui/core';
 import PrivateRoute from '../routing/PrivateRoute';
 import UsersMainContainer from './users/UsersMainContainer';
+import ManageUserContainer from './users/ManageUserContainer';
 import Groups from './groups/Main';
 
 const styles = createStyles({
@@ -21,8 +22,10 @@ const Content = (props: Props) => {
   return (
     <main className={`${classes.main} ${className}`}>
       <Switch>
-        <PrivateRoute path="/settings/users" component={UsersMainContainer} />
-        <PrivateRoute path="/settings/groups" component={Groups} />
+        <PrivateRoute exact path="/settings/users" component={UsersMainContainer} />
+        <PrivateRoute exact path="/settings/users/manage" component={ManageUserContainer} />
+        <PrivateRoute path="/settings/users/manage/:userId" component={ManageUserContainer} />
+        <PrivateRoute exact path="/settings/groups" component={Groups} />
       </Switch>
     </main>
   );
