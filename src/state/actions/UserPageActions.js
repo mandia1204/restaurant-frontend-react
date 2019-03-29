@@ -1,11 +1,9 @@
 import { createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
-  receiveUsers: ['users'],
-  getUsers: null,
-  fetchUsers: null,
-  saveUser: ['user'],
-  saveUserSuccess: ['user'],
+  setFormSubmitting: ['isSubmitting'],
+  formSubmitSuccess: ['newId'],
+  clearForm: null,
 }, {});
 
 const Actions = {

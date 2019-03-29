@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 import { FormikProps } from 'formik';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { Link } from 'react-router-dom';
 import InputText from '../../controls/InputText';
 import User from '../../../types/User';
 
@@ -23,6 +25,9 @@ const UserForm = (props: FormikProps<User> & WithStyles<typeof styles>) => {
     <form className={classes.container} onSubmit={handleSubmit} autoComplete="off">
       <Grid container direction="column">
         <Grid item>
+          <InputText disabled fieldName="id" label="Id" value={values.id.toString()} {...textProps} />
+        </Grid>
+        <Grid item>
           <InputText fieldName="userName" label="User name" value={values.userName} {...textProps} />
         </Grid>
         <Grid item>
@@ -35,12 +40,11 @@ const UserForm = (props: FormikProps<User> & WithStyles<typeof styles>) => {
           />
         </Grid>
         <Grid item>
-          <Button color="primary" type="submit" disabled={isSubmitting}>
-            { 'Save' }
-          </Button>
+          <Button color="primary" type="submit" disabled={isSubmitting}>Save</Button>
           <Button color="primary">
-            { 'Cancel' }
+            <Link to="/settings/users">Cancel</Link>
           </Button>
+          { isSubmitting ? <CircularProgress /> : ''}
         </Grid>
       </Grid>
     </form>

@@ -18,12 +18,11 @@ interface InputProps {
   value: string;
   type?: string;
   autoComplete?: string;
+  disabled?: boolean;
 }
 
 const InputText = (props: InputProps) => {
-  const {
-    errors, fieldName, touched, classes, ...rest
-  } = props;
+  const { errors, fieldName, touched, classes, disabled, ...rest } = props;
   const fieldHasError = (field: any) => (touched[field] && (errors[field] && errors[field].length > 0));
 
   return (
@@ -33,6 +32,7 @@ const InputText = (props: InputProps) => {
       className={classes.textField}
       margin="normal"
       helperText={errors[fieldName]}
+      disabled={disabled}
       {...rest}
     />
   );

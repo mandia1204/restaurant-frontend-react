@@ -1,11 +1,13 @@
 import DashboardFilters from './DashboardFilters';
 import User from './User';
 import { DashboardModel } from './Dashboard';
+import FormState from './FormState';
 
 export interface AppStore {
   dashboard: DashboardModel;
   appState: AppState;
   users: User[];
+  userPage: FormState;
 }
 
 export interface AppState {

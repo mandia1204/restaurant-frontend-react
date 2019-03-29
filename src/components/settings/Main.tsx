@@ -7,7 +7,6 @@ import Menu from './Menu';
 const styles = ({ spacing, palette }: Theme) => createStyles({
   root: {
     flexGrow: 1,
-    height: 430,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',

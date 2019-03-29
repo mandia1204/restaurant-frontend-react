@@ -3,7 +3,7 @@ import { HttpWrapper } from '../wrappers/HttpWrapper';
 import LoginCredentials from '../types/LoginCredentials';
 import User from '../types/User';
 
-const users: User[] = [{
+let users: User[] = [{
   id: 1, userName: 'mandia', name: 'Marvin Andia', isAdmin: true,
 },
 {
@@ -11,10 +11,19 @@ const users: User[] = [{
 },
 {
   id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false,
+},
+{
+  id: 4, userName: 'agomez', name: 'Abel Gomez', isAdmin: true,
 }];
 
 const getUsers = () => new Promise<User[]>((resolve) => {
   resolve(users);
+});
+
+const saveUser = (user: User) => new Promise<User>((resolve) => {
+  const newUser = { ...user, id: Math.floor(Math.random() * 100) };
+  users = [...users, newUser];
+  resolve(newUser);
 });
 
 const http = HttpWrapper(config.authUri);
@@ -24,6 +33,7 @@ const SecurityApi = () => {
   return {
     authenticate,
     getUsers,
+    saveUser,
   };
 };
 
