@@ -6,6 +6,8 @@ const { Types, Creators } = createActions({
   fetchUsers: null,
   saveUser: ['user'],
   saveUserSuccess: ['user'],
+  updateUser: ['user'],
+  updateUserSuccess: ['user'],
 }, {});
 
 const Actions = {

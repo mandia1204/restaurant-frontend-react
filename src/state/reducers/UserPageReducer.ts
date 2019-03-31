@@ -4,7 +4,7 @@ import Actions from '../actions/UserPageActions';
 import FormState from '../../types/FormState';
 
 const { Types } = Actions;
-const INITIAL_STATE: FormState = { isSubmitting: false, status: 'init' };
+const INITIAL_STATE: FormState = { isSubmitting: false, status: 'init', newId: 0 };
 
 interface ReduceMethod {
   (state: FormState, action: any): FormState;

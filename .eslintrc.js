@@ -53,7 +53,8 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     'max-len': ['error', { code: 130 }],
-    // 'no-console':'off',
+    'react/no-did-update-set-state': 'off',
+    // 'no-console': 'off',
     // 'no-unused-vars':'off'
   },
   overrides: [

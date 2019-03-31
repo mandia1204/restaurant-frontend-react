@@ -23,7 +23,14 @@ const getUsers = () => new Promise<User[]>((resolve) => {
 const saveUser = (user: User) => new Promise<User>((resolve) => {
   const newUser = { ...user, id: Math.floor(Math.random() * 100) };
   users = [...users, newUser];
-  resolve(newUser);
+  setTimeout(() => resolve(newUser), 1500);
+  // api POST
+});
+
+const updateUser = (user: User) => new Promise<User>((resolve) => {
+  users = users.map(u => (u.id === user.id ? user : u));
+  setTimeout(() => resolve(user), 1500);
+  // api PUT
 });
 
 const http = HttpWrapper(config.authUri);
@@ -34,6 +41,7 @@ const SecurityApi = () => {
     authenticate,
     getUsers,
     saveUser,
+    updateUser,
   };
 };
 

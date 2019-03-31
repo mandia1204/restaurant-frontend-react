@@ -5,7 +5,6 @@ import { WithStyles } from '@material-ui/core';
 import { Formik, FormikProps } from 'formik';
 import UserForm from './UserForm';
 import User from '../../../types/User';
-import FormState from '../../../types/FormState';
 import { AppStore } from '../../../types/AppStore';
 import Actions from '../../../state/actions/UserActions';
 import PageActions from '../../../state/actions/UserPageActions';
@@ -24,7 +23,16 @@ interface Props extends WithStyles<typeof styles> {
   newId?: number;
 }
 
-class ManageUserContainer extends Component<Props, {}> {
+interface State {
+  isEdit: boolean;
+}
+
+class ManageUserContainer extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { isEdit: props.match.params.userId > 0 };
+  }
+
   validate = (user: User) => {
     const errors: any = {};
 
@@ -36,8 +44,14 @@ class ManageUserContainer extends Component<Props, {}> {
 
   onSubmit = (user: User) => {
     const { dispatch } = this.props;
+    const { isEdit } = this.state;
+
     dispatch(PageActions.Creators.setFormSubmitting(true));
-    dispatch(Actions.Creators.saveUser(user));
+    if (isEdit) {
+      dispatch(Actions.Creators.updateUser(user));
+    } else {
+      dispatch(Actions.Creators.saveUser(user));
+    }
   }
 
   componentWillUnmount() {
@@ -45,11 +59,24 @@ class ManageUserContainer extends Component<Props, {}> {
     dispatch(PageActions.Creators.clearForm());
   }
 
+
+  componentDidUpdate(prevProps: Props) {
+    const { newId } = this.props;
+    const { isEdit } = this.state;
+    if (newId !== prevProps.newId && !isEdit) {
+      this.setState({
+        isEdit: true,
+      });
+    }
+  }
+
   render() {
-    const { match, user, isSubmitting, classes } = this.props;
+    const { user, isSubmitting, classes } = this.props;
+    const { isEdit } = this.state;
+
     return (
       <div className={classes.root}>
-        <h2>{match.params.userId > 0 ? 'Edit' : 'Add'} User</h2>
+        <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
         <Formik
           enableReinitialize
           initialValues={user}
@@ -70,21 +97,19 @@ const initUser = (): User => ({
   isAdmin: false,
 });
 
-const getUserId = (paramUserId: any, state: FormState) => {
-  const nid = (state.newId && state.status === 'form_complete') ? state.newId : 0;
-  if (!nid) {
+const getUserId = (paramUserId: string, newId: number) => {
+  if (!newId) {
     return paramUserId ? parseInt(paramUserId, 10) : 0;
   }
-  return nid;
+  return newId;
 };
 
 const getUser = (id: number, users: User[]) => (id ? users.filter(u => u.id === id)[0] : initUser());
 
-const mapStateToProps = (state: AppStore, ownProps: Props) => {
-  const { users, userPage } = state;
-  const { match } = ownProps;
-  const id = getUserId(match.params.userId, userPage);
+const mapStateToProps = ({ users, userPage }: AppStore, { match }: Props) => {
+  const id = getUserId(match.params.userId, userPage.newId);
   const user = getUser(id, users);
+
   return {
     user,
     isSubmitting: userPage.isSubmitting,

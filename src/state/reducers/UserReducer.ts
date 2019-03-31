@@ -14,6 +14,7 @@ const getUsers: ReduceMethod = state => state;
 const fetchUsers: ReduceMethod = state => state;
 const receiveUsers: ReduceMethod = (state, action) => action.users;
 const saveUserSuccess: ReduceMethod = (state, action) => ([...state, action.user]);
+const updateUserSuccess: ReduceMethod = (state, action) => (state.map(u => (u.id === action.user.id ? action.user : u)));
 
 export const UserReducer = createReducer(INITIAL_STATE,
   {
@@ -21,4 +22,5 @@ export const UserReducer = createReducer(INITIAL_STATE,
     [Types.RECEIVE_USERS]: receiveUsers,
     [Types.FETCH_USERS]: fetchUsers,
     [Types.SAVE_USER_SUCCESS]: saveUserSuccess,
+    [Types.UPDATE_USER_SUCCESS]: updateUserSuccess,
   });

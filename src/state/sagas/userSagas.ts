@@ -16,13 +16,18 @@ function* fetchUsers() {
 }
 
 function* saveUser({ user }: {user: User}) {
+  const isEdit = user.id > 0;
   const newUser: User = yield call(callSaveUser, user);
-  yield put(Creators.saveUserSuccess(newUser));
+  yield put(isEdit ? Creators.updateUserSuccess(newUser) : Creators.saveUserSuccess(newUser));
   yield put(UserPageActions.Creators.formSubmitSuccess(newUser.id));
 }
 
 function* watchSaveUser() {
   yield takeEvery(Types.SAVE_USER, saveUser);
+}
+
+function* watchUpdateUser() {
+  yield takeEvery(Types.UPDATE_USER, saveUser);
 }
 
 function* watchFetchUsers() {
@@ -33,5 +38,6 @@ export default function* userSagas() {
   yield all([
     fork(watchFetchUsers),
     fork(watchSaveUser),
+    fork(watchUpdateUser),
   ]);
 }

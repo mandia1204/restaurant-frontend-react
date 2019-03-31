@@ -31,13 +31,21 @@ const SecurityApi = () => {
   const saveUser = (user: User) => new Promise<User>((resolve) => {
     const newUser = { ...user, id: Math.floor(Math.random() * 100) };
     users = [...users, newUser];
-    setTimeout(() => resolve(newUser), 2500);
+    setTimeout(() => resolve(newUser), 1500);
+    // api POST
+  });
+
+  const updateUser = (user: User) => new Promise<User>((resolve) => {
+    users = users.map(u => (u.id === user.id ? user : u));
+    setTimeout(() => resolve(user), 1500);
+    // api PUT
   });
 
   return {
     authenticate,
     getUsers,
     saveUser,
+    updateUser,
   };
 };
 
