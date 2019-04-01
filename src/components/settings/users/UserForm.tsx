@@ -9,7 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom';
 import InputText from '../../controls/InputText';
-import User from '../../../types/User';
+import { FormValues } from '../../../types/components/ManageUser';
 
 const styles = createStyles({
   container: {
@@ -18,24 +18,25 @@ const styles = createStyles({
   },
 });
 
-const UserForm = (props: FormikProps<User> & WithStyles<typeof styles>) => {
+const UserForm = (props: FormikProps<FormValues> & WithStyles<typeof styles>) => {
   const { classes, handleChange, handleBlur, isSubmitting, values, handleSubmit, errors, touched } = props;
   const textProps = { onChange: handleChange, onBlur: handleBlur, errors, touched };
+  const { user } = values;
   return (
     <form className={classes.container} onSubmit={handleSubmit} autoComplete="off">
       <Grid container direction="column">
         <Grid item>
-          <InputText disabled fieldName="id" label="Id" value={values.id.toString()} {...textProps} />
+          <InputText disabled fieldName="user.id" label="Id" value={user.id.toString()} {...textProps} />
         </Grid>
         <Grid item>
-          <InputText fieldName="userName" label="User name" value={values.userName} {...textProps} />
+          <InputText fieldName="user.userName" label="User name" value={user.userName} {...textProps} />
         </Grid>
         <Grid item>
-          <InputText fieldName="name" label="Name" value={values.name} {...textProps} />
+          <InputText fieldName="user.name" label="Name" value={user.name} {...textProps} />
         </Grid>
         <Grid item>
           <FormControlLabel
-            control={(<Checkbox name="isAdmin" checked={values.isAdmin} onChange={handleChange} />)}
+            control={(<Checkbox name="user.isAdmin" checked={user.isAdmin} onChange={handleChange} />)}
             label="Is Admin"
           />
         </Grid>
@@ -45,6 +46,10 @@ const UserForm = (props: FormikProps<User> & WithStyles<typeof styles>) => {
             <Link to="/settings/users">Cancel</Link>
           </Button>
           { isSubmitting ? <CircularProgress /> : ''}
+          <FormControlLabel
+            control={(<Checkbox name="continueAdding" checked={values.continueAdding} onChange={handleChange} />)}
+            label="Continue Adding"
+          />
         </Grid>
       </Grid>
     </form>

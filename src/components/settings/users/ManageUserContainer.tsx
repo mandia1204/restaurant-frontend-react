@@ -1,4 +1,4 @@
-import React, { Component, Dispatch } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 import { WithStyles } from '@material-ui/core';
@@ -8,6 +8,7 @@ import User from '../../../types/User';
 import { AppStore } from '../../../types/AppStore';
 import Actions from '../../../state/actions/UserActions';
 import PageActions from '../../../state/actions/UserPageActions';
+import { Props as PageProps, FormValues, State } from '../../../types/components/ManageUser';
 
 const styles = createStyles({
   root: {
@@ -15,17 +16,7 @@ const styles = createStyles({
   },
 });
 
-interface Props extends WithStyles<typeof styles> {
-  match: any;
-  user: User;
-  dispatch: Dispatch<any>;
-  isSubmitting: boolean;
-  newId?: number;
-}
-
-interface State {
-  isEdit: boolean;
-}
+interface Props extends PageProps, WithStyles<typeof styles> { }
 
 class ManageUserContainer extends Component<Props, State> {
   constructor(props: Props) {
@@ -33,7 +24,7 @@ class ManageUserContainer extends Component<Props, State> {
     this.state = { isEdit: props.match.params.userId > 0 };
   }
 
-  validate = (user: User) => {
+  validate = ({ user }: FormValues) => {
     const errors: any = {};
 
     if (!user.userName) errors.userName = 'User name required';
@@ -42,15 +33,15 @@ class ManageUserContainer extends Component<Props, State> {
     return errors;
   }
 
-  onSubmit = (user: User) => {
+  onSubmit = (values: FormValues) => {
     const { dispatch } = this.props;
     const { isEdit } = this.state;
 
     dispatch(PageActions.Creators.setFormSubmitting(true));
     if (isEdit) {
-      dispatch(Actions.Creators.updateUser(user));
+      dispatch(Actions.Creators.updateUser(values.user));
     } else {
-      dispatch(Actions.Creators.saveUser(user));
+      dispatch(Actions.Creators.saveUser(values.user));
     }
   }
 
@@ -58,7 +49,6 @@ class ManageUserContainer extends Component<Props, State> {
     const { dispatch } = this.props;
     dispatch(PageActions.Creators.clearForm());
   }
-
 
   componentDidUpdate(prevProps: Props) {
     const { newId } = this.props;
@@ -79,8 +69,8 @@ class ManageUserContainer extends Component<Props, State> {
         <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
         <Formik
           enableReinitialize
-          initialValues={user}
-          render={(props: FormikProps<User>) => (<UserForm {...props} isSubmitting={isSubmitting} />)}
+          initialValues={{ user, continueAdding: false }}
+          render={(props: FormikProps<FormValues>) => (<UserForm {...props} isSubmitting={isSubmitting} />)}
           onSubmit={this.onSubmit}
           validate={this.validate}
           validateOnChange={false}
