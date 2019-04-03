@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { get } from 'lodash-es';
 
 const styles = ({ spacing }: Theme) => createStyles({
   textField: {
@@ -23,8 +24,9 @@ interface InputProps {
 
 const InputText = (props: InputProps) => {
   const { errors, fieldName, touched, classes, disabled, ...rest } = props;
-  const fieldHasError = (field: any) => (touched[field] && (errors[field] && errors[field].length > 0));
-
+  const fieldHasError = (field: string) => (field.indexOf('.') !== -1 ? get(touched, field) : touched[field])
+    && (errors[field]
+    && errors[field].length > 0);
   return (
     <TextField
       error={fieldHasError(fieldName)}

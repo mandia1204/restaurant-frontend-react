@@ -26,14 +26,13 @@ const initUser = (): User => ({
 });
 
 class ManageUserContainer extends Component<Props, {}> {
-  form: any;
+  form: Formik<FormValues>;
 
   validate = ({ user }: FormValues) => {
     const errors: any = {};
 
-    if (!user.userName) errors.userName = 'User name required';
-    if (!user.name) errors.name = 'Name required';
-
+    if (!user.userName) errors['user.userName'] = 'User name required';
+    if (!user.name) errors['user.name'] = 'Name required';
     return errors;
   }
 
@@ -80,7 +79,7 @@ class ManageUserContainer extends Component<Props, {}> {
       <div className={classes.root}>
         <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
         <Formik
-          ref={(node: any) => { this.form = node; }}
+          ref={(node: Formik<FormValues>) => { this.form = node; }}
           initialValues={{ user, continueAdding: false }}
           render={(props: FormikProps<FormValues>) => (<UserForm {...props} isSubmitting={isSubmitting} isEdit={isEdit} />)}
           onSubmit={this.onSubmit}
