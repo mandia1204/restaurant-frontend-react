@@ -3,6 +3,7 @@ interface FormState {
   status: string;
   error?: string;
   newId: number;
+  isEdit: boolean;
 }
 
 export default FormState;

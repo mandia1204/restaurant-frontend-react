@@ -4,6 +4,8 @@ const { Types, Creators } = createActions({
   setFormSubmitting: ['isSubmitting'],
   formSubmitSuccess: ['newId'],
   clearForm: null,
+  setIsEdit: ['isEdit'],
+  setNewId: ['newId'],
 }, {});
 
 const Actions = {

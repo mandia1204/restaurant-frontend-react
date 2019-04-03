@@ -8,7 +8,7 @@ import User from '../../../types/User';
 import { AppStore } from '../../../types/AppStore';
 import Actions from '../../../state/actions/UserActions';
 import PageActions from '../../../state/actions/UserPageActions';
-import { Props as PageProps, FormValues, State } from '../../../types/components/ManageUser';
+import { Props as PageProps, FormValues } from '../../../types/components/ManageUser';
 
 const styles = createStyles({
   root: {
@@ -18,11 +18,15 @@ const styles = createStyles({
 
 interface Props extends PageProps, WithStyles<typeof styles> { }
 
-class ManageUserContainer extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { isEdit: props.match.params.userId > 0 };
-  }
+const initUser = (): User => ({
+  id: 0,
+  name: '',
+  userName: '',
+  isAdmin: false,
+});
+
+class ManageUserContainer extends Component<Props, {}> {
+  form: any;
 
   validate = ({ user }: FormValues) => {
     const errors: any = {};
@@ -34,14 +38,19 @@ class ManageUserContainer extends Component<Props, State> {
   }
 
   onSubmit = (values: FormValues) => {
-    const { dispatch } = this.props;
-    const { isEdit } = this.state;
-
+    const { dispatch, isEdit } = this.props;
     dispatch(PageActions.Creators.setFormSubmitting(true));
     if (isEdit) {
       dispatch(Actions.Creators.updateUser(values.user));
     } else {
       dispatch(Actions.Creators.saveUser(values.user));
+    }
+  }
+
+  componentDidMount() {
+    const { match, dispatch } = this.props;
+    if (match.params.userId > 0) {
+      dispatch(PageActions.Creators.setIsEdit(true));
     }
   }
 
@@ -51,26 +60,29 @@ class ManageUserContainer extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { newId } = this.props;
-    const { isEdit } = this.state;
-    if (newId !== prevProps.newId && !isEdit) {
-      this.setState({
-        isEdit: true,
-      });
+    const { newId, isEdit, dispatch } = this.props;
+    const { continueAdding, user } = this.form.state.values;
+
+    if (newId && newId !== prevProps.newId && !isEdit) {
+      if (continueAdding) {
+        this.form.resetForm({ user: initUser(), continueAdding });
+        dispatch(PageActions.Creators.setNewId(0));
+      } else {
+        this.form.setValues({ user: { ...user, id: newId }, continueAdding: false });
+        dispatch(PageActions.Creators.setIsEdit(true));
+      }
     }
   }
 
   render() {
-    const { user, isSubmitting, classes } = this.props;
-    const { isEdit } = this.state;
-
+    const { user, isSubmitting, classes, isEdit } = this.props;
     return (
       <div className={classes.root}>
         <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
         <Formik
-          enableReinitialize
+          ref={(node: any) => { this.form = node; }}
           initialValues={{ user, continueAdding: false }}
-          render={(props: FormikProps<FormValues>) => (<UserForm {...props} isSubmitting={isSubmitting} />)}
+          render={(props: FormikProps<FormValues>) => (<UserForm {...props} isSubmitting={isSubmitting} isEdit={isEdit} />)}
           onSubmit={this.onSubmit}
           validate={this.validate}
           validateOnChange={false}
@@ -79,13 +91,6 @@ class ManageUserContainer extends Component<Props, State> {
     );
   }
 }
-
-const initUser = (): User => ({
-  id: 0,
-  name: '',
-  userName: '',
-  isAdmin: false,
-});
 
 const getUserId = (paramUserId: string, newId: number) => {
   if (!newId) {
@@ -99,11 +104,11 @@ const getUser = (id: number, users: User[]) => (id ? users.filter(u => u.id === 
 const mapStateToProps = ({ users, userPage }: AppStore, { match }: Props) => {
   const id = getUserId(match.params.userId, userPage.newId);
   const user = getUser(id, users);
-
   return {
     user,
     isSubmitting: userPage.isSubmitting,
     newId: userPage.newId,
+    isEdit: userPage.isEdit,
   };
 };
 

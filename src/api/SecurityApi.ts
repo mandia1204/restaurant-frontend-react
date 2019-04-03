@@ -21,7 +21,7 @@ const getUsers = () => new Promise<User[]>((resolve) => {
 });
 
 const saveUser = (user: User) => new Promise<User>((resolve) => {
-  const newUser = { ...user, id: Math.floor(Math.random() * 100) };
+  const newUser = { ...user, id: Math.floor(Math.random() * 1000) };
   users = [...users, newUser];
   setTimeout(() => resolve(newUser), 1500);
   // api POST
