@@ -23,6 +23,7 @@ const initUser = (): User => ({
   name: '',
   userName: '',
   isAdmin: false,
+  roles: [],
 });
 
 class ManageUserContainer extends Component<Props, {}> {

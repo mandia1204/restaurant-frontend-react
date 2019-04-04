@@ -12,16 +12,20 @@ const SecurityApi = () => {
   });
 
   let users: User[] = [{
-    id: 1, userName: 'mandia', name: 'Marvin Andia', isAdmin: true,
+    id: 1,
+    userName: 'mandia',
+    name: 'Marvin Andia',
+    isAdmin: true,
+    roles: [{ id: 1, roleName: 'operator' }, { id: 2, roleName: 'admin' }],
   },
   {
-    id: 2, userName: 'jperez', name: 'Jose Perez', isAdmin: false,
+    id: 2, userName: 'jperez', name: 'Jose Perez', isAdmin: false, roles: [],
   },
   {
-    id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false,
+    id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false, roles: [{ id: 1, roleName: 'operator' }],
   },
   {
-    id: 4, userName: 'agomez', name: 'Abel Gomez', isAdmin: true,
+    id: 4, userName: 'agomez', name: 'Abel Gomez', isAdmin: true, roles: [{ id: 2, roleName: 'admin' }],
   }];
 
   const getUsers = () => new Promise<User[]>((resolve) => {
