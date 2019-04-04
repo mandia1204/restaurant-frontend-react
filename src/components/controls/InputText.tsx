@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { get } from 'lodash-es';
+import get from 'lodash/get';
 
 const styles = ({ spacing }: Theme) => createStyles({
   textField: {
