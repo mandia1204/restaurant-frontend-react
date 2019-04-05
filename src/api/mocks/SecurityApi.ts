@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import User from '../../types/User';
+import User, { Role } from '../../types/User';
 import LoginCredentials from '../../types/LoginCredentials';
 
 const SecurityApi = () => {
@@ -19,7 +19,7 @@ const SecurityApi = () => {
     roles: [{ id: 1, roleName: 'operator' }, { id: 2, roleName: 'admin' }],
   },
   {
-    id: 2, userName: 'jperez', name: 'Jose Perez', isAdmin: false, roles: [],
+    id: 2, userName: 'jperez', name: 'Jose Perez', isAdmin: false, roles: [{ id: 3, roleName: 'reader' }],
   },
   {
     id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false, roles: [{ id: 1, roleName: 'operator' }],
@@ -27,6 +27,18 @@ const SecurityApi = () => {
   {
     id: 4, userName: 'agomez', name: 'Abel Gomez', isAdmin: true, roles: [{ id: 2, roleName: 'admin' }],
   }];
+
+  const roles: Role[] = [
+    {
+      id: 1, roleName: 'operator',
+    },
+    {
+      id: 2, roleName: 'admin',
+    },
+    {
+      id: 3, roleName: 'reader',
+    },
+  ];
 
   const getUsers = () => new Promise<User[]>((resolve) => {
     resolve(users);
@@ -45,11 +57,16 @@ const SecurityApi = () => {
     // api PUT
   });
 
+  const getRoles = () => new Promise<Role[]>((resolve) => {
+    resolve(roles);
+  });
+
   return {
     authenticate,
     getUsers,
     saveUser,
     updateUser,
+    getRoles,
   };
 };
 

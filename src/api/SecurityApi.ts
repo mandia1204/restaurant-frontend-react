@@ -1,7 +1,7 @@
 import config from './apiConfig';
 import { HttpWrapper } from '../wrappers/HttpWrapper';
 import LoginCredentials from '../types/LoginCredentials';
-import User from '../types/User';
+import User, { Role } from '../types/User';
 
 let users: User[] = [{
   id: 1,
@@ -20,6 +20,18 @@ let users: User[] = [{
   id: 4, userName: 'agomez', name: 'Abel Gomez', isAdmin: true, roles: [{ id: 2, roleName: 'admin' }],
 }];
 
+const roles: Role[] = [
+  {
+    id: 1, roleName: 'operator',
+  },
+  {
+    id: 2, roleName: 'admin',
+  },
+  {
+    id: 3, roleName: 'reader',
+  },
+];
+
 const getUsers = () => new Promise<User[]>((resolve) => {
   resolve(users);
 });
@@ -37,6 +49,11 @@ const updateUser = (user: User) => new Promise<User>((resolve) => {
   // api PUT
 });
 
+const getRoles = () => new Promise<Role[]>((resolve) => {
+  resolve(roles);
+});
+
+
 const http = HttpWrapper(config.authUri);
 const SecurityApi = () => {
   const authenticate = (credentials: LoginCredentials) => http.post('/token', credentials);
@@ -46,6 +63,7 @@ const SecurityApi = () => {
     getUsers,
     saveUser,
     updateUser,
+    getRoles,
   };
 };
 

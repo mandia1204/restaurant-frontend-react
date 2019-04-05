@@ -1,5 +1,5 @@
 import DashboardFilters from './DashboardFilters';
-import User from './User';
+import User, { Role } from './User';
 import { DashboardModel } from './Dashboard';
 import FormState from './FormState';
 
@@ -8,6 +8,7 @@ export interface AppStore {
   appState: AppState;
   users: User[];
   userPage: FormState;
+  roles: Role [];
 }
 
 export interface AppState {

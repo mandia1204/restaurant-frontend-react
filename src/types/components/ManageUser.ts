@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import User from '../User';
+import User, { Role } from '../User';
 
 export interface FormValues {
   user: User;
@@ -13,4 +13,5 @@ export interface Props {
   isSubmitting: boolean;
   newId?: number;
   isEdit: boolean;
+  roles: Role[];
 }

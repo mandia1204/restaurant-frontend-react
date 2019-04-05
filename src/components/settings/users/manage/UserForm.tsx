@@ -8,8 +8,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom';
-import InputText from '../../controls/InputText';
-import { FormValues } from '../../../types/components/ManageUser';
+import InputText from '../../../controls/InputText';
+import { FormValues } from '../../../../types/components/ManageUser';
+import UserRoles from './UserRoles';
+import { Role } from '../../../../types/User';
 
 const styles = createStyles({
   container: {
@@ -20,10 +22,11 @@ const styles = createStyles({
 
 interface Props extends WithStyles<typeof styles> {
   isEdit: boolean;
+  roles: Role[];
 }
 
 const UserForm = (props: FormikProps<FormValues> & Props) => {
-  const { classes, handleChange, handleBlur, isSubmitting, isEdit, values, handleSubmit, errors, touched } = props;
+  const { classes, handleChange, handleBlur, isSubmitting, isEdit, values, handleSubmit, errors, touched, roles } = props;
   const textProps = { onChange: handleChange, onBlur: handleBlur, errors, touched };
   const { user } = values;
   return (
@@ -37,6 +40,10 @@ const UserForm = (props: FormikProps<FormValues> & Props) => {
         </Grid>
         <Grid item>
           <InputText disabled={isSubmitting} fieldName="user.name" label="Name" value={user.name} {...textProps} />
+        </Grid>
+        <Grid item>
+          <h3>Roles</h3>
+          <UserRoles roles={roles} userRoles={user.roles} />
         </Grid>
         <Grid item>
           <FormControlLabel
@@ -56,7 +63,6 @@ const UserForm = (props: FormikProps<FormValues> & Props) => {
               label="Continue Adding"
             />
           ) : ''}
-
         </Grid>
       </Grid>
     </form>

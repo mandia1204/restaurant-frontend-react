@@ -6,7 +6,7 @@ interface User {
   roles: Role[];
 }
 
-interface Role {
+export interface Role {
   id: number;
   roleName: string;
 }

@@ -4,11 +4,11 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 import { WithStyles } from '@material-ui/core';
 import { Formik, FormikProps } from 'formik';
 import UserForm from './UserForm';
-import User from '../../../types/User';
-import { AppStore } from '../../../types/AppStore';
-import Actions from '../../../state/actions/UserActions';
-import PageActions from '../../../state/actions/UserPageActions';
-import { Props as PageProps, FormValues } from '../../../types/components/ManageUser';
+import User from '../../../../types/User';
+import { AppStore } from '../../../../types/AppStore';
+import Actions from '../../../../state/actions/UserActions';
+import PageActions from '../../../../state/actions/UserPageActions';
+import { Props as PageProps, FormValues } from '../../../../types/components/ManageUser';
 
 const styles = createStyles({
   root: {
@@ -75,14 +75,15 @@ class ManageUserContainer extends Component<Props, {}> {
   }
 
   render() {
-    const { user, isSubmitting, classes, isEdit } = this.props;
+    const { user, isSubmitting, classes, isEdit, roles } = this.props;
+    const formProps = { isEdit, roles, isSubmitting };
     return (
       <div className={classes.root}>
         <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
         <Formik
           ref={(node: Formik<FormValues>) => { this.form = node; }}
           initialValues={{ user, continueAdding: false }}
-          render={(props: FormikProps<FormValues>) => (<UserForm {...props} isSubmitting={isSubmitting} isEdit={isEdit} />)}
+          render={(props: FormikProps<FormValues>) => (<UserForm {...props} {...formProps} />)}
           onSubmit={this.onSubmit}
           validate={this.validate}
           validateOnChange={false}
@@ -101,7 +102,7 @@ const getUserId = (paramUserId: string, newId: number) => {
 
 const getUser = (id: number, users: User[]) => (id ? users.filter(u => u.id === id)[0] : initUser());
 
-const mapStateToProps = ({ users, userPage }: AppStore, { match }: Props) => {
+const mapStateToProps = ({ users, userPage, roles }: AppStore, { match }: Props) => {
   const id = getUserId(match.params.userId, userPage.newId);
   const user = getUser(id, users);
   return {
@@ -109,6 +110,7 @@ const mapStateToProps = ({ users, userPage }: AppStore, { match }: Props) => {
     isSubmitting: userPage.isSubmitting,
     newId: userPage.newId,
     isEdit: userPage.isEdit,
+    roles,
   };
 };
 

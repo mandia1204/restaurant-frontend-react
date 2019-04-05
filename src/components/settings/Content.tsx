@@ -4,7 +4,7 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 import { WithStyles } from '@material-ui/core';
 import PrivateRoute from '../routing/PrivateRoute';
 import UsersMainContainer from './users/UsersMainContainer';
-import ManageUserContainer from './users/ManageUserContainer';
+import ManageUserContainer from './users/manage/ManageUserContainer';
 import Groups from './groups/Main';
 
 const styles = createStyles({
