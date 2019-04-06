@@ -3,22 +3,26 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Field, FieldProps } from 'formik';
 import { Role } from '../../../../types/User';
 
 interface Props {
-  roles: Role[];
   userRoles: Role[];
 }
 
-const UserRoles = ({ roles, userRoles }: Props) => (
+const checkComponent = ({ field }: FieldProps) => (
+  <Checkbox
+    checked={field.value}
+    onChange={field.onChange}
+    name={field.name}
+  />
+);
+
+const UserRoles = ({ userRoles }: Props) => (
   <List>
-    {roles.map(role => (
+    {userRoles.map((role, index) => (
       <ListItem key={role.id} role={undefined} dense>
-        <Checkbox
-          checked={userRoles.some(r => r.id === role.id)}
-          tabIndex={-1}
-          disableRipple
-        />
+        <Field key={role.id} name={`user.roles.${index}.selected`} component={checkComponent} />
         <ListItemText primary={role.roleName} />
       </ListItem>
     ))}
