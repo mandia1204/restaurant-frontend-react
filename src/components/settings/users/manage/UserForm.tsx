@@ -21,6 +21,7 @@ const styles = createStyles({
 
 interface Props extends WithStyles<typeof styles> {
   isEdit: boolean;
+  errors: any;
 }
 
 const UserForm = (props: FormikProps<FormValues> & Props) => {
@@ -41,6 +42,7 @@ const UserForm = (props: FormikProps<FormValues> & Props) => {
         </Grid>
         <Grid item>
           <h3>Roles</h3>
+          <span className="validation-error">{errors['user.roles']}</span>
           <UserRoles userRoles={user.roles} />
         </Grid>
         <Grid item>

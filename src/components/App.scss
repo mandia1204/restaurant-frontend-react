@@ -26,3 +26,8 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.validation-error {
+  font-size: 0.75rem;
+  color: #f44336;
+}

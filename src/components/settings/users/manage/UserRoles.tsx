@@ -10,10 +10,15 @@ interface Props {
   userRoles: Role[];
 }
 
-const checkComponent = ({ field }: FieldProps) => (
+const checkChange = ({ field, form }: FieldProps) => (e: React.ChangeEvent<any>) => {
+  form.setFieldTouched(field.name, true, true);
+  field.onChange(e);
+};
+
+const checkComponent = ({ field, form }: FieldProps) => (
   <Checkbox
     checked={field.value}
-    onChange={field.onChange}
+    onChange={checkChange({ field, form })}
     name={field.name}
   />
 );

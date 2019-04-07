@@ -2,8 +2,16 @@ import { Dispatch } from 'react';
 import User, { Role } from '../User';
 
 export interface FormValues {
-  user: User;
+  user: FormUser;
   continueAdding: boolean;
+}
+
+export interface FormUser extends User {
+  roles: FormRole[];
+}
+
+export interface FormRole extends Role {
+  selected: boolean;
 }
 
 export interface Props {
