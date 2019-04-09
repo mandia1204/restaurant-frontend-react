@@ -1,13 +1,13 @@
 interface User {
-  id: number;
+  id: string;
   userName: string;
   name: string;
   isAdmin: boolean;
-  roles: Role[];
+  roles: Role[]|string[];
 }
 
 export interface Role {
-  id: number;
+  id: string;
   roleName: string;
 }
 

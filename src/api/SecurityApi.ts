@@ -3,60 +3,13 @@ import { HttpWrapper } from '../wrappers/HttpWrapper';
 import LoginCredentials from '../types/LoginCredentials';
 import User, { Role } from '../types/User';
 
-let users: User[] = [{
-  id: 1,
-  userName: 'mandia',
-  name: 'Marvin Andia',
-  isAdmin: true,
-  roles: [{ id: 1, roleName: 'operator' }, { id: 2, roleName: 'admin' }],
-},
-{
-  id: 2, userName: 'jperez', name: 'Jose Perez', isAdmin: false, roles: [],
-},
-{
-  id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false, roles: [{ id: 1, roleName: 'operator' }],
-},
-{
-  id: 4, userName: 'agomez', name: 'Abel Gomez', isAdmin: true, roles: [{ id: 2, roleName: 'admin' }],
-}];
-
-const roles: Role[] = [
-  {
-    id: 1, roleName: 'operator',
-  },
-  {
-    id: 2, roleName: 'admin',
-  },
-  {
-    id: 3, roleName: 'reader',
-  },
-];
-
-const getUsers = () => new Promise<User[]>((resolve) => {
-  resolve(users);
-});
-
-const saveUser = (user: User) => new Promise<User>((resolve) => {
-  const newUser = { ...user, id: Math.floor(Math.random() * 1000) };
-  users = [...users, newUser];
-  setTimeout(() => resolve(newUser), 1500);
-  // api POST
-});
-
-const updateUser = (user: User) => new Promise<User>((resolve) => {
-  users = users.map(u => (u.id === user.id ? user : u));
-  setTimeout(() => resolve(user), 1500);
-  // api PUT
-});
-
-const getRoles = () => new Promise<Role[]>((resolve) => {
-  resolve(roles);
-});
-
-
-const http = HttpWrapper(config.authUri);
+const http = HttpWrapper(config.securityUri);
 const SecurityApi = () => {
   const authenticate = (credentials: LoginCredentials) => http.post('/token', credentials);
+  const getRoles = () => http.get<Role>('/role');
+  const getUsers = () => http.get<User>('/user');
+  const saveUser = (user: User) => http.post<User>('/user', user);
+  const updateUser = (user: User) => http.put<User>('/user', user);
 
   return {
     authenticate,

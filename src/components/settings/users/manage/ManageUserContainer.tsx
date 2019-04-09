@@ -63,7 +63,7 @@ class ManageUserContainer extends Component<Props, {}> {
   render() {
     const { user, isSubmitting, classes, isEdit, roles } = this.props;
     const formProps = { isEdit, roles, isSubmitting };
-    const userRoles = ManageUserLogic.getUserRoles(roles, user.roles);
+    const userRoles = ManageUserLogic.getUserRoles(roles, user.roles as string[]);
     return (
       <div className={classes.root}>
         <h2>{isEdit ? 'Edit' : 'Add'} User</h2>

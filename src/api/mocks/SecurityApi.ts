@@ -12,31 +12,31 @@ const SecurityApi = () => {
   });
 
   let users: User[] = [{
-    id: 1,
+    id: '1',
     userName: 'mandia',
     name: 'Marvin Andia',
     isAdmin: true,
-    roles: [{ id: 1, roleName: 'operator' }, { id: 2, roleName: 'admin' }],
+    roles: [{ id: '1', roleName: 'operator' }, { id: '2', roleName: 'admin' }],
   },
   {
-    id: 2, userName: 'jperez', name: 'Jose Perez', isAdmin: false, roles: [{ id: 3, roleName: 'reader' }],
+    id: '2', userName: 'jperez', name: 'Jose Perez', isAdmin: false, roles: [{ id: '3', roleName: 'reader' }],
   },
   {
-    id: 3, userName: 'mlopez', name: 'Mario Lopez', isAdmin: false, roles: [{ id: 1, roleName: 'operator' }],
+    id: '3', userName: 'mlopez', name: 'Mario Lopez', isAdmin: false, roles: [{ id: '1', roleName: 'operator' }],
   },
   {
-    id: 4, userName: 'agomez', name: 'Abel Gomez', isAdmin: true, roles: [{ id: 2, roleName: 'admin' }],
+    id: '4', userName: 'agomez', name: 'Abel Gomez', isAdmin: true, roles: [{ id: '2', roleName: 'admin' }],
   }];
 
   const roles: Role[] = [
     {
-      id: 1, roleName: 'operator',
+      id: '1', roleName: 'operator',
     },
     {
-      id: 2, roleName: 'admin',
+      id: '2', roleName: 'admin',
     },
     {
-      id: 3, roleName: 'reader',
+      id: '3', roleName: 'reader',
     },
   ];
 
@@ -45,7 +45,7 @@ const SecurityApi = () => {
   });
 
   const saveUser = (user: User) => new Promise<User>((resolve) => {
-    const newUser = { ...user, id: Math.floor(Math.random() * 1000) };
+    const newUser = { ...user, id: Math.floor(Math.random() * 1000).toString() };
     users = [...users, newUser];
     setTimeout(() => resolve(newUser), 1000);
     // api POST

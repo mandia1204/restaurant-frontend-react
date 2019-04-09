@@ -1,32 +1,33 @@
 import User, { Role } from '../../../../types/User';
 import { FormValues, FormUser, FormRole } from '../../../../types/components/ManageUser';
 
-const formatUser = (user: any) => ({
+const formatUser = (user: FormUser) => ({
   ...user,
   roles: user.roles
-    .filter((u: any) => u.selected).map((u: any) => ({ id: u.id })),
+    .filter(r => r.selected)
+    .map(u => u.id),
 });
 
-const getUserRoles = (roles: Role[], userRoles: Role[]): FormRole[] => (roles.map(r => ({
-  ...r, selected: userRoles.some(e => e.id === r.id),
+const getUserRoles = (roles: Role[], userRoles: string[]): FormRole[] => (roles.map(r => ({
+  ...r, selected: userRoles.some(ur => ur === r.id),
 })));
 
 const initUser = (): FormUser => ({
-  id: 0,
+  id: '',
   name: '',
   userName: '',
   isAdmin: false,
   roles: [],
 });
 
-const getUserId = (paramUserId: string, newId: number) => {
+const getUserId = (paramUserId: string = '', newId: string) => {
   if (!newId) {
-    return paramUserId ? parseInt(paramUserId, 10) : 0;
+    return paramUserId;
   }
   return newId;
 };
 
-const getUser = (id: number, users: User[]) => (id ? users.filter(u => u.id === id)[0] : initUser());
+const getUser = (id: string, users: User[]) => (id ? users.filter(u => u.id === id)[0] : initUser());
 
 const getFormStateReset = (roles: Role[], continueAdding: boolean): FormValues => {
   const resetUser = { ...initUser(), roles: getUserRoles(roles, []) };

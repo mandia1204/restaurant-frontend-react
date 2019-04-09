@@ -1,6 +1,7 @@
 import { put, call, all, takeEvery, fork } from 'redux-saga/effects';
+import { AxiosResponse } from 'axios';
 import Actions from '../actions/RoleActions';
-import SecurityApi from '../../api/mocks/SecurityApi';
+import SecurityApi from '../../api/SecurityApi';
 import { Role } from '../../types/User';
 
 const { Creators, Types } = Actions;
@@ -9,8 +10,8 @@ const api = SecurityApi();
 const getRoles = () => api.getRoles();
 
 function* fetchRoles() {
-  const roles: Role[] = yield call(getRoles);
-  yield put(Creators.receiveRoles(roles));
+  const { data }: AxiosResponse<Role[]> = yield call(getRoles);
+  yield put(Creators.receiveRoles(data));
 }
 
 function* watchFetchRoles() {

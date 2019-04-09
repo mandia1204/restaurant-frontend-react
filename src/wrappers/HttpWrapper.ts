@@ -15,8 +15,11 @@ export const HttpWrapper = (uri: string) => {
 
   const post = <T>(url: string, data: any) => getHttp().post<T>(url, data);
 
+  const put = <T>(url: string, data: any) => getHttp().put<T>(url, data);
+
   return {
     get,
     post,
+    put,
   };
 };
