@@ -16,16 +16,16 @@ const SecurityApi = () => {
     userName: 'mandia',
     name: 'Marvin Andia',
     isAdmin: true,
-    roles: [{ id: '1', roleName: 'operator' }, { id: '2', roleName: 'admin' }],
+    roles: ['1', '2'],
   },
   {
-    id: '2', userName: 'jperez', name: 'Jose Perez', isAdmin: false, roles: [{ id: '3', roleName: 'reader' }],
+    id: '2', userName: 'jperez', name: 'Jose Perez', isAdmin: false, roles: ['3'],
   },
   {
-    id: '3', userName: 'mlopez', name: 'Mario Lopez', isAdmin: false, roles: [{ id: '1', roleName: 'operator' }],
+    id: '3', userName: 'mlopez', name: 'Mario Lopez', isAdmin: false, roles: ['1'],
   },
   {
-    id: '4', userName: 'agomez', name: 'Abel Gomez', isAdmin: true, roles: [{ id: '2', roleName: 'admin' }],
+    id: '4', userName: 'agomez', name: 'Abel Gomez', isAdmin: true, roles: ['2'],
   }];
 
   const roles: Role[] = [
