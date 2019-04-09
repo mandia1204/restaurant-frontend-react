@@ -40,25 +40,36 @@ const SecurityApi = () => {
     },
   ];
 
-  const getUsers = () => new Promise<User[]>((resolve) => {
-    resolve(users);
+  const getUsers = () => new Promise<AxiosResponse<User[]>>((resolve) => {
+    const response: AxiosResponse<User[]> = {
+      data: users, status: 200, statusText: 'OK', headers: null, config: {},
+    };
+    resolve(response);
   });
 
-  const saveUser = (user: User) => new Promise<User>((resolve) => {
+  const saveUser = (user: User) => new Promise<AxiosResponse<User>>((resolve) => {
     const newUser = { ...user, id: Math.floor(Math.random() * 1000).toString() };
     users = [...users, newUser];
-    setTimeout(() => resolve(newUser), 1000);
-    // api POST
+    const response: AxiosResponse<User> = {
+      data: newUser, status: 200, statusText: 'OK', headers: null, config: {},
+    };
+    setTimeout(() => resolve(response), 1000);
   });
 
-  const updateUser = (user: User) => new Promise<User>((resolve) => {
+  const updateUser = (user: User) => new Promise<AxiosResponse<User>>((resolve) => {
     users = users.map(u => (u.id === user.id ? user : u));
-    setTimeout(() => resolve(user), 1000);
-    // api PUT
+    const response: AxiosResponse<User> = {
+      data: user, status: 200, statusText: 'OK', headers: null, config: {},
+    };
+    setTimeout(() => resolve(response), 1000);
   });
 
-  const getRoles = () => new Promise<Role[]>((resolve) => {
-    resolve(roles);
+  const getRoles = () => new Promise<AxiosResponse<Role[]>>((resolve) => {
+    const response: AxiosResponse<Role[]> = {
+      data: roles, status: 200, statusText: 'OK', headers: null, config: {},
+    };
+
+    resolve(response);
   });
 
   return {
