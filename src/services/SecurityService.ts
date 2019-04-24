@@ -27,9 +27,16 @@ const SecurityService = (): ISecurityService => {
     LocalStorageWrapper.remove(tokenKey);
   };
 
-  const isAuthenticated = (): boolean => LocalStorageWrapper.get(tokenKey) != null;
-
   const getAuthData = (): AuthData => jwtParser.parse(LocalStorageWrapper.get(tokenKey));
+
+  const isAuthenticated = (): boolean => {
+    const token = LocalStorageWrapper.get(tokenKey);
+    if (!token) return false;
+    // check date expiration
+    const { exp }: AuthData = jwtParser.parse(token);
+    if (exp < Date.now() / 1000) return false;
+    return true;
+  };
 
   return {
     authenticate,
