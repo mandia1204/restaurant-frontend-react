@@ -1,41 +1,19 @@
-import React from 'react';
+/* eslint-disable */
+
+import func from './testComp';
 import test from 'tape';
-import { shallow } from 'enzyme';
-import Button from '@material-ui/core/Button';
-import LoginForm from './LoginForm';
-import '../../../setupTest';
-import InputText from '../controls/InputText';
-
-test('[LoginForm]', (t) => {
-  t.test('--should render the form with all props', (a) => {
-    const props = {
-      values: { userName: 'mateo', password: '1234' },
-      handleChange: () => ({}),
-      handleBlur: () => ({}),
-      handleSubmit: () => ({}),
-      isSubmitting: false,
-      touched: {},
-      errors: {},
-    };
-    const wrapper = shallow(<LoginForm {...props} />).dive();
-
-    const form = wrapper.find('form');
-
-    const { handleSubmit, values, isSubmitting } = props;
-    a.equal(form.length, 1, 'should have 1 form');
-    a.equal(form.prop('onSubmit'), handleSubmit, 'form should have the submit function');
-
-    const userName = wrapper.find(InputText).find('[fieldName="userName"]').props().value;
-    const password = wrapper.find(InputText).find('[fieldName="password"]').props().value;
-
-    a.equal(userName, values.userName, 'username should be populated');
-    a.equal(password, values.password, 'password should be populated');
-
-    const submitButton = wrapper.find(Button).find('[type="submit"]');
-    a.equal(submitButton.prop('disabled'), isSubmitting, 'button should not be disabled');
-
-    a.end();
-  });
-
-  t.skip('');
+// var test = require('tape');
+// console.log(func.default);
+test('timing test', (t) => {
+    let myvar = 1;
+    const oli = 0;
+    myvar = 1+ oli;
+    const f = func();
+    for(var y=0; y<=5; y++){
+      myvar +=1;
+    }
+    console.log(myvar);
+    t.equal(7, myvar);
+    t.equal(1, 1);
+    t.end();
 });
