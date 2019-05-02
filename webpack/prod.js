@@ -22,7 +22,7 @@ module.exports = merge(baseConfig('prod'), {
     },
     optimization: {
       splitChunks: {
-        chunks: 'initial',
+        chunks: 'all',
         automaticNameDelimiter: '-'
       },
     },

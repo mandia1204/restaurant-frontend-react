@@ -9,6 +9,7 @@
       "plugins": [
         "@babel/proposal-class-properties",
         "@babel/proposal-object-rest-spread",
+        "@babel/plugin-syntax-dynamic-import"
       ]
     },
     "test": {
@@ -16,6 +17,7 @@
       "plugins": [
         "@babel/proposal-class-properties",
         "@babel/proposal-object-rest-spread",
+        "@babel/plugin-syntax-dynamic-import"
       ]
     },
     "development": {
@@ -23,6 +25,7 @@
       "plugins": [
         "@babel/proposal-class-properties",
         "@babel/proposal-object-rest-spread",
+        "@babel/plugin-syntax-dynamic-import"
       ]
     }
   }
