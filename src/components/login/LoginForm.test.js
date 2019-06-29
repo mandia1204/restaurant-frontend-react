@@ -27,7 +27,6 @@ test('[LoginForm]', (t) => {
 
     const userName = wrapper.find(InputText).find('[fieldName="userName"]').props().value;
     const password = wrapper.find(InputText).find('[fieldName="password"]').props().value;
-
     a.equal(userName, values.userName, 'username should be populated');
     a.equal(password, values.password, 'password should be populated');
 
