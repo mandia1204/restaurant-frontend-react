@@ -10,3 +10,19 @@ https://material-ui.com/style/color/
 
 webpack treeshaking with babel:
 https://medium.com/@johnstew/webpack-tree-shaking-20914b7a9ca5
+
+debugging karma test:
+
+1 modify indexTest.js and add the file you want to debug, for example:
+  const testsContext = require.context('./src/', true, /LoginForm.test$/);
+
+2 changes in karma.conf.js
+  - browsers should be "ChromeDebugging"
+  - singleRun should be false
+  - mode should be none
+  - devtool should be 'inline-source-map'
+  - set loglevel config.LOG_DEBUG
+  - autoWatch: true
+  
+
+3- npm test,  then attach to karma from vscode, click the restart button until the breakpoint hits
