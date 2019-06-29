@@ -8,25 +8,20 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-sourcemap-loader',
       require('karma-tap'),
-      'karma-tap-pretty-reporter',
+      'karma-tap-pretty-reporter'
     ],
     frameworks: ['tap'], // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     files: [
-      // 'node_modules/@babel/polyfill/dist/polyfill.js',
-      'src/components/login/LoginForm.tsx',
-      'src/components/login/LoginForm.test.js' //'indexTest.js', 
+      'indexTest.js'
     ],
     preprocessors: { 
-      //'src/components/login/LoginForm.test.js': ['webpack']
-      'src/components/login/LoginForm.tsx': ['webpack'],
-      'src/components/login/LoginForm.test.js': ['webpack', 'sourcemap']
+      'indexTest.js': ['webpack']
     },
     client: {
       captureConsole: false
     },
     webpack: {
-      // devtool : 'inline-source-map',
-      devtool: 'inline-source-map',
+      // devtool: 'inline-source-map',
       module: {
         rules: [
           {
@@ -42,22 +37,22 @@ module.exports = function(config) {
       node: {
         fs: 'empty'
       },
-      mode: 'none'
+      mode: 'production'
     },
     webpackMiddleware: {
       stats: 'errors-only'
     },
-    // reporters: ['tap-pretty'], // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    // tapReporter: {
-    //   prettify: require('faucet'),
-    //   sepparator: '****************************',
-    //   outputFile: './report/test/test.out.tap'
-    // },
+    reporters: ['tap-pretty'], // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    tapReporter: {
+      prettify: require('faucet'),
+      sepparator: '****************************',
+      outputFile: './report/test/test.out.tap'
+    },
     port: 9876,
     colors: true,
-    logLevel: config.LOG_DEBUG, // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    autoWatch: true, // enable / disable watching file and executing tests whenever any file changes
-    browsers: ['ChromeDebugging'],//ChromeHeadless available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    logLevel: config.LOG_DISABLE, // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    autoWatch: false, // enable / disable watching file and executing tests whenever any file changes
+    browsers: ['ChromeHeadless'],//ChromeHeadless available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     customLaunchers:{
       ChromeDebugging: {
         base: 'Chrome',
@@ -66,7 +61,7 @@ module.exports = function(config) {
     },
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
