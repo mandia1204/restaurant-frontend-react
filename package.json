@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack/dev.js --mode development",
-    "build": "cross-env BABEL_ENV=production npm run check-types && webpack --config ./webpack/prod.js",
+    "build": "npm run check-types && cross-env BABEL_ENV=production webpack --config ./webpack/prod.js",
     "build-dev": "cross-env NODE_ENV=development webpack --config ./webpack/dev.js",
     "start-prod": "lws --port=9000 --dir=dist/",
     "build-backup": "cross-env BABEL_ENV=production webpack --config ./webpack.config.js",
