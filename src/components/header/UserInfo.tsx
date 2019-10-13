@@ -10,13 +10,13 @@ interface Props {
 const UserInfo = ({ logout, user }: Props) => (
   <Grid item>
     <span>
-      { 'User:' }
+      User:
     </span>
     <span>
       {user.name}
     </span>
     <Button onClick={logout}>
-      { 'Logout' }
+      Logout
     </Button>
   </Grid>
 );

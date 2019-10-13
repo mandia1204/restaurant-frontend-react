@@ -6,7 +6,7 @@ import { DashboardChart, ChartModel, ChartModelBuilderFactory } from '../../../t
 
 // converts data from api to chart model
 const generateChartModel = (charts: DashboardChart[], chartName: string, type: string) => {
-  const chart = charts.filter(c => c.name === chartName)[0];
+  const chart = charts.filter((c) => c.name === chartName)[0];
   if (!chart) return { data: {}, options: {} };
   return {
     data: ChartBuilder().build(chart.data, type),

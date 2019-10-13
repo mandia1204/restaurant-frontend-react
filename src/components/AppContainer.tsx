@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './App.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -18,13 +18,13 @@ const styles = createStyles({
 const AppContainer = ({ classes }: WithStyles<typeof styles>) => (
   <Provider store={createAppStore()}>
     <BrowserRouter>
-      <Fragment>
+      <>
         <CssBaseline />
         <div className={classes.root}>
           <HeaderContainer />
           <Main />
         </div>
-      </Fragment>
+      </>
     </BrowserRouter>
   </Provider>
 );

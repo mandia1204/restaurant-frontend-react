@@ -23,7 +23,7 @@ const styles = {
 const AnulacionesItem = ({ classes, anulacion }: Props) => (
   <ListItem>
     <Avatar className={classes.avatar}>
-      { <anulacion.icon className={classes.icon} /> }
+      <anulacion.icon className={classes.icon} />
     </Avatar>
     <ListItemText primary={anulacion.observacion} secondary={anulacion.fecha} />
   </ListItem>

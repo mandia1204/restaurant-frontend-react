@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const webpack = require('webpack');
 
@@ -34,12 +35,13 @@ module.exports = (env) => {
         alwaysWriteToDisk: true
       }),
       new HtmlWebpackHarddiskPlugin(),
-      new CleanWebpackPlugin([bundleFolder], {
-        root: path.resolve(__dirname, '..'),
-        exclude:  ['Favicon.ico'],
-        verbose:  true,
-        dry:      false
-      })
+      new CleanWebpackPlugin(),
+      // new CleanWebpackPlugin([bundleFolder], {
+      //   root: path.resolve(__dirname, '..'),
+      //   exclude:  ['Favicon.ico'],
+      //   verbose:  true,
+      //   dry:      false
+      // })
     ],
     output: {
       path: path.resolve(__dirname, `../${bundleFolder}`),

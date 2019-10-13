@@ -5,8 +5,8 @@ import get from 'lodash/get';
 
 const styles = ({ spacing }: Theme) => createStyles({
   textField: {
-    marginLeft: spacing.unit,
-    marginRight: spacing.unit,
+    marginLeft: spacing(),
+    marginRight: spacing(),
   },
 });
 

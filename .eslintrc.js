@@ -11,7 +11,6 @@ module.exports = {
     'airbnb',
     'plugin:@typescript-eslint/recommended',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
@@ -54,6 +53,8 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 'off',
     'max-len': ['error', { code: 130 }],
     'react/no-did-update-set-state': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
     // 'no-console': 'off',
     // 'no-unused-vars':'off'
   },
@@ -74,7 +75,6 @@ module.exports = {
     {
       files: ['**/*.ts'],
       rules: {
-        parser: 'typescript-eslint-parser',
         'no-undef': 'off',
       },
     },

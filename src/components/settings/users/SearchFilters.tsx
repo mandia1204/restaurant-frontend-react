@@ -21,7 +21,7 @@ const SearchFilters = (props: Props) => {
   const { classes, userNameFilter, isAdminFilter, onChange } = props;
   return (
     <div className={classes.root}>
-      <Grid alignItems="flex-end" container spacing={24}>
+      <Grid alignItems="flex-end" container spacing={10}>
         <Grid item xs={7}>
           <TextField
             name="userNameFilter"

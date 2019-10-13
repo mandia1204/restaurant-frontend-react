@@ -57,7 +57,7 @@ const SecurityApi = () => {
   });
 
   const updateUser = (user: User) => new Promise<AxiosResponse<User>>((resolve) => {
-    users = users.map(u => (u.id === user.id ? user : u));
+    users = users.map((u) => (u.id === user.id ? user : u));
     const response: AxiosResponse<User> = {
       data: user, status: 200, statusText: 'OK', headers: null, config: {},
     };

@@ -17,7 +17,7 @@ import User from '../../../types/User';
 const styles = ({ spacing }: Theme) => createStyles({
   root: {
     width: '100%',
-    marginTop: spacing.unit * 3,
+    marginTop: spacing() * 3,
     overflowX: 'auto',
   },
   table: {
@@ -42,7 +42,7 @@ const UsersTable = ({ classes, users }: Props) => (
         </TableRow>
       </TableHead>
       <TableBody>
-        {users.map(user => (
+        {users.map((user) => (
           <TableRow key={user.id}>
             <TableCell>{user.id}</TableCell>
             <TableCell>{user.userName}</TableCell>

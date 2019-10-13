@@ -4,12 +4,12 @@ import { FormValues, FormUser, FormRole } from '../../../../types/components/Man
 const formatUser = (user: FormUser) => ({
   ...user,
   roles: user.roles
-    .filter(r => r.selected)
-    .map(u => u.id),
+    .filter((r) => r.selected)
+    .map((u) => u.id),
 });
 
-const getUserRoles = (roles: Role[], userRoles: string[]): FormRole[] => (roles.map(r => ({
-  ...r, selected: userRoles.some(ur => ur === r.id),
+const getUserRoles = (roles: Role[], userRoles: string[]): FormRole[] => (roles.map((r) => ({
+  ...r, selected: userRoles.some((ur) => ur === r.id),
 })));
 
 const initUser = (): FormUser => ({
@@ -20,14 +20,14 @@ const initUser = (): FormUser => ({
   roles: [],
 });
 
-const getUserId = (paramUserId: string = '', newId: string) => {
+const getUserId = (paramUserId = '', newId: string) => {
   if (!newId) {
     return paramUserId;
   }
   return newId;
 };
 
-const getUser = (id: string, users: User[]) => (id ? users.filter(u => u.id === id)[0] : initUser());
+const getUser = (id: string, users: User[]) => (id ? users.filter((u) => u.id === id)[0] : initUser());
 
 const getFormStateReset = (roles: Role[], continueAdding: boolean): FormValues => {
   const resetUser = { ...initUser(), roles: getUserRoles(roles, []) };

@@ -20,7 +20,7 @@ export const AnulacionesFormatter = () => {
 
   const format = (anulaciones: Anulacion[]) => anulaciones.map((a) => {
     const vacio = !a.observacion ? { observacion: '<vacio>' } : { };
-    return Object.assign({ ...a }, propsByType.get(getTipo(a.tipo)), vacio);
+    return { ...a, ...propsByType.get(getTipo(a.tipo)), ...vacio };
   });
 
   return {

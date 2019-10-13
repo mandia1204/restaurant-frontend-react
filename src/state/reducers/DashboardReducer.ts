@@ -14,9 +14,9 @@ interface ReduceMethod {
   (state: DashboardModel, action: any): DashboardModel;
 }
 
-const getDashboard: ReduceMethod = state => state;
+const getDashboard: ReduceMethod = (state) => state;
 const receiveDashboard: ReduceMethod = (state, action) => action.dashboard;
-const fetchDashboard: ReduceMethod = state => state;
+const fetchDashboard: ReduceMethod = (state) => state;
 
 export const DashboardReducer = createReducer(INITIAL_STATE,
   {

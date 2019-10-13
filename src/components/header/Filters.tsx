@@ -29,14 +29,14 @@ interface Props extends WithStyles<typeof styles>{
 const Filters = ({ classes, values, filtersChange }: Props) => (
   <Grid item>
     <NativeSelect id="year-filter" value={values.year} onChange={onYearChange(filtersChange)} className={classes.select}>
-      {years.map(val => (
+      {years.map((val) => (
         <option key={val} value={val}>
           {val}
         </option>
       ))}
     </NativeSelect>
     <NativeSelect id="month-filter" value={values.month} onChange={onMonthChange(filtersChange)} className={classes.select}>
-      {months.map(month => (
+      {months.map((month) => (
         <option key={month.value} value={month.value}>
           {month.name}
         </option>

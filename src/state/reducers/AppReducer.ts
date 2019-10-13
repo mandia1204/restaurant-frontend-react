@@ -35,7 +35,7 @@ const updateLoginData: ReduceMethod = (state, action) => ({
   showHeaderLinks: action.data.authenticated,
 });
 
-const fetchLoginData: ReduceMethod = state => state;
+const fetchLoginData: ReduceMethod = (state) => state;
 
 const logout: ReduceMethod = () => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
 

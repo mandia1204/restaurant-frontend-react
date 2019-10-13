@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
@@ -27,7 +27,7 @@ const Header = ({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChang
         <Grid item xs={6}>
           { showHeaderLinks && showFilters
                         && (
-                          <Fragment>
+                          <>
                             <Hidden smDown>
                               <Grid container alignItems="center" style={{ height: '100%' }}>
                                 <Filters values={dashboardFilters} filtersChange={onFiltersChange} />
@@ -38,9 +38,8 @@ const Header = ({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChang
                                 <FiltersPopup values={dashboardFilters} filtersChange={onFiltersChange} />
                               </Grid>
                             </Hidden>
-                          </Fragment>
-                        )
-          }
+                          </>
+                        )}
         </Grid>
         <Grid item xs>
           { showHeaderLinks
@@ -55,8 +54,7 @@ const Header = ({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChang
                           </Grid>
                         </Hidden>
                       </Grid>
-                    )
-          }
+                    )}
         </Grid>
       </Grid>
     </Toolbar>

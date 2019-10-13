@@ -3,15 +3,15 @@ import { ChartColors } from '../config/ChartConfig';
 
 const barFormat = (datasets) => {
   const formatProps = {
-    backgroundColor: ChartColors.bar.map(c => Colors[c].light),
-    borderColor: ChartColors.bar.map(c => Colors[c].normal),
+    backgroundColor: ChartColors.bar.map((c) => Colors[c].light),
+    borderColor: ChartColors.bar.map((c) => Colors[c].normal),
     borderWidth: 1,
   };
-  return datasets.map(ds => Object.assign({}, ds, formatProps));
+  return datasets.map((ds) => ({ ...ds, ...formatProps }));
 };
 
 const lineFormat = (datasets) => {
-  const getProps = color => ({
+  const getProps = (color) => ({
     backgroundColor: color.light,
     borderColor: color.dark,
     pointColor: color.dark,
@@ -23,19 +23,19 @@ const lineFormat = (datasets) => {
 
   return datasets.map((ds, index) => {
     const color = Colors[chartColors[index]];
-    return Object.assign({}, ds, getProps(color));
+    return { ...ds, ...getProps(color) };
   });
 };
 
 const pieFormat = (datasets) => {
   const formatProps = {
-    backgroundColor: ChartColors.pie.map(c => Colors[c].normal),
-    hoverBackgroundColor: ChartColors.pie.map(c => Colors[c].dark),
+    backgroundColor: ChartColors.pie.map((c) => Colors[c].normal),
+    hoverBackgroundColor: ChartColors.pie.map((c) => Colors[c].dark),
   };
-  return datasets.map(ds => Object.assign({}, ds, formatProps));
+  return datasets.map((ds) => ({ ...ds, ...formatProps }));
 };
 
-const radarFormat = chart => chart;
+const radarFormat = (chart) => chart;
 
 export const DataSetFormatter = () => ({
   bar: barFormat,

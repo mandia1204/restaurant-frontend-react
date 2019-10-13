@@ -1,4 +1,3 @@
-// @ts-ignore
 import { createReducer } from 'reduxsauce';
 import Actions from '../actions/RoleActions';
 import { Role } from '../../types/User';
@@ -10,7 +9,7 @@ interface ReduceMethod {
   (state: Role[], action: any): Role[];
 }
 
-const fetchRoles: ReduceMethod = state => state;
+const fetchRoles: ReduceMethod = (state) => state;
 const receiveRoles: ReduceMethod = (state, action) => action.roles;
 
 export const RoleReducer = createReducer(INITIAL_STATE,

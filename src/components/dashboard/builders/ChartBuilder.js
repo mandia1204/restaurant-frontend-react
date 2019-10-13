@@ -20,7 +20,7 @@ export const ChartBuilder = () => {
   const build = (data, type) => {
     const chart = generateChartBody(data);
     const dataSetFormatted = DataSetFormatter()[type](chart.datasets);
-    return Object.assign({}, chart, { datasets: dataSetFormatted });
+    return { ...chart, datasets: dataSetFormatted };
   };
 
   return {

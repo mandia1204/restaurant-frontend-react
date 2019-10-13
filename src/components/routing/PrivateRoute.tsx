@@ -11,7 +11,7 @@ export interface Props extends RouteProps {
 const PrivateRoute = ({ component: Component, ...rest }: Props) => (
   <Route
     {...rest}
-    render={props => (securityService.isAuthenticated()
+    render={(props) => (securityService.isAuthenticated()
       ? (<Component {...props} />) : (
         <Redirect
           to={{
@@ -19,8 +19,7 @@ const PrivateRoute = ({ component: Component, ...rest }: Props) => (
             state: { from: props.location },
           }}
         />
-      ))
-    }
+      ))}
   />
 );
 

@@ -15,7 +15,7 @@ const generateCardModel = (cards, cardName) => {
   };
 };
 
-const build = cards => ({
+const build = (cards) => ({
   produccionDia: generateCardModel(cards, Cards.produccionDia),
   ventaDia: generateCardModel(cards, Cards.ventaDia),
   paxDia: generateCardModel(cards, Cards.paxDia),

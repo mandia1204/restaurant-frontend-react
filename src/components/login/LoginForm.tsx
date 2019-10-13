@@ -20,7 +20,7 @@ const LoginForm = (props: FormikProps<LoginCredentials> & WithStyles<typeof styl
   return (
     <form className={classes.container} onSubmit={handleSubmit} autoComplete="off">
       <h1>
-        { 'Login please' }
+        Login please
       </h1>
       <Grid container direction="column">
         <Grid item>
@@ -38,7 +38,7 @@ const LoginForm = (props: FormikProps<LoginCredentials> & WithStyles<typeof styl
         </Grid>
         <Grid item>
           <Button color="primary" type="submit" disabled={isSubmitting}>
-            { 'Login' }
+            Login
           </Button>
         </Grid>
       </Grid>

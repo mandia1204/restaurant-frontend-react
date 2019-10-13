@@ -10,11 +10,11 @@ interface ReduceMethod {
   (state: User[], action: any): User[];
 }
 
-const getUsers: ReduceMethod = state => state;
-const fetchUsers: ReduceMethod = state => state;
+const getUsers: ReduceMethod = (state) => state;
+const fetchUsers: ReduceMethod = (state) => state;
 const receiveUsers: ReduceMethod = (state, action) => action.users;
 const saveUserSuccess: ReduceMethod = (state, action) => ([...state, action.user]);
-const updateUserSuccess: ReduceMethod = (state, action) => (state.map(u => (u.id === action.user.id ? action.user : u)));
+const updateUserSuccess: ReduceMethod = (state, action) => (state.map((u) => (u.id === action.user.id ? action.user : u)));
 
 export const UserReducer = createReducer(INITIAL_STATE,
   {

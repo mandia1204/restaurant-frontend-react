@@ -5,7 +5,7 @@ const validate = ({ user }: FormValues) => {
 
   if (!user.userName) errors['user.userName'] = 'User name required';
   if (!user.name) errors['user.name'] = 'Name required';
-  if (!user.roles.some(r => r.selected)) errors['user.roles'] = 'Select at least one role.';
+  if (!user.roles.some((r) => r.selected)) errors['user.roles'] = 'Select at least one role.';
   return errors;
 };
 
