@@ -26,6 +26,7 @@ module.exports = merge(baseConfig('dev'), {
     contentBase: './build',
     hot: true,
     historyApiFallback: true,
+    port:3005,
     proxy: {
       '/dashboardApi': {
         target: 'http://localhost:5000',
