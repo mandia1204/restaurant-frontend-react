@@ -35,7 +35,7 @@ class ManageUserContainer extends Component<Props, {}> {
 
   componentDidMount() {
     const { match, dispatch } = this.props;
-    if (match.params.userId > 0) {
+    if (match.params.userId) {
       dispatch(PageActions.Creators.setIsEdit(true));
     }
   }
@@ -46,18 +46,25 @@ class ManageUserContainer extends Component<Props, {}> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { newId, isEdit, roles, dispatch } = this.props;
-    const { continueAdding, user } = this.form.state.values;
-
-    if (newId && newId !== prevProps.newId && !isEdit) {
-      if (continueAdding) {
-        this.form.resetForm(ManageUserLogic.getFormStateReset(roles, continueAdding));
-        dispatch(PageActions.Creators.setNewId(0));
-      } else {
-        this.form.setValues({ user: { ...user, id: newId }, continueAdding: false });
-        dispatch(PageActions.Creators.setIsEdit(true));
-      }
+    const { newId, isEdit, status } = this.props;
+    if (newId && newId !== prevProps.newId && status === 'form_submit_success' && !isEdit) {
+      this.addNewUserSuccess(this.form.state.values, this.props);
+    } else if (isEdit && status === 'form_submit_success') {
+      this.updateUserSuccess();
     }
+  }
+
+  addNewUserSuccess = ({ continueAdding, user }: FormValues, { newId, roles, dispatch }: Props) => {
+    if (continueAdding) {
+      this.form.resetForm(ManageUserLogic.getFormStateReset(roles, continueAdding));
+      dispatch(PageActions.Creators.setNewId(''));
+    } else {
+      this.form.setValues({ user: { ...user, id: newId }, continueAdding: false });
+      dispatch(PageActions.Creators.setIsEdit(true));
+    }
+  }
+
+  updateUserSuccess = () => {
   }
 
   render() {
@@ -88,6 +95,7 @@ const mapStateToProps = ({ users, userPage, roles }: AppStore, { match }: Props)
     isSubmitting: userPage.isSubmitting,
     newId: userPage.newId,
     isEdit: userPage.isEdit,
+    status: userPage.status,
     roles,
   };
 };

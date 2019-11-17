@@ -10,11 +10,11 @@ interface ReduceMethod {
   (state: FormState, action: any): FormState;
 }
 
-const setFormSubmitting: ReduceMethod = (state, action) => ({ ...state, isSubmitting: action.isSubmitting });
+const setFormSubmitting: ReduceMethod = (state, action) => ({ ...state, isSubmitting: action.isSubmitting, status: action.isSubmitting ? '' : state.status });
 const formSubmitSuccess: ReduceMethod = (state, action) => (
   {
     ...state,
-    status: 'form_complete',
+    status: 'form_submit_success',
     error: '',
     isSubmitting: false,
     newId: action.newId,

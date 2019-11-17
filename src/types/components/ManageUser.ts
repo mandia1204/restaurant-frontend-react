@@ -19,7 +19,8 @@ export interface Props {
   user: User;
   dispatch: Dispatch<any>;
   isSubmitting: boolean;
-  newId?: string;
+  newId: string;
   isEdit: boolean;
+  status: string;
   roles: Role[];
 }

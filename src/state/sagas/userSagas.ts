@@ -18,8 +18,9 @@ function* fetchUsers() {
 
 function* saveUser({ user }: {user: User}) {
   const { data }: AxiosResponse<User> = yield call(callSaveUser, user);
-  yield put(user.id ? Creators.updateUserSuccess(data) : Creators.saveUserSuccess(data));
-  yield put(UserPageActions.Creators.formSubmitSuccess(data.id));
+  const isExisting = !!user.id;
+  yield put(isExisting ? Creators.updateUserSuccess(data) : Creators.saveUserSuccess(data));
+  yield put(UserPageActions.Creators.formSubmitSuccess(isExisting ? '' : data.id));
 }
 
 function* watchSaveUser() {
