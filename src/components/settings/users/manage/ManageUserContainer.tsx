@@ -10,6 +10,7 @@ import PageActions from '../../../../state/actions/UserPageActions';
 import { Props as PageProps, FormValues } from '../../../../types/components/ManageUser';
 import ManageUserLogic from './ManageUserLogic';
 import userFormValidation from './userFormValidation';
+import Notification from '../../../controls/Notification';
 
 const styles = createStyles({
   root: {
@@ -21,6 +22,13 @@ interface Props extends PageProps, WithStyles<typeof styles> { }
 
 class ManageUserContainer extends Component<Props, {}> {
   form: Formik<FormValues>;
+
+  notificationRef: React.RefObject<Notification | undefined>
+
+  constructor(props: Props) {
+    super(props);
+    this.notificationRef = React.createRef();
+  }
 
   onSubmit = (values: FormValues) => {
     const { dispatch, isEdit } = this.props;
@@ -65,6 +73,9 @@ class ManageUserContainer extends Component<Props, {}> {
   }
 
   updateUserSuccess = () => {
+    if (this.notificationRef.current) {
+      (this.notificationRef.current as any).showNotification('saved successfully!', 'success');
+    }
   }
 
   render() {
@@ -73,6 +84,7 @@ class ManageUserContainer extends Component<Props, {}> {
     const userRoles = ManageUserLogic.getUserRoles(roles, user.roles as string[]);
     return (
       <div className={classes.root}>
+        <Notification ref={this.notificationRef} />
         <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
         <Formik
           ref={(node: Formik<FormValues>) => { this.form = node; }}

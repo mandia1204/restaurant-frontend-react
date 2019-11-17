@@ -51,7 +51,7 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
-    'max-len': ['error', { code: 130 }],
+    'max-len': ['error', { code: 180 }],
     'react/no-did-update-set-state': 'off',
     'react/jsx-props-no-spreading': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
