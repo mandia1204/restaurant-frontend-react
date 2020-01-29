@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: dashboard-fe-app
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: dashboard-fe
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: dashboard-fe-app
+spec:
+  selector:
+    matchLabels:
+      app: dashboard-fe
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dashboard-fe
+    spec:
+      containers:
+      - name: res-dashboard-fe
+        image: dashboard-front-end
+        ports:
+        - containerPort: 8080
+

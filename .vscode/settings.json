@@ -19,7 +19,8 @@
         ]
 	},
     "files.associations": {
-        "Dockerfile*": "dockerfile"
+        "Dockerfile*": "dockerfile",
+        "Jenkinsfile*": "groovy"
     },
     "typescript.tsdk": "node_modules\\typescript\\lib",
     "editor.codeActionsOnSave": {

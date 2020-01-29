@@ -24,22 +24,24 @@ module.exports = merge(baseConfig('dev'), {
   ],
   devServer: {
     contentBase: './build',
+    host: '0.0.0.0',
     hot: true,
     historyApiFallback: true,
-    port:3005,
-    proxy: {
-      '/dashboardApi': {
-        target: 'http://localhost:5000',
-        pathRewrite: {'^/dashboardApi' : '/api'},
-        secure: false,
-        changeOrigin: true
-      },
-      '/securityApi': {
-        target: 'http://localhost:3001',
-        pathRewrite: {'^/securityApi' : '/'},
-        secure: false,
-        changeOrigin: true
-      }
-    }
+    port:8080,
+    sockPort: 80
+    // proxy: {
+    //   '/dashboardApi': {
+    //     target: 'http://localhost:5000',
+    //     pathRewrite: {'^/dashboardApi' : '/api'},
+    //     secure: false,
+    //     changeOrigin: true
+    //   },
+    //   '/securityApi': {
+    //     target: 'http://localhost:3001',
+    //     pathRewrite: {'^/securityApi' : '/'},
+    //     secure: false,
+    //     changeOrigin: true
+    //   }
+    // }
   }
 });

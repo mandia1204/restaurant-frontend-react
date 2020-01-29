@@ -1,0 +1,25 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+  - image: dashboard-front-end
+    docker:
+        dockerfile: Dockerfile-dev
+    sync:
+      manual:
+      - src: 'src/components/**/*'
+        dest: .
+      - src: 'src/services/**/*'
+        dest: .
+      - src: 'src/api/**/*'
+        dest: .
+      - src: 'src/state/**/*'
+        dest: .
+      - src: 'src/util/**/*'
+        dest: .
+      - src: 'src/wrappers/**/*'
+        dest: .
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*.yaml

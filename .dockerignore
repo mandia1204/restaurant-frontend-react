@@ -1,0 +1,11 @@
+.git
+node_modules
+dist
+npm-debug.log
+.gitignore
+Jenkinsfile*
+skaffold.yaml
+build
+report
+Dockerfile*
+notes.txt
