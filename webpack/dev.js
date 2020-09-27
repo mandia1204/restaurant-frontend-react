@@ -28,7 +28,7 @@ module.exports = merge(baseConfig('dev'), {
     hot: true,
     historyApiFallback: true,
     port:8080,
-    sockPort: 80
+    // sockPort: 80  //for skaffold
     // proxy: {
     //   '/dashboardApi': {
     //     target: 'http://localhost:5000',

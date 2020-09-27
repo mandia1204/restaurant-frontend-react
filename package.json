@@ -86,9 +86,11 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@aws-amplify/auth": "^3.4.4",
     "@babel/polyfill": "^7.6.0",
     "@material-ui/core": "^4.5.1",
     "@material-ui/icons": "^4.5.1",
+    "amazon-cognito-identity-js": "^4.4.0",
     "axios": "^0.19.0",
     "chart.js": "^2.8.0",
     "clsx": "^1.0.4",
@@ -105,6 +107,7 @@
     "recompose": "^0.30.0",
     "redux": "^4.0.4",
     "redux-saga": "^1.1.1",
-    "reduxsauce": "^1.1.0"
+    "reduxsauce": "^1.1.0",
+    "tslib": "^1.11.1"
   }
 }

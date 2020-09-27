@@ -4,6 +4,7 @@ import { WithStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { FormikProps } from 'formik';
+import { Auth } from '@aws-amplify/auth';
 import InputText from '../controls/InputText';
 import LoginCredentials from '../../types/LoginCredentials';
 
@@ -42,6 +43,9 @@ const LoginForm = (props: FormikProps<LoginCredentials> & WithStyles<typeof styl
           </Button>
         </Grid>
       </Grid>
+      <Button color="primary" onClick={() => Auth.federatedSignIn()}>
+            Login with Cognito
+      </Button>
     </form>
   );
 };

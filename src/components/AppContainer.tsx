@@ -8,6 +8,9 @@ import { WithStyles } from '@material-ui/core';
 import { createAppStore } from '../state/ConfigureStore';
 import Main from './Main';
 import HeaderContainer from './header/HeaderContainer';
+import { configureAuth } from '../ConfigureAuth';
+
+configureAuth();
 
 const styles = createStyles({
   root: {

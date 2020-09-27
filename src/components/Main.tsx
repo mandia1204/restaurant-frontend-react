@@ -5,6 +5,7 @@ import { WithStyles } from '@material-ui/core';
 import Settings from './settings/Main';
 import PrivateRoute from './routing/PrivateRoute';
 import Login from './login/Login';
+import CognitoUserInfo from './user/CognitoUserInfo';
 
 const styles = createStyles({
   main: {
@@ -22,6 +23,7 @@ const Main = ({ classes }: WithStyles<typeof styles>) => (
         <PrivateRoute exact path="/" component={Home} />
         <PrivateRoute path="/dashboard" component={DashboardContainer} />
         <PrivateRoute path="/settings" component={Settings} />
+        <Route path="/info" component={CognitoUserInfo} />
         <Route path="/login" component={Login} />
       </Switch>
     </Suspense>
