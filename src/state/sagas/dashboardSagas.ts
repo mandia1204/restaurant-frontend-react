@@ -6,9 +6,8 @@ import DashboardFilters from '../../types/DashboardFilters';
 import { DashboardModel } from '../../types/Dashboard';
 
 const { Creators, Types } = Actions;
-const client = DashboardApi();
 
-export const getDashboard = (filters: DashboardFilters) => client.getDashboard(filters);
+export const getDashboard = (filters: DashboardFilters) => DashboardApi.getDashboard(filters);
 
 export function* fetchDashboard({ filters }: {filters: DashboardFilters}) {
   const { data }: AxiosResponse<DashboardModel> = yield call(getDashboard, filters);

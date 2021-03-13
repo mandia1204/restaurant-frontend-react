@@ -5,13 +5,9 @@ import { DashboardModel } from '../types/Dashboard';
 
 const http = HttpWrapper(config.dashboardUri);
 
-export const DashboardApi = () => {
-  const getDashboard = (filters: DashboardFilters) => {
+export const DashboardApi = {
+  getDashboard: (filters: DashboardFilters) => {
     const url = `/dashboard?anio=${filters.year}&mes=${filters.month}&ops=${filters.ops}`;
     return http.get<DashboardModel>(url);
-  };
-
-  return {
-    getDashboard,
-  };
+  },
 };

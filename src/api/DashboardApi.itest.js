@@ -13,7 +13,7 @@ test('[DashboardApi]', (t) => {
     mock.onGet('/dashboard?anio=2018&mes=2&ops=ABC').reply(200, data);
     const filters = { year: 2018, month: 2, ops: 'ABC' };
 
-    return DashboardApi().getDashboard(filters).then((response) => {
+    return DashboardApi.getDashboard(filters).then((response) => {
       a.deepEqual(response.data, data, 'Data should be returned');
       mock.restore();
       a.end();
