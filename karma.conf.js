@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = function(config) {
   config.set({
@@ -10,7 +11,7 @@ module.exports = function(config) {
       require('karma-tap'),
       'karma-tap-pretty-reporter'
     ],
-    frameworks: ['tap'], // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['tap', 'webpack'], // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     files: [
       'indexTest.js'
     ],
@@ -32,11 +33,18 @@ module.exports = function(config) {
         ]
       },
       resolve: {
-        extensions: ['*', '.js', '.ts', '.jsx', '.tsx']
+        extensions: ['*', '.js', '.ts', '.jsx', '.tsx'],
+        fallback: {
+          fs: false,
+          path: false
+        }
       },
-      node: {
-        fs: 'empty'
-      },
+      plugins: [
+        new NodePolyfillPlugin(),
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify('production')
+        })
+      ],
       mode: 'production'
     },
     webpackMiddleware: {
@@ -50,7 +58,7 @@ module.exports = function(config) {
     },
     port: 9876,
     colors: true,
-    logLevel: config.LOG_DISABLE, // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_DEBUG, // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     autoWatch: false, // enable / disable watching file and executing tests whenever any file changes
     browsers: ['ChromeHeadless'],// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     customLaunchers:{
