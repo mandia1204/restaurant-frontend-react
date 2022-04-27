@@ -16,7 +16,8 @@
 		// Import non-ES modules as default imports.
     "esModuleInterop": true,
     "jsx": "react",
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+		"skipLibCheck": true
 	},
 	"include": [
 		"src"

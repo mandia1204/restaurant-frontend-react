@@ -1,5 +1,5 @@
 import React, { Component, Dispatch } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
+// import { withRouter, RouteComponentProps } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import { connect } from 'react-redux';
 import SecurityService from '../../services/SecurityService';
 import Actions from '../../state/actions/AppActions';
@@ -10,7 +10,12 @@ import ISecurityService from '../../types/ISecurityService';
 import { AppState, AppStore } from '../../types/AppStore';
 import DashboardFilters from '../../types/DashboardFilters';
 
-interface Props extends RouteComponentProps<any> {
+// interface Props extends RouteComponentProps<any> {
+//   dispatch: Dispatch<any>;
+//   appState: AppState;
+// }
+
+interface Props {
   dispatch: Dispatch<any>;
   appState: AppState;
 }
@@ -32,9 +37,10 @@ class HeaderContainer extends Component<Props> {
   }
 
   logout() {
-    const { history, dispatch } = this.props;
+    // const { history, dispatch } = this.props; //TODO: add history
+    const { dispatch } = this.props;
     this.securityService.logout();
-    history.push('/login');
+    //history.push('/login');
     dispatch(Actions.Creators.logout());
   }
 
@@ -61,4 +67,4 @@ const mapStateToProps = (state: AppStore) => {
   };
 };
 
-export default connect(mapStateToProps)(withRouter(HeaderContainer));
+export default connect(mapStateToProps)(HeaderContainer);

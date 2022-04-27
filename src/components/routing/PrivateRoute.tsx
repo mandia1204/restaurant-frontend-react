@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, RouteProps } from 'react-router-dom';
+import { Route, Navigate , RouteProps } from 'react-router-dom';
 import SecurityService from '../../services/SecurityService';
 
 const securityService = SecurityService();
@@ -11,13 +11,12 @@ export interface Props extends RouteProps {
 const PrivateRoute = ({ component: Component, ...rest }: Props) => (
   <Route
     {...rest}
-    render={(props) => (securityService.isAuthenticated()
+    children={(props : any) => (securityService.isAuthenticated()
       ? (<Component {...props} />) : (
-        <Redirect
-          to={{
-            pathname: '/login',
-            state: { from: props.location },
-          }}
+        <Navigate
+          replace
+          to='/login'
+          state={props.location}
         />
       ))}
   />

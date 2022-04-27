@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 import { WithStyles } from '@material-ui/core';
 import PrivateRoute from '../routing/PrivateRoute';
@@ -21,12 +21,12 @@ const Content = (props: Props) => {
   const { classes, className } = props;
   return (
     <main className={`${classes.main} ${className}`}>
-      <Switch>
-        <PrivateRoute exact path="/settings/users" component={UsersMainContainer} />
-        <PrivateRoute exact path="/settings/users/manage" component={ManageUserContainer} />
+      <Routes>
+        <PrivateRoute path="/settings/users" component={UsersMainContainer} />
+        <PrivateRoute path="/settings/users/manage" component={ManageUserContainer} />
         <PrivateRoute path="/settings/users/manage/:userId" component={ManageUserContainer} />
-        <PrivateRoute exact path="/settings/groups" component={Groups} />
-      </Switch>
+        <PrivateRoute path="/settings/groups" component={Groups} />
+      </Routes>
     </main>
   );
 };

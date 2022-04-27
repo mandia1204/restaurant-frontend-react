@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid, { GridSize } from '@material-ui/core/Grid';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
-import { HorizontalBar, Bar, Radar, Pie } from 'react-chartjs-2';
+import { Bar, Radar, Pie } from 'react-chartjs-2';
 import DashboardCard from './DashboardCard';
 import Anulaciones from './Anulaciones';
 import Anulacion from '../../types/Anulacion';
@@ -28,14 +28,14 @@ const Dashboard = ({ chartModel, anulaciones, cardModel }: Props) => {
         />
       </Grid>
       <Grid item {...chartWidth}>
-        <HorizontalBar
+        <Bar
           data={chartModel.mozoDelMes.data}
           height={height}
           options={chartModel.mozoDelMes.options}
         />
       </Grid>
       <Grid item {...chartWidth}>
-        <HorizontalBar
+        <Bar
           data={chartModel.platosMasVendidosMes.data}
           height={height}
           options={chartModel.platosMasVendidosMes.options}

@@ -1,5 +1,5 @@
 import React, { Dispatch } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
+// import { withRouter, RouteComponentProps } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import { connect } from 'react-redux';
 import { Formik, FormikActions, FormikProps } from 'formik';
 import Actions from '../../state/actions/AppActions';
@@ -8,7 +8,10 @@ import SecurityService from '../../services/SecurityService';
 import ISecurityService from '../../types/ISecurityService';
 import LoginCredentials from '../../types/LoginCredentials';
 
-interface LoginProps extends RouteComponentProps<any> {
+// interface LoginProps extends RouteComponentProps<any> {
+//   dispatch: Dispatch<any>;
+// }
+interface LoginProps {
   dispatch: Dispatch<any>;
 }
 
@@ -25,8 +28,9 @@ class Login extends React.Component<LoginProps, any> {
   }
 
   loginSuccess = (credentials: LoginCredentials) => {
-    const { history, dispatch } = this.props;
-    history.push('/');
+    // const { history, dispatch } = this.props;
+    // history.push('/');
+    const { dispatch } = this.props; //TODO: IMPLEMENT history
     const { Creators } = Actions;
     dispatch(Creators.updateLoginData({ user: { name: credentials.userName }, authenticated: true }));
   }
@@ -74,4 +78,4 @@ class Login extends React.Component<LoginProps, any> {
   }
 }
 
-export default connect()(withRouter(Login));
+export default connect()(Login);
