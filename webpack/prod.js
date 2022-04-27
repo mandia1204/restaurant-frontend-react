@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge')
 const baseConfig = require('./base.js');
 const webpack = require('webpack');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
