@@ -14,6 +14,7 @@ const getLoginData = () => {
 };
 
 function* fetchLoginData() {
+  // @ts-ignore
   const data = yield call(getLoginData);
   yield put(Creators.updateLoginData(data));
 }
