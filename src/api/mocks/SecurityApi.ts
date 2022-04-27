@@ -6,7 +6,7 @@ const SecurityApi = () => {
   const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1NTIwMDY5OTcsImV4cCI6MTU4MzU0Mjk5NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsInVzZXJOYW1lIjoibWF0dCJ9.L_gzR5r0bPr-RyXVGsXwcHjn6wxpByfjYUa0mLJT3fI'; //eslint-disable-line
   const authenticate = (credentials:LoginCredentials) => new Promise<AxiosResponse>((resolve) => { //eslint-disable-line
     const response: AxiosResponse<any> = {
-      data: { token }, status: 200, statusText: 'OK', headers: null, config: {},
+      data: { token }, status: 200, statusText: 'OK', headers: {}, config: {},
     };
     resolve(response);
   });
@@ -42,7 +42,7 @@ const SecurityApi = () => {
 
   const getUsers = () => new Promise<AxiosResponse<User[]>>((resolve) => {
     const response: AxiosResponse<User[]> = {
-      data: users, status: 200, statusText: 'OK', headers: null, config: {},
+      data: users, status: 200, statusText: 'OK', headers: {}, config: {},
     };
     resolve(response);
   });
@@ -51,7 +51,7 @@ const SecurityApi = () => {
     const newUser = { ...user, id: Math.floor(Math.random() * 1000).toString() };
     users = [...users, newUser];
     const response: AxiosResponse<User> = {
-      data: newUser, status: 200, statusText: 'OK', headers: null, config: {},
+      data: newUser, status: 200, statusText: 'OK', headers: {}, config: {},
     };
     setTimeout(() => resolve(response), 1000);
   });
@@ -59,14 +59,14 @@ const SecurityApi = () => {
   const updateUser = (user: User) => new Promise<AxiosResponse<User>>((resolve) => {
     users = users.map((u) => (u.id === user.id ? user : u));
     const response: AxiosResponse<User> = {
-      data: user, status: 200, statusText: 'OK', headers: null, config: {},
+      data: user, status: 200, statusText: 'OK', headers: {}, config: {},
     };
     setTimeout(() => resolve(response), 1000);
   });
 
   const getRoles = () => new Promise<AxiosResponse<Role[]>>((resolve) => {
     const response: AxiosResponse<Role[]> = {
-      data: roles, status: 200, statusText: 'OK', headers: null, config: {},
+      data: roles, status: 200, statusText: 'OK', headers: {}, config: {},
     };
 
     resolve(response);

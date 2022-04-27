@@ -30,7 +30,7 @@ class CognitoUserInfo extends React.Component<any, CognitoState> {
     if (!user) {
       return Promise.resolve(null);
     }
-    const idToken = jwtParser.parse(user.getIdToken().getJwtToken());
+    const idToken = jwtParser.parse(user.getIdToken().getJwtToken()) as any;
     const accessToken = jwtParser.parse(user.getAccessToken().getJwtToken());
     const refreshToken = user.getRefreshToken();
     // eslint-disable-next-line
