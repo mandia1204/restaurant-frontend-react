@@ -44,7 +44,7 @@ const LoginForm = (props: FormikProps<LoginCredentials> & WithStyles<typeof styl
         </Grid>
       </Grid>
       <Button color="primary" onClick={() => Auth.federatedSignIn()}>
-            Login with Cognito
+        Login with Cognito
       </Button>
     </form>
   );

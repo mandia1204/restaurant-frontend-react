@@ -1,7 +1,6 @@
 import { createActions } from 'reduxsauce';
 import User from '../../types/User';
 
-
 interface UserActions {
   receiveUsers(users: User[]): any;
   getUsers(): any;

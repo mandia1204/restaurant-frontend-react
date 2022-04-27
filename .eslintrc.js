@@ -55,6 +55,8 @@ module.exports = {
     'react/no-did-update-set-state': 'off',
     'react/jsx-props-no-spreading': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
+    'import/extensions': 'off',
+    'react/require-default-props': 'off',
     // 'no-console': 'off',
     // 'no-unused-vars':'off'
   },
