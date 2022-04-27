@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const webpack = require('webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = (env) => {
   const bundleFolder = env === 'dev' ? 'build': 'dist';
@@ -14,8 +15,7 @@ module.exports = (env) => {
           test: /\.(ts|js|jsx|tsx)$/,
           exclude: /node_modules/,
           use: [
-            'babel-loader',
-            'eslint-loader'
+            'babel-loader'
           ]
         }
       ]
@@ -35,6 +35,7 @@ module.exports = (env) => {
       }),
       new HtmlWebpackHarddiskPlugin(),
       new CleanWebpackPlugin(),
+      new ESLintPlugin({})
     ],
     output: {
       path: path.resolve(__dirname, `../${bundleFolder}`),

@@ -57,6 +57,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 'off',
     'import/extensions': 'off',
     'react/require-default-props': 'off',
+    "import/no-import-module-exports": 'off'
     // 'no-console': 'off',
     // 'no-unused-vars':'off'
   },
