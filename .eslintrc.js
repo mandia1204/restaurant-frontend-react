@@ -59,6 +59,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'import/no-import-module-exports': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    'class-methods-use-this': 'off',
     // 'no-console': 'off',
     // 'no-unused-vars':'off'
   },

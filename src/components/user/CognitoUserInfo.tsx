@@ -45,7 +45,7 @@ class CognitoUserInfo extends React.Component<any, CognitoState> {
       roles: idToken['cognito:roles'].join(),
       preferredRole: idToken['cognito:preferred_role'],
     };
-  }
+  };
 
   getCredentials = async () => {
     const credentials = await Auth.currentCredentials();
@@ -55,7 +55,7 @@ class CognitoUserInfo extends React.Component<any, CognitoState> {
       secretKey: credentials.secretAccessKey,
       sessionToken: credentials.sessionToken,
     };
-  }
+  };
 
   async componentDidMount() {
     const userInfo = await this.getUserInfo();

@@ -16,18 +16,24 @@ const styles = createStyles({
 const Home = lazy(() => import('./home/Home'));
 const DashboardContainer = lazy(() => import('./dashboard/DashboardContainer'));
 
-const Main = ({ classes }: WithStyles<typeof styles>) => (
-  <main className={classes.main}>
-    <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        <PrivateRoute path="/" component={Home} />
-        <PrivateRoute path="/dashboard" component={DashboardContainer} />
-        <PrivateRoute path="/settings" component={Settings} />
-        <Route path="/info" element={CognitoUserInfo} />
-        <Route path="/login" element={Login} />
-      </Routes>
-    </Suspense>
-  </main>
-);
+function Main({ classes }: WithStyles<typeof styles>) {
+  return (
+    <main className={classes.main}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <PrivateRoute path="/" component={Home} />
+          <PrivateRoute path="/dashboard" component={DashboardContainer} />
+          <PrivateRoute path="/settings" component={Settings} />
+          <Route path="/info">
+            <CognitoUserInfo />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+        </Routes>
+      </Suspense>
+    </main>
+  );
+}
 
 export default withStyles(styles)(Main);
