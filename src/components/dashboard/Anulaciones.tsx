@@ -20,18 +20,20 @@ interface Props extends WithStyles<typeof styles> {
   anulaciones: Anulacion[];
 }
 
-const Anulaciones = ({ classes, anulaciones }: Props) => (
-  <div className={classes.root}>
-    <List className={classes.list}>
-      {anulaciones.map((a, k) => (
+function Anulaciones({ classes, anulaciones }: Props) {
+  return (
+    <div className={classes.root}>
+      <List className={classes.list}>
+        {anulaciones.map((a, k) => (
         // eslint-disable-next-line react/no-array-index-key
-        <Fragment key={k}>
-          <AnulacionesItem anulacion={a} />
-          <Divider />
-        </Fragment>
-      ))}
-    </List>
-  </div>
-);
+          <Fragment key={k}>
+            <AnulacionesItem anulacion={a} />
+            <Divider />
+          </Fragment>
+        ))}
+      </List>
+    </div>
+  );
+}
 
 export default withStyles(styles)(Anulaciones);

@@ -24,7 +24,7 @@ interface Props extends WithStyles<typeof styles> {
   errors: any;
 }
 
-const UserForm = (props: FormikProps<FormValues> & Props) => {
+function UserForm(props: FormikProps<FormValues> & Props) {
   const { classes, handleChange, handleBlur, isSubmitting, isEdit, values, handleSubmit, errors, touched } = props;
   const textProps = { onChange: handleChange, onBlur: handleBlur, errors, touched };
   const { user } = values;
@@ -67,6 +67,6 @@ const UserForm = (props: FormikProps<FormValues> & Props) => {
       </Grid>
     </form>
   );
-};
+}
 
 export default withStyles(styles)(UserForm);

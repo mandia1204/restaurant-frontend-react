@@ -1,9 +1,9 @@
 import Anulacion from './Anulacion';
 
-export interface DashboardModel {
-  charts: DashboardChart[];
-  cards: DashboardCard;
-  anulaciones: Anulacion[];
+export interface DashboardData{
+  [key: string]: {
+    [key: string]: number;
+  };
 }
 
 export interface DashboardChart{
@@ -11,16 +11,16 @@ export interface DashboardChart{
   data: DashboardData;
 }
 
-export interface DashboardData{
-  [key: string]: {
-    [key: string]: number;
-  };
-}
-
 export interface DashboardCard{
   [key: string]: {
     value: string | number;
   };
+}
+
+export interface DashboardModel {
+  charts: DashboardChart[];
+  cards: DashboardCard;
+  anulaciones: Anulacion[];
 }
 
 export interface ChartModel{

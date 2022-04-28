@@ -18,9 +18,11 @@ const getDashboard: ReduceMethod = (state) => state;
 const receiveDashboard: ReduceMethod = (state, action) => action.dashboard;
 const fetchDashboard: ReduceMethod = (state) => state;
 
-export const DashboardReducer = createReducer(INITIAL_STATE,
+export const DashboardReducer = createReducer(
+  INITIAL_STATE,
   {
     [Types.GET_DASHBOARD]: getDashboard,
     [Types.RECEIVE_DASHBOARD]: receiveDashboard,
     [Types.FETCH_DASHBOARD]: fetchDashboard,
-  });
+  },
+);

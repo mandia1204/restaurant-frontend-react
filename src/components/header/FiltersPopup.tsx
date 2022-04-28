@@ -25,7 +25,7 @@ class FiltersPopup extends Component<Props, State> {
     this.setState({
       popupOpen,
     });
-  }
+  };
 
   render() {
     const { values, filtersChange } = this.props;

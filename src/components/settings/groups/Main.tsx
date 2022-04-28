@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Main = () => (
-  <div> groups page </div>
-);
+function Main() {
+  return <div> groups page </div>;
+}
 
 export default Main;

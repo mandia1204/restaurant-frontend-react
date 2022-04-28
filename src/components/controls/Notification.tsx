@@ -36,7 +36,7 @@ const useStyles1 = makeStyles((theme: Theme) => ({
   },
 }));
 
-const SnackbarContentWrapper = (props: NotificationWrapperProps) => {
+function SnackbarContentWrapper(props: NotificationWrapperProps) {
   const classes = useStyles1();
   const { className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
@@ -59,7 +59,7 @@ const SnackbarContentWrapper = (props: NotificationWrapperProps) => {
       {...other}
     />
   );
-};
+}
 
 const Notification = forwardRef(({ autoHideDuration = 4000 }: NotificationProps, ref) => {
   const [state, setState] = React.useState<NotificationState>({ open: false, message: '', variant: 'info' });

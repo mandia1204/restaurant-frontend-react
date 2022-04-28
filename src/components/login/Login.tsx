@@ -25,19 +25,19 @@ class Login extends React.Component<LoginProps, any> {
 
   onSubmit = (values: LoginCredentials, { setSubmitting }: FormikActions<LoginCredentials>) => {
     this.login(values, setSubmitting);
-  }
+  };
 
   loginSuccess = (credentials: LoginCredentials) => {
     // const { history, dispatch } = this.props;
     // history.push('/');
-    const { dispatch } = this.props; //TODO: IMPLEMENT history
+    const { dispatch } = this.props; // TODO: IMPLEMENT history
     const { Creators } = Actions;
     dispatch(Creators.updateLoginData({ user: { name: credentials.userName }, authenticated: true }));
-  }
+  };
 
   loginFail = () => {
     alert('auth failed'); //eslint-disable-line
-  }
+  };
 
   login = (user: LoginCredentials, setSubmitting: (isSubmitting: boolean) => void) => {
     this.securityService.authenticate(user).then((response: any) => {
@@ -48,7 +48,7 @@ class Login extends React.Component<LoginProps, any> {
         this.loginFail();
       }
     });
-  }
+  };
 
   validate = (credentials: LoginCredentials) => {
     const errors: any = {};
@@ -60,7 +60,7 @@ class Login extends React.Component<LoginProps, any> {
       errors.password = 'Password required';
     }
     return errors;
-  }
+  };
 
   render() {
     return (

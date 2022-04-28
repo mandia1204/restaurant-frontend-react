@@ -18,18 +18,20 @@ const styles = createStyles({
   },
 });
 
-const AppContainer = ({ classes }: WithStyles<typeof styles>) => (
-  <Provider store={createAppStore()}>
-    <BrowserRouter>
-      <>
-        <CssBaseline />
-        <div className={classes.root}>
-          <HeaderContainer />
-          <Main />
-        </div>
-      </>
-    </BrowserRouter>
-  </Provider>
-);
+function AppContainer({ classes }: WithStyles<typeof styles>) {
+  return (
+    <Provider store={createAppStore()}>
+      <BrowserRouter>
+        <>
+          <CssBaseline />
+          <div className={classes.root}>
+            <HeaderContainer />
+            <Main />
+          </div>
+        </>
+      </BrowserRouter>
+    </Provider>
+  );
+}
 
 export default withStyles(styles)(AppContainer);

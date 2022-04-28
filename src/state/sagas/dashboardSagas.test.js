@@ -10,13 +10,9 @@ test('[dashboardSagas]', (t) => {
     const gen = fetchDashboard({ filters });
     const response = { data: { name: true } };
 
-    a.deepEqual(
-      gen.next().value, call(getDashboard, filters), 'must call getDashboard(filters)',
-    );
+    a.deepEqual(gen.next().value, call(getDashboard, filters), 'must call getDashboard(filters)');
 
-    a.deepEqual(
-      gen.next(response).value, put(Creators.receiveDashboard(response.data)), 'must dispatch an RECEIVE_DASHBOARD action',
-    );
+    a.deepEqual(gen.next(response).value, put(Creators.receiveDashboard(response.data)), 'must dispatch an RECEIVE_DASHBOARD action');
 
     a.deepEqual(gen.next(), { done: true, value: undefined }, 'must be done');
 
@@ -26,9 +22,7 @@ test('[dashboardSagas]', (t) => {
   t.test('--watchSagas, must take FETCH_DASHBOARD action', (a) => {
     const gen = (watchSagas())();
 
-    a.deepEqual(
-      gen.next().value, takeEvery(Types.FETCH_DASHBOARD, fetchDashboard), 'takes FETCH_DASHBOARD action',
-    );
+    a.deepEqual(gen.next().value, takeEvery(Types.FETCH_DASHBOARD, fetchDashboard), 'takes FETCH_DASHBOARD action');
 
     a.end();
   });

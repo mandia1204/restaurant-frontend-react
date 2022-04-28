@@ -26,23 +26,25 @@ interface Props extends WithStyles<typeof styles>{
   filtersChange: (f: DashboardFilters) => void;
 }
 
-const Filters = ({ classes, values, filtersChange }: Props) => (
-  <Grid item>
-    <NativeSelect id="year-filter" value={values.year} onChange={onYearChange(filtersChange)} className={classes.select}>
-      {years.map((val) => (
-        <option key={val} value={val}>
-          {val}
-        </option>
-      ))}
-    </NativeSelect>
-    <NativeSelect id="month-filter" value={values.month} onChange={onMonthChange(filtersChange)} className={classes.select}>
-      {months.map((month) => (
-        <option key={month.value} value={month.value}>
-          {month.name}
-        </option>
-      ))}
-    </NativeSelect>
-  </Grid>
-);
+function Filters({ classes, values, filtersChange }: Props) {
+  return (
+    <Grid item>
+      <NativeSelect id="year-filter" value={values.year} onChange={onYearChange(filtersChange)} className={classes.select}>
+        {years.map((val) => (
+          <option key={val} value={val}>
+            {val}
+          </option>
+        ))}
+      </NativeSelect>
+      <NativeSelect id="month-filter" value={values.month} onChange={onMonthChange(filtersChange)} className={classes.select}>
+        {months.map((month) => (
+          <option key={month.value} value={month.value}>
+            {month.name}
+          </option>
+        ))}
+      </NativeSelect>
+    </Grid>
+  );
+}
 
 export default withStyles(styles)(Filters);

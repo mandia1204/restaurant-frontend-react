@@ -29,40 +29,42 @@ interface Props extends WithStyles<typeof styles> {
   users: User[];
 }
 
-const UsersTable = ({ classes, users }: Props) => (
-  <Paper className={classes.root}>
-    <Table className={classes.table}>
-      <TableHead>
-        <TableRow>
-          <TableCell>Id</TableCell>
-          <TableCell>User Name</TableCell>
-          <TableCell>Name</TableCell>
-          <TableCell>Is Admin</TableCell>
-          <TableCell />
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {users.map((user) => (
-          <TableRow key={user.id}>
-            <TableCell>{user.id}</TableCell>
-            <TableCell>{user.userName}</TableCell>
-            <TableCell>{user.name}</TableCell>
-            <TableCell>{ user.isAdmin ? <CheckIcon /> : ''}</TableCell>
-            <TableCell>
-              <IconButton>
-                <Link to={`/settings/users/manage/${user.id}`}>
-                  <EditIcon />
-                </Link>
-              </IconButton>
-              <IconButton>
-                <DeleteIcon />
-              </IconButton>
-            </TableCell>
+function UsersTable({ classes, users }: Props) {
+  return (
+    <Paper className={classes.root}>
+      <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Id</TableCell>
+            <TableCell>User Name</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Is Admin</TableCell>
+            <TableCell />
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </Paper>
-);
+        </TableHead>
+        <TableBody>
+          {users.map((user) => (
+            <TableRow key={user.id}>
+              <TableCell>{user.id}</TableCell>
+              <TableCell>{user.userName}</TableCell>
+              <TableCell>{user.name}</TableCell>
+              <TableCell>{ user.isAdmin ? <CheckIcon /> : ''}</TableCell>
+              <TableCell>
+                <IconButton>
+                  <Link to={`/settings/users/manage/${user.id}`}>
+                    <EditIcon />
+                  </Link>
+                </IconButton>
+                <IconButton>
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
+  );
+}
 
 export default withStyles(styles)(UsersTable);

@@ -20,13 +20,15 @@ const styles = {
   },
 };
 
-const AnulacionesItem = ({ classes, anulacion }: Props) => (
-  <ListItem>
-    <Avatar className={classes.avatar}>
-      <anulacion.icon className={classes.icon} />
-    </Avatar>
-    <ListItemText primary={anulacion.observacion} secondary={anulacion.fecha} />
-  </ListItem>
-);
+function AnulacionesItem({ classes, anulacion }: Props) {
+  return (
+    <ListItem>
+      <Avatar className={classes.avatar}>
+        <anulacion.icon className={classes.icon} />
+      </Avatar>
+      <ListItemText primary={anulacion.observacion} secondary={anulacion.fecha} />
+    </ListItem>
+  );
+}
 
 export default injectSheet(styles)(AnulacionesItem);

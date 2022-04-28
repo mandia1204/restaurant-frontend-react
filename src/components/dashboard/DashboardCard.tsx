@@ -30,20 +30,22 @@ const styles = {
   },
 };
 
-const DashboardCard = ({ classes, card }: Props) => (
-  <Card className={classes.card}>
-    <CardContent className={classes.cardContent}>
-      <Grid container direction="column" alignItems="center" justify="center">
-        <Grid item className={classes.title}>
-          {card.title}
+function DashboardCard({ classes, card }: Props) {
+  return (
+    <Card className={classes.card}>
+      <CardContent className={classes.cardContent}>
+        <Grid container direction="column" alignItems="center" justify="center">
+          <Grid item className={classes.title}>
+            {card.title}
+          </Grid>
+          <Grid item className={classes.cardValue}>
+            {card.valueFormatted}
+          </Grid>
         </Grid>
-        <Grid item className={classes.cardValue}>
-          {card.valueFormatted}
-        </Grid>
-      </Grid>
-    </CardContent>
-    <CardActions className={classes.cardAction} />
-  </Card>
-);
+      </CardContent>
+      <CardActions className={classes.cardAction} />
+    </Card>
+  );
+}
 
 export default injectSheet(styles)(DashboardCard);

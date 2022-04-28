@@ -23,15 +23,17 @@ const checkComponent = ({ field, form }: FieldProps) => (
   />
 );
 
-const UserRoles = ({ userRoles }: Props) => (
-  <List>
-    {userRoles.map((role, index) => (
-      <ListItem key={role.id} role={undefined} dense>
-        <Field key={role.id} name={`user.roles.${index}.selected`} component={checkComponent} />
-        <ListItemText primary={role.roleName} />
-      </ListItem>
-    ))}
-  </List>
-);
+function UserRoles({ userRoles }: Props) {
+  return (
+    <List>
+      {userRoles.map((role, index) => (
+        <ListItem key={role.id} role={undefined} dense>
+          <Field key={role.id} name={`user.roles.${index}.selected`} component={checkComponent} />
+          <ListItemText primary={role.roleName} />
+        </ListItem>
+      ))}
+    </List>
+  );
+}
 
 export default UserRoles;

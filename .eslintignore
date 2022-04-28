@@ -5,3 +5,4 @@
 !.eslintrc.js
 webpack.config.js
 karma.conf.js
+logo.svg

@@ -20,7 +20,7 @@ const initUser = (): FormUser => ({
   roles: [],
 });
 
-const getUserId = (paramUserId = '', newId: string) => {
+const getUserId = (paramUserId = '', newId = '') => {
   if (!newId) {
     return paramUserId;
   }

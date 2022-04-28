@@ -13,7 +13,7 @@ interface Props {
   cardModel: any;
 }
 
-const Dashboard = ({ chartModel, anulaciones, cardModel }: Props) => {
+function Dashboard({ chartModel, anulaciones, cardModel }: Props) {
   const height = 140;
   const chartWidth: Record<Breakpoint, GridSize> = { lg: 4, xl: 4, md: 6, xs: 12, sm: 12 };
   const cardWidth: Record<Breakpoint, GridSize> = { lg: 3, xl: 3, md: 6, xs: 12, sm: 12 };
@@ -72,6 +72,6 @@ const Dashboard = ({ chartModel, anulaciones, cardModel }: Props) => {
       </Grid>
     </Grid>
   );
-};
+}
 
 export default Dashboard;

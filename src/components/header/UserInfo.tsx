@@ -7,18 +7,20 @@ interface Props {
   user: any;
 }
 
-const UserInfo = ({ logout, user }: Props) => (
-  <Grid item>
-    <span>
-      User:
-    </span>
-    <span>
-      {user.name}
-    </span>
-    <Button onClick={logout}>
-      Logout
-    </Button>
-  </Grid>
-);
+function UserInfo({ logout, user }: Props) {
+  return (
+    <Grid item>
+      <span>
+        User:
+      </span>
+      <span>
+        {user.name}
+      </span>
+      <Button onClick={logout}>
+        Logout
+      </Button>
+    </Grid>
+  );
+}
 
 export default UserInfo;

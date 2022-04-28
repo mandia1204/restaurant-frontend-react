@@ -34,13 +34,13 @@ class HeaderContainer extends Component<Props> {
     const filters: DashboardFilters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
     dispatch(Actions.Creators.updateDashboardFilter(filter));
     dispatch(DashboardActions.Creators.fetchDashboard(filters));
-  }
+  };
 
   logout() {
     // const { history, dispatch } = this.props; //TODO: add history
     const { dispatch } = this.props;
     this.securityService.logout();
-    //history.push('/login');
+    // history.push('/login');
     dispatch(Actions.Creators.logout());
   }
 

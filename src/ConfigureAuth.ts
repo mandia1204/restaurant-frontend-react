@@ -57,7 +57,6 @@ export const configureAuth = () => {
   });
 };
 
-
 // You can get the current config object
 // const currentConfig = Auth.configure(null);
 // Auth.signIn()

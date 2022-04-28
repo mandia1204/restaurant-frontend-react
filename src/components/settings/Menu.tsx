@@ -19,7 +19,7 @@ const styles = createStyles({
   },
 });
 
-const Menu = (props: WithStyles<typeof styles>) => {
+function Menu(props: WithStyles<typeof styles>) {
   const { classes } = props;
   return (
     <Drawer
@@ -35,6 +35,6 @@ const Menu = (props: WithStyles<typeof styles>) => {
       </List>
     </Drawer>
   );
-};
+}
 
 export default withStyles(styles)(Menu);

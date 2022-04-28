@@ -20,10 +20,10 @@ const styles = createStyles({
 
 interface Props extends PageProps, WithStyles<typeof styles> { }
 
-class ManageUserContainer extends Component<Props, {}> {
+class ManageUserContainer extends Component<Props, unknown> {
   form: Formik<FormValues>;
 
-  notificationRef: React.RefObject<Notification | undefined>
+  notificationRef: React.RefObject<Notification | undefined>;
 
   constructor(props: Props) {
     super(props);
@@ -39,7 +39,7 @@ class ManageUserContainer extends Component<Props, {}> {
     } else {
       dispatch(Actions.Creators.saveUser(user));
     }
-  }
+  };
 
   componentDidMount() {
     const { match, dispatch } = this.props;
@@ -70,13 +70,13 @@ class ManageUserContainer extends Component<Props, {}> {
       this.form.setValues({ user: { ...user, id: newId }, continueAdding: false });
       dispatch(PageActions.Creators.setIsEdit(true));
     }
-  }
+  };
 
   updateUserSuccess = () => {
     if (this.notificationRef.current) {
       (this.notificationRef.current as any).showNotification('saved successfully!', 'success');
     }
-  }
+  };
 
   render() {
     const { user, isSubmitting, classes, isEdit, roles } = this.props;

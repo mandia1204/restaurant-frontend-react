@@ -20,7 +20,7 @@ const styles = ({ spacing, palette }: Theme) => createStyles({
   },
 });
 
-const Main = (props: WithStyles<typeof styles>) => {
+function Main(props: WithStyles<typeof styles>) {
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -28,6 +28,6 @@ const Main = (props: WithStyles<typeof styles>) => {
       <Content className={classes.content} />
     </div>
   );
-};
+}
 
 export default withStyles(styles)(Main);

@@ -12,8 +12,10 @@ interface ReduceMethod {
 const fetchRoles: ReduceMethod = (state) => state;
 const receiveRoles: ReduceMethod = (state, action) => action.roles;
 
-export const RoleReducer = createReducer(INITIAL_STATE,
+export const RoleReducer = createReducer(
+  INITIAL_STATE,
   {
     [Types.RECEIVE_ROLES]: receiveRoles,
     [Types.FETCH_ROLES]: fetchRoles,
-  });
+  },
+);

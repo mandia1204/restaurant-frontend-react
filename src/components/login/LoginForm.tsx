@@ -15,7 +15,7 @@ const styles = createStyles({
   },
 });
 
-const LoginForm = (props: FormikProps<LoginCredentials> & WithStyles<typeof styles>) => {
+function LoginForm(props: FormikProps<LoginCredentials> & WithStyles<typeof styles>) {
   const { classes, handleChange, handleBlur, isSubmitting, values, handleSubmit, errors, touched } = props;
   const textProps = { onChange: handleChange, onBlur: handleBlur, errors, touched };
   return (
@@ -48,6 +48,6 @@ const LoginForm = (props: FormikProps<LoginCredentials> & WithStyles<typeof styl
       </Button>
     </form>
   );
-};
+}
 
 export default withStyles(styles)(LoginForm);

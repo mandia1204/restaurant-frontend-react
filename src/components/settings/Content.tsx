@@ -17,7 +17,7 @@ interface Props extends WithStyles<typeof styles> {
   className?: string;
 }
 
-const Content = (props: Props) => {
+function Content(props: Props) {
   const { classes, className } = props;
   return (
     <main className={`${classes.main} ${className}`}>
@@ -29,6 +29,6 @@ const Content = (props: Props) => {
       </Routes>
     </main>
   );
-};
+}
 
 export default withStyles(styles)(Content);

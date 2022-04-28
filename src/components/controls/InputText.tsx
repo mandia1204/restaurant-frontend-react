@@ -22,7 +22,7 @@ interface InputProps {
   disabled?: boolean;
 }
 
-const InputText = (props: InputProps) => {
+function InputText(props: InputProps) {
   const { errors, fieldName, touched, classes, disabled, ...rest } = props;
   const fieldHasError = (field: string) => (field.indexOf('.') !== -1 ? get(touched, field) : touched[field])
     && (errors[field]
@@ -38,6 +38,6 @@ const InputText = (props: InputProps) => {
       {...rest}
     />
   );
-};
+}
 
 export default withStyles(styles)(InputText);

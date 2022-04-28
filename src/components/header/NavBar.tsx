@@ -5,24 +5,26 @@ import Home from '@material-ui/icons/Home';
 import Settings from '@material-ui/icons/Settings';
 import IconButton from '@material-ui/core/IconButton';
 
-const NavBar = () => (
-  <>
-    <IconButton color="inherit" aria-label="Menu">
-      <Link to="/">
-        <Home />
-      </Link>
-    </IconButton>
-    <IconButton color="inherit" aria-label="Menu">
-      <Link to="/dashboard">
-        <Dashboard />
-      </Link>
-    </IconButton>
-    <IconButton color="inherit" aria-label="Menu">
-      <Link to="/settings">
-        <Settings />
-      </Link>
-    </IconButton>
-  </>
-);
+function NavBar() {
+  return (
+    <>
+      <IconButton color="inherit" aria-label="Menu">
+        <Link to="/">
+          <Home />
+        </Link>
+      </IconButton>
+      <IconButton color="inherit" aria-label="Menu">
+        <Link to="/dashboard">
+          <Dashboard />
+        </Link>
+      </IconButton>
+      <IconButton color="inherit" aria-label="Menu">
+        <Link to="/settings">
+          <Settings />
+        </Link>
+      </IconButton>
+    </>
+  );
+}
 
 export default NavBar;

@@ -11,14 +11,16 @@ const styles = createStyles({
   },
 });
 
-const AddUser = ({ classes }: WithStyles<typeof styles>) => (
-  <div className={classes.root}>
-    <Fab size="small" color="primary" aria-label="Add">
-      <Link to="/settings/users/manage">
-        <AddIcon />
-      </Link>
-    </Fab>
-  </div>
-);
+function AddUser({ classes }: WithStyles<typeof styles>) {
+  return (
+    <div className={classes.root}>
+      <Fab size="small" color="primary" aria-label="Add">
+        <Link to="/settings/users/manage">
+          <AddIcon />
+        </Link>
+      </Fab>
+    </div>
+  );
+}
 
 export default withStyles(styles)(AddUser);

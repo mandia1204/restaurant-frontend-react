@@ -17,7 +17,7 @@ interface Props extends WithStyles<typeof styles> {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchFilters = (props: Props) => {
+function SearchFilters(props: Props) {
   const { classes, userNameFilter, isAdminFilter, onChange } = props;
   return (
     <div className={classes.root}>
@@ -39,6 +39,6 @@ const SearchFilters = (props: Props) => {
       </Grid>
     </div>
   );
-};
+}
 
 export default withStyles(styles)(SearchFilters);

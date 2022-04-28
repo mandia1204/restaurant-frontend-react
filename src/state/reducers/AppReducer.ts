@@ -39,7 +39,8 @@ const fetchLoginData: ReduceMethod = (state) => state;
 
 const logout: ReduceMethod = () => ({ ...INITIAL_STATE, dashboardFilters: getDefaultFilters() });
 
-export const AppReducer = createReducer(INITIAL_STATE,
+export const AppReducer = createReducer(
+  INITIAL_STATE,
   {
     [Types.SHOW_NAV_LINKS]: showNavLinks,
     [Types.SHOW_FILTERS]: showFilters,
@@ -47,4 +48,5 @@ export const AppReducer = createReducer(INITIAL_STATE,
     [Types.UPDATE_LOGIN_DATA]: updateLoginData,
     [Types.LOGOUT]: logout,
     [Types.FETCH_LOGIN_DATA]: fetchLoginData,
-  });
+  },
+);

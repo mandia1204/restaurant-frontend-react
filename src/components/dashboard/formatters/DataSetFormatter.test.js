@@ -42,9 +42,9 @@ test('[DataSetFormatter]', (t) => {
     const result = DataSetFormatter().bar(datasets);
 
     a.ok(result.length === 1);
-    let expected = ChartColors.bar.map(cc => Colors[cc].light);
+    let expected = ChartColors.bar.map((cc) => Colors[cc].light);
     a.deepEqual(result[0].backgroundColor, expected, 'backgroundColor and  array colors should match.');
-    expected = ChartColors.bar.map(cc => Colors[cc].normal);
+    expected = ChartColors.bar.map((cc) => Colors[cc].normal);
     a.deepEqual(result[0].borderColor, expected, 'borderColor and array colors should match.');
     a.end();
   });
@@ -63,9 +63,9 @@ test('[DataSetFormatter]', (t) => {
     const result = DataSetFormatter().pie(datasets);
 
     a.ok(result.length === 1);
-    let expected = ChartColors.pie.map(cc => Colors[cc].normal);
+    let expected = ChartColors.pie.map((cc) => Colors[cc].normal);
     a.deepEqual(result[0].backgroundColor, expected, 'backgroundColor and  array colors should match.');
-    expected = ChartColors.pie.map(cc => Colors[cc].dark);
+    expected = ChartColors.pie.map((cc) => Colors[cc].dark);
     a.deepEqual(result[0].hoverBackgroundColor, expected, 'hoverBackgroundColor and array colors should match.');
     a.end();
   });

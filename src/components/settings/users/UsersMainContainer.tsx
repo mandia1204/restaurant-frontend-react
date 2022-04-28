@@ -40,13 +40,13 @@ class UsersMainContainer extends Component<Props, State> {
       ...prevState,
       [name]: value,
     }));
-  }
+  };
 
   filterUsers = (users: User[]) => {
     const { userNameFilter, isAdminFilter } = this.state;
     return users.filter((u) => u.userName.indexOf(userNameFilter) !== -1
         && (!isAdminFilter || (isAdminFilter && u.isAdmin === true)));
-  }
+  };
 
   render() {
     const { users } = this.props;
