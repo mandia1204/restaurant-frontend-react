@@ -1,10 +1,7 @@
 import React from 'react';
-// TODO: FIX
-// import Hidden from '@mui/material/Hidden';
 import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 import AppBar from '@mui/material/AppBar';
-import Paper from '@mui/material/Paper';
 import Filters from './Filters';
 import UserInfo from './UserInfo';
 import Menu from './Menu';
@@ -31,23 +28,10 @@ function Header({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChang
             { showHeaderLinks && showFilters
                         && (
                           <>
-                            {/* <Box
-                              sx={{
-                                display: 'flex',
-                                flexDirection: { xs: 'column', md: 'row' },
-                                alignItems: 'center',
-                                bgcolor: 'background.paper',
-                                overflow: 'hidden',
-                                borderRadius: '12px',
-                                boxShadow: 1,
-                                fontWeight: 'bold',
-                              }}
-                            /> */}
-                            <Paper sx={{ display: { xl: 'none', xs: 'block' } }} />
-                            <Grid container alignItems="center" style={{ height: '100%' }}>
+                            <Grid sx={{ display: { sm: 'none', xl: 'block' } }} container alignItems="center" style={{ height: '100%' }}>
                               <Filters values={dashboardFilters} filtersChange={onFiltersChange} />
                             </Grid>
-                            <Grid item>
+                            <Grid sx={{ display: { sm: 'block', md: 'none' } }} item>
                               <FiltersPopup values={dashboardFilters} filtersChange={onFiltersChange} />
                             </Grid>
                           </>
@@ -57,10 +41,11 @@ function Header({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChang
             { showHeaderLinks
                     && (
                       <Grid container justifyContent="flex-end">
-                        {/* <Hidden smDown>
+                        <Grid sx={{ display: { sm: 'none', md: 'block' } }} item>
                           <UserInfo logout={logout} user={loggedUser} />
-                        </Hidden> */}
-                        <Grid item>
+                        </Grid>
+
+                        <Grid sx={{ display: { sm: 'block', md: 'none' } }} item>
                           <Menu />
                         </Grid>
                       </Grid>

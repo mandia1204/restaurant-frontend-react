@@ -56,7 +56,7 @@ function Login(props: LoginProps) {
     <Formik
       initialValues={{
         userName: 'matt',
-        password: '1234',
+        password: 'oli1234##hard',
       }}
       render={(fprops: FormikProps<LoginCredentials>) => (<LoginForm {...fprops} />)}
       onSubmit={onSubmit}
