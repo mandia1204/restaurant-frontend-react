@@ -1,9 +1,9 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import injectSheet from 'react-jss';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import Colors from '../../types/Colors';
 import CardType from '../../types/Card';
 
@@ -34,7 +34,7 @@ function DashboardCard({ classes, card }: Props) {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
-        <Grid container direction="column" alignItems="center" justify="center">
+        <Grid container direction="column" alignItems="center" justifyContent="center">
           <Grid item className={classes.title}>
             {card.title}
           </Grid>

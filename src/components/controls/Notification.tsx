@@ -1,11 +1,12 @@
 import React, { SyntheticEvent } from 'react';
 import clsx from 'clsx';
-import CloseIcon from '@material-ui/icons/Close';
-import { amber, green } from '@material-ui/core/colors';
-import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import { amber, green } from '@mui/material/colors';
+import IconButton from '@mui/material/IconButton';
+import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
+import SnackbarContent from '@mui/material/SnackbarContent';
+import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles';
 import { NotificationWrapperProps, NotificationProps, NotificationState, variantIcon } from '../../types/components/Notification';
 
 const { forwardRef, useImperativeHandle } = React;
@@ -71,7 +72,7 @@ const Notification = forwardRef(({ autoHideDuration = 4000 }: NotificationProps,
     },
   }));
 
-  const handleClose = (event?: SyntheticEvent, reason?: string) => {
+  const onClose = (event?: SyntheticEvent<any> | Event, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -86,10 +87,10 @@ const Notification = forwardRef(({ autoHideDuration = 4000 }: NotificationProps,
       }}
       open={state.open}
       autoHideDuration={autoHideDuration}
-      onClose={handleClose}
+      onClose={onClose}
     >
       <SnackbarContentWrapper
-        onClose={handleClose}
+        onClose={onClose}
         variant={state.variant}
         message={state.message}
       />

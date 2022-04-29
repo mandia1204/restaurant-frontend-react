@@ -1,10 +1,9 @@
 import React from 'react';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Button from '@mui/material/Button';
 import { FormikProps } from 'formik';
 import { Auth } from '@aws-amplify/auth';
+import Grid from '@mui/material/Grid';
 import InputText from '../controls/InputText';
 import LoginCredentials from '../../types/LoginCredentials';
 

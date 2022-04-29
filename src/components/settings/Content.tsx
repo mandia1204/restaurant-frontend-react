@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
 import PrivateRoute from '../routing/PrivateRoute';
 import UsersMainContainer from './users/UsersMainContainer';
 import ManageUserContainer from './users/manage/ManageUserContainer';

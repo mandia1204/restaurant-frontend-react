@@ -1,12 +1,11 @@
 import React from 'react';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import { FormikProps } from 'formik';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from 'react-router-dom';
 import InputText from '../../../controls/InputText';
 import { FormValues } from '../../../../types/components/ManageUser';

@@ -2,9 +2,7 @@ import React from 'react';
 import './App.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
+import { createStyles, WithStyles, withStyles } from '@mui/styles';
 import { createAppStore } from '../state/ConfigureStore';
 import Main from './Main';
 import HeaderContainer from './header/HeaderContainer';
@@ -22,13 +20,10 @@ function AppContainer({ classes }: WithStyles<typeof styles>) {
   return (
     <Provider store={createAppStore()}>
       <BrowserRouter>
-        <>
-          <CssBaseline />
-          <div className={classes.root}>
-            <HeaderContainer />
-            <Main />
-          </div>
-        </>
+        <div className={classes.root}>
+          <HeaderContainer />
+          <Main />
+        </div>
       </BrowserRouter>
     </Provider>
   );

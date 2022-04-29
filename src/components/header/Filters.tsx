@@ -1,8 +1,7 @@
 import React from 'react';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import NativeSelect from '@mui/material/NativeSelect';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
 import { years, months } from '../../util/Constants';
 import DashboardFilters from '../../types/DashboardFilters';
 

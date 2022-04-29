@@ -1,10 +1,9 @@
 import React from 'react';
-import Drawer from '@material-ui/core/Drawer';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
-import List from '@material-ui/core/List';
-import PersonIcon from '@material-ui/icons/Person';
-import GroupIcon from '@material-ui/icons/Group';
+import Drawer from '@mui/material/Drawer';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import List from '@mui/material/List';
+import PersonIcon from '@mui/icons-material/Person';
+import GroupIcon from '@mui/icons-material/Group';
 import ListItemLink from '../routing/ListItemLink';
 
 const drawerWidth = 200;

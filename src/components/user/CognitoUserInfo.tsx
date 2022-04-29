@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { Auth } from '@aws-amplify/auth';
 import jwtParser from '../../util/jwtParser';
 

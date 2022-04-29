@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Dashboard from '@material-ui/icons/Dashboard';
-import Home from '@material-ui/icons/Home';
-import Settings from '@material-ui/icons/Settings';
-import IconButton from '@material-ui/core/IconButton';
+import Dashboard from '@mui/icons-material/Dashboard';
+import Home from '@mui/icons-material/Home';
+import Settings from '@mui/icons-material/Settings';
+import IconButton from '@mui/material/IconButton';
 
 function NavBar() {
   return (

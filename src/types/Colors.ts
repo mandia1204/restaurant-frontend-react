@@ -1,5 +1,5 @@
-import * as colors from '@material-ui/core/colors';
-import { Color } from '@material-ui/core';
+import { Color } from '@mui/material';
+import * as colors from '@mui/material/colors';
 
 interface ColorsMap {
   [colorName: string]: Color;

@@ -1,7 +1,7 @@
 import React from 'react';
-import Grid, { GridSize } from '@material-ui/core/Grid';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import Grid, { GridSize } from '@mui/material/Grid';
 import { Bar, Radar, Pie } from 'react-chartjs-2';
+import { Breakpoint } from '@mui/material/styles';
 import DashboardCard from './DashboardCard';
 import Anulaciones from './Anulaciones';
 import Anulacion from '../../types/Anulacion';

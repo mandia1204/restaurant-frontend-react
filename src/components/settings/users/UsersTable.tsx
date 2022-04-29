@@ -1,23 +1,23 @@
 import React from 'react';
-import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import CheckIcon from '@material-ui/icons/Check';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CheckIcon from '@mui/icons-material/Check';
 import { Link } from 'react-router-dom';
+import { Theme } from '@mui/material/styles';
 import User from '../../../types/User';
 
 const styles = ({ spacing }: Theme) => createStyles({
   root: {
     width: '100%',
-    marginTop: spacing() * 3,
+    marginTop: spacing(3),
     overflowX: 'auto',
   },
   table: {

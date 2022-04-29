@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
 import { Formik, FormikProps } from 'formik';
 import UserForm from './UserForm';
 import { AppStore } from '../../../../types/AppStore';
@@ -112,4 +111,4 @@ const mapStateToProps = ({ users, userPage, roles }: AppStore, { match }: any) =
   };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(ManageUserContainer));
+export default withStyles(styles)(connect(mapStateToProps)(ManageUserContainer));

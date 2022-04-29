@@ -1,6 +1,6 @@
 import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import Actions from '../../../state/actions/UserActions';
 import UsersTable from './UsersTable';
 import SearchFilters from './SearchFilters';

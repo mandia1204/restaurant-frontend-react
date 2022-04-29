@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
 import Settings from './settings/Main';
 import PrivateRoute from './routing/PrivateRoute';
 import Login from './login/Login';

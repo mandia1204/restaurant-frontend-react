@@ -1,7 +1,7 @@
 import React from 'react';
 import test from 'tape';
 import { shallow } from 'enzyme';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import LoginForm from './LoginForm';
 import '../../../setupTest';
 import InputText from '../controls/InputText';

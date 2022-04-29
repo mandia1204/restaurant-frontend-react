@@ -1,8 +1,8 @@
-import CompareArrows from '@material-ui/icons/CompareArrows';
-import LocalBar from '@material-ui/icons/LocalBar';
-import Keyboard from '@material-ui/icons/Keyboard';
-import Error from '@material-ui/icons/Error';
-import Warning from '@material-ui/icons/Warning';
+import CompareArrows from '@mui/icons-material/CompareArrows';
+import LocalBar from '@mui/icons-material/LocalBar';
+import Keyboard from '@mui/icons-material/Keyboard';
+import Error from '@mui/icons-material/Error';
+import Warning from '@mui/icons-material/Warning';
 import Anulacion from '../../../types/Anulacion';
 
 const propsByType: Map<string, any> = new Map(

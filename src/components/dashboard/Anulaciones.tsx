@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
 import AnulacionesItem from './AnulacionesItem';
 import Anulacion from '../../types/Anulacion';
 

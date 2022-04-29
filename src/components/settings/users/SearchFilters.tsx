@@ -1,9 +1,8 @@
 import React from 'react';
-import { withStyles, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Checkbox from '@material-ui/core/Checkbox';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Checkbox from '@mui/material/Checkbox';
 
 const styles = createStyles({
   root: {

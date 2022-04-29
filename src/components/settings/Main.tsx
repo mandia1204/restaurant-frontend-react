@@ -1,6 +1,6 @@
 import React from 'react';
-import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/core';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles';
 import Content from './Content';
 import Menu from './Menu';
 
@@ -15,7 +15,7 @@ const styles = ({ spacing, palette }: Theme) => createStyles({
   content: {
     flexGrow: 1,
     backgroundColor: palette.background.default,
-    padding: spacing() * 3,
+    padding: spacing(3),
     minWidth: 0, // So the Typography noWrap works
   },
 });
