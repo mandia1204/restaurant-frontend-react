@@ -1,6 +1,6 @@
-import React, { Component, Dispatch } from 'react';
-// import { withRouter, RouteComponentProps } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
+import React, { Dispatch } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import SecurityService from '../../services/SecurityService';
 import Actions from '../../state/actions/AppActions';
 import DashboardActions from '../../state/actions/DashboardActions';
@@ -10,54 +10,39 @@ import ISecurityService from '../../types/ISecurityService';
 import { AppState, AppStore } from '../../types/AppStore';
 import DashboardFilters from '../../types/DashboardFilters';
 
-// interface Props extends RouteComponentProps<any> {
-//   dispatch: Dispatch<any>;
-//   appState: AppState;
-// }
-
 interface Props {
   dispatch: Dispatch<any>;
   appState: AppState;
 }
+const securityService: ISecurityService = SecurityService();
+function HeaderContainer(props: Props) {
+  const navigate = useNavigate();
 
-class HeaderContainer extends Component<Props> {
-  securityService: ISecurityService;
-
-  constructor(props: Props) {
-    super(props);
-    this.securityService = SecurityService();
-    this.logout = this.logout.bind(this);
-  }
-
-  onFiltersChange = (filter: DashboardFilters) => {
-    const { appState, dispatch } = this.props;
+  const onFiltersChange = (filter: DashboardFilters) => {
+    const { appState, dispatch } = props;
     const filters: DashboardFilters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
     dispatch(Actions.Creators.updateDashboardFilter(filter));
     dispatch(DashboardActions.Creators.fetchDashboard(filters));
   };
 
-  logout() {
-    // const { history, dispatch } = this.props; //TODO: add history
-    const { dispatch } = this.props;
-    this.securityService.logout();
-    // history.push('/login');
+  const logout = () => {
+    const { dispatch } = props;
+    securityService.logout();
+    navigate('login');
     dispatch(Actions.Creators.logout());
-  }
-
-  render() {
-    const { appState } = this.props;
-    const { showHeaderLinks, showFilters, dashboardFilters, loggedUser } = appState;
-    return (
-      <Header
-        showHeaderLinks={showHeaderLinks}
-        showFilters={showFilters}
-        dashboardFilters={dashboardFilters}
-        onFiltersChange={this.onFiltersChange}
-        logout={this.logout}
-        loggedUser={loggedUser}
-      />
-    );
-  }
+  };
+  const { appState } = props;
+  const { showHeaderLinks, showFilters, dashboardFilters, loggedUser } = appState;
+  return (
+    <Header
+      showHeaderLinks={showHeaderLinks}
+      showFilters={showFilters}
+      dashboardFilters={dashboardFilters}
+      onFiltersChange={onFiltersChange}
+      logout={logout}
+      loggedUser={loggedUser}
+    />
+  );
 }
 
 const mapStateToProps = (state: AppStore) => {

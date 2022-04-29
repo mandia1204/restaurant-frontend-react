@@ -34,10 +34,10 @@ module.exports = merge(baseConfig('dev'), {
               "src/mocks/security.mock.ts"
           ],
           before: (req, res, next) => { // you can use this for custom-logging instead of logResponses: true, logRequests: true
-              console.log(`Got request: ${req.method} ${req.url}`);
-              res.once("finish", () => {
-                 console.log(`Sent response: ${req.method} ${req.url}`);
-               })
+              // console.log(`Got request: ${req.method} ${req.url}`);
+              // res.once("finish", () => {
+              //    console.log(`Sent response: ${req.method} ${req.url}`);
+              //  })
               next();
           }
         });
