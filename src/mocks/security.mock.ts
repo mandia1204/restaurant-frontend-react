@@ -46,4 +46,14 @@ export default webpackMockServer.add((app, _) => {
     users = [...users, newUser];
     res.json(newUser);
   });
+
+  app.put('/securityApi/user', (_req, res) => {
+    users = users.map((u) => (u.id === _req.body.id ? _req.body.user : u));
+    res.json(_req.body);
+  });
+
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1NTIwMDY5OTcsImV4cCI6MTU4MzU0Mjk5NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsInVzZXJOYW1lIjoibWF0dCJ9.L_gzR5r0bPr-RyXVGsXwcHjn6wxpByfjYUa0mLJT3fI'; //eslint-disable-line
+  app.post('/securityApi/token', (_req, res) => {
+    res.json({ token });
+  });
 });

@@ -21,15 +21,46 @@ function Main({ classes }: WithStyles<typeof styles>) {
     <main className={classes.main}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <PrivateRoute path="/" component={Home} />
-          <PrivateRoute path="/dashboard" component={DashboardContainer} />
-          <PrivateRoute path="/settings" component={Settings} />
-          <Route path="/info">
-            <CognitoUserInfo />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
+          <Route
+            path="/"
+            element={(
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            )}
+          />
+          <Route
+            path="/dashboard"
+            element={(
+              <PrivateRoute>
+                <DashboardContainer />
+              </PrivateRoute>
+            )}
+          />
+          <Route
+            path="/settings"
+            element={(
+              <PrivateRoute>
+                <Settings />
+              </PrivateRoute>
+            )}
+          />
+          <Route
+            path="/settings"
+            element={(
+              <PrivateRoute>
+                <Settings />
+              </PrivateRoute>
+            )}
+          />
+          <Route
+            path="/info"
+            element={<CognitoUserInfo />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
         </Routes>
       </Suspense>
     </main>

@@ -44,7 +44,7 @@ function Header({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChang
           <Grid item xs>
             { showHeaderLinks
                     && (
-                      <Grid container justify="flex-end">
+                      <Grid container justifyContent="flex-end">
                         {/* <Hidden smDown>
                           <UserInfo logout={logout} user={loggedUser} />
                         </Hidden> */}

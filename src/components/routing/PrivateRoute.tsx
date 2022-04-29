@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Navigate, RouteProps, useLocation } from 'react-router-dom';
+import { Navigate, RouteProps, useLocation } from 'react-router-dom';
 import SecurityService from '../../services/SecurityService';
 
 const securityService = SecurityService();
@@ -8,20 +8,14 @@ export interface Props extends RouteProps {
   component: React.ComponentType<any>;
 }
 
-function PrivateRoute({ component: Component, ...rest }: Props) {
+function PrivateRoute({ children }: { children: JSX.Element }) {
   const location = useLocation();
-  return (
-    <Route
-      {...rest}
-      element={securityService.isAuthenticated() ? <Component /> : (
-        <Navigate
-          replace
-          to="/login"
-          state={location}
-        />
-      )}
-    />
-  );
+
+  if (!securityService.isAuthenticated()) {
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+
+  return children;
 }
 
 export default PrivateRoute;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 import { WithStyles } from '@material-ui/core';
 import PrivateRoute from '../routing/PrivateRoute';
@@ -22,10 +22,38 @@ function Content(props: Props) {
   return (
     <main className={`${classes.main} ${className}`}>
       <Routes>
-        <PrivateRoute path="/settings/users" component={UsersMainContainer} />
-        <PrivateRoute path="/settings/users/manage" component={ManageUserContainer} />
-        <PrivateRoute path="/settings/users/manage/:userId" component={ManageUserContainer} />
-        <PrivateRoute path="/settings/groups" component={Groups} />
+        <Route
+          path="/settings/users"
+          element={(
+            <PrivateRoute>
+              <UsersMainContainer />
+            </PrivateRoute>
+          )}
+        />
+        <Route
+          path="/settings/users/manage"
+          element={(
+            <PrivateRoute>
+              <ManageUserContainer />
+            </PrivateRoute>
+          )}
+        />
+        <Route
+          path="/settings/users/manage/:userId"
+          element={(
+            <PrivateRoute>
+              <ManageUserContainer />
+            </PrivateRoute>
+          )}
+        />
+        <Route
+          path="/settings/groups"
+          element={(
+            <PrivateRoute>
+              <Groups />
+            </PrivateRoute>
+          )}
+        />
       </Routes>
     </main>
   );

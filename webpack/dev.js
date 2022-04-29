@@ -21,17 +21,15 @@ module.exports = merge(baseConfig('dev'), {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     static: './build',
     host: '0.0.0.0',
-    hot: true,
+    hot: false,
     historyApiFallback: true,
     port:8080,
-    // before: webpackMockServer.use
-    onBeforeSetupMiddleware: function(devServer) {
-        webpackMockServer.use(devServer.app, { // MockServerOptions here
+    setupMiddlewares: function(middlewares , devServer) {
+      webpackMockServer.use(devServer.app, {
           entry: [
               "src/mocks/security.mock.ts"
           ],
@@ -42,7 +40,9 @@ module.exports = merge(baseConfig('dev'), {
                })
               next();
           }
-        })
+        });
+
+        return middlewares;
       },
     // sockPort: 80  //for skaffold
     // proxy: {

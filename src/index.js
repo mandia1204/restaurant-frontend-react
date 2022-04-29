@@ -9,5 +9,5 @@ const root = createRoot(document.getElementById('app'));
 root.render(<AppContainer />);
 
 if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
+  // module.hot.accept(); //TODO uncomment
 }

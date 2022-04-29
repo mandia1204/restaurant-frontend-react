@@ -99,7 +99,7 @@ class ManageUserContainer extends Component<Props, unknown> {
   }
 }
 
-const mapStateToProps = ({ users, userPage, roles }: AppStore, { match }: Props) => {
+const mapStateToProps = ({ users, userPage, roles }: AppStore, { match }: any) => {
   const id = ManageUserLogic.getUserId(match.params.userId, userPage.newId);
   const user = ManageUserLogic.getUser(id, users);
   return {
