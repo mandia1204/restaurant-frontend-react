@@ -1,4 +1,4 @@
-import React, { Component, Dispatch } from 'react';
+import React, { Dispatch, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@mui/material/Grid';
 import Actions from '../../../state/actions/UserActions';
@@ -17,18 +17,15 @@ interface State {
   isAdminFilter: boolean;
 }
 
-class UsersMainContainer extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { userNameFilter: '', isAdminFilter: false };
-  }
+function UsersMainContainer(props: Props) {
+  const [state, setState] = useState<State>({ userNameFilter: '', isAdminFilter: false });
 
-  componentDidMount() {
-    const { dispatch } = this.props;
+  useEffect(() => {
+    const { dispatch } = props;
     dispatch(Actions.Creators.fetchUsers());
-  }
+  }, []);
 
-  updateFiltersState = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const updateFiltersState = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     const { name } = target;
     let { value }: any = target;
@@ -36,38 +33,34 @@ class UsersMainContainer extends Component<Props, State> {
       value = event.target.checked;
     }
 
-    this.setState((prevState) => ({
+    setState((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
+  const { userNameFilter, isAdminFilter } = state;
 
-  filterUsers = (users: User[]) => {
-    const { userNameFilter, isAdminFilter } = this.state;
-    return users.filter((u) => u.userName.indexOf(userNameFilter) !== -1
+  const filterUsers = (users: User[]) => users.filter((u) => u.userName.indexOf(userNameFilter) !== -1
         && (!isAdminFilter || (isAdminFilter && u.isAdmin === true)));
-  };
 
-  render() {
-    const { users } = this.props;
-    const { userNameFilter, isAdminFilter } = this.state;
-    return (
-      <div>
-        <h2>Users</h2>
-        <Grid alignItems="flex-end" container>
-          <Grid item xs={10}>
-            <SearchFilters
-              userNameFilter={userNameFilter}
-              isAdminFilter={isAdminFilter}
-              onChange={this.updateFiltersState}
-            />
-          </Grid>
-          <Grid item xs={2}><AddUser /></Grid>
+  const { users } = props;
+
+  return (
+    <div>
+      <h2>Users</h2>
+      <Grid alignItems="flex-end" container>
+        <Grid item xs={10}>
+          <SearchFilters
+            userNameFilter={userNameFilter}
+            isAdminFilter={isAdminFilter}
+            onChange={updateFiltersState}
+          />
         </Grid>
-        <UsersTable users={this.filterUsers(users)} />
-      </div>
-    );
-  }
+        <Grid item xs={2}><AddUser /></Grid>
+      </Grid>
+      <UsersTable users={filterUsers(users)} />
+    </div>
+  );
 }
 
 const mapStateToProps = (state: any) => {
