@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, forwardRef, useImperativeHandle } from 'react';
 import clsx from 'clsx';
 import CloseIcon from '@mui/icons-material/Close';
 import { amber, green } from '@mui/material/colors';
@@ -8,8 +8,6 @@ import SnackbarContent from '@mui/material/SnackbarContent';
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
 import { NotificationWrapperProps, NotificationProps, NotificationState, variantIcon } from '../../types/components/Notification';
-
-const { forwardRef, useImperativeHandle } = React;
 
 const useStyles1 = makeStyles((theme: Theme) => ({
   success: {
@@ -37,13 +35,14 @@ const useStyles1 = makeStyles((theme: Theme) => ({
   },
 }));
 
-function SnackbarContentWrapper(props: NotificationWrapperProps) {
+const SnackbarContentWrapper = forwardRef((props: NotificationWrapperProps, ref : any) => {
   const classes = useStyles1();
   const { className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
 
   return (
     <SnackbarContent
+      ref={ref}
       className={clsx(classes[variant], className)}
       aria-describedby="client-snackbar"
       message={(
@@ -60,13 +59,12 @@ function SnackbarContentWrapper(props: NotificationWrapperProps) {
       {...other}
     />
   );
-}
+});
 
 const Notification = forwardRef(({ autoHideDuration = 4000 }: NotificationProps, ref) => {
   const [state, setState] = React.useState<NotificationState>({ open: false, message: '', variant: 'info' });
 
   useImperativeHandle(ref, () => ({
-
     showNotification(message: string, variant: keyof typeof variantIcon) {
       setState({ open: true, message, variant });
     },
@@ -78,12 +76,11 @@ const Notification = forwardRef(({ autoHideDuration = 4000 }: NotificationProps,
     }
     setState({ ...state, open: false });
   };
-
   return (
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
-        horizontal: 'left',
+        horizontal: 'right',
       }}
       open={state.open}
       autoHideDuration={autoHideDuration}
@@ -95,6 +92,7 @@ const Notification = forwardRef(({ autoHideDuration = 4000 }: NotificationProps,
         message={state.message}
       />
     </Snackbar>
+
   );
 });
 

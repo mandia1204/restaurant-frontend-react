@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { withStyles, createStyles, WithStyles } from '@mui/styles';
 import { Formik, FormikProps } from 'formik';
+import { useParams } from 'react-router-dom';
 import UserForm from './UserForm';
 import { AppStore } from '../../../../types/AppStore';
 import Actions from '../../../../state/actions/UserActions';
@@ -10,6 +11,7 @@ import { Props as PageProps, FormValues } from '../../../../types/components/Man
 import ManageUserLogic from './ManageUserLogic';
 import userFormValidation from './userFormValidation';
 import Notification from '../../../controls/Notification';
+import { withRouter } from '../../../../util/withRouter';
 
 const styles = createStyles({
   root: {
@@ -19,18 +21,56 @@ const styles = createStyles({
 
 interface Props extends PageProps, WithStyles<typeof styles> { }
 
-class ManageUserContainer extends Component<Props, unknown> {
-  form: Formik<FormValues>;
+function ManageUserContainer(props: Props) {
+  const { userId } = useParams();
+  const { dispatch } = props;
+  const formEl = useRef<FormikProps<any>>(null);
+  const notificationEl = useRef<any>(null);
+  const { newId, isEdit, status } = props;
 
-  notificationRef: React.RefObject<Notification | undefined>;
+  const notifySuccess = () => {
+    if (notificationEl.current) {
+      (notificationEl.current as any).showNotification('saved successfully!', 'success');
+    }
+  };
+  const addNewUserSuccess = ({ continueAdding, user }: FormValues, { roles }: Props) => {
+    if (continueAdding) {
+      formEl?.current?.resetForm({ values: ManageUserLogic.getFormStateReset(roles, continueAdding) });
+      dispatch(PageActions.Creators.setNewId(''));
+    } else {
+      formEl?.current?.setValues({ user: { ...user, id: newId }, continueAdding: false });
+      dispatch(PageActions.Creators.setIsEdit(true));
+    }
+    if (notificationEl.current) {
+      (notificationEl.current as any).showNotification('saved successfully!', 'success');
+    }
+    notifySuccess();
+  };
 
-  constructor(props: Props) {
-    super(props);
-    this.notificationRef = React.createRef();
-  }
+  const updateUserSuccess = () => {
+    notifySuccess();
+  };
 
-  onSubmit = (values: FormValues) => {
-    const { dispatch, isEdit } = this.props;
+  useEffect(() => () => {
+    dispatch(PageActions.Creators.clearForm());
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(PageActions.Creators.setIsEdit(true));
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    // console.log('newid, isEdit, status :>> ', newId, isEdit, status);
+    if (newId && status === 'form_submit_success' && !isEdit) {
+      addNewUserSuccess(formEl?.current?.values, props);
+    } else if (isEdit && status === 'form_submit_success') {
+      updateUserSuccess();
+    }
+  }, [newId, status]);
+
+  const onSubmit = (values: FormValues) => {
     dispatch(PageActions.Creators.setFormSubmitting(true));
     const user = ManageUserLogic.formatUser(values.user);
     if (isEdit) {
@@ -40,66 +80,30 @@ class ManageUserContainer extends Component<Props, unknown> {
     }
   };
 
-  componentDidMount() {
-    const { match, dispatch } = this.props;
-    if (match.params.userId) {
-      dispatch(PageActions.Creators.setIsEdit(true));
-    }
-  }
-
-  componentWillUnmount() {
-    const { dispatch } = this.props;
-    dispatch(PageActions.Creators.clearForm());
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    const { newId, isEdit, status } = this.props;
-    if (newId && newId !== prevProps.newId && status === 'form_submit_success' && !isEdit) {
-      this.addNewUserSuccess(this.form.state.values, this.props);
-    } else if (isEdit && status === 'form_submit_success') {
-      this.updateUserSuccess();
-    }
-  }
-
-  addNewUserSuccess = ({ continueAdding, user }: FormValues, { newId, roles, dispatch }: Props) => {
-    if (continueAdding) {
-      this.form.resetForm(ManageUserLogic.getFormStateReset(roles, continueAdding));
-      dispatch(PageActions.Creators.setNewId(''));
-    } else {
-      this.form.setValues({ user: { ...user, id: newId }, continueAdding: false });
-      dispatch(PageActions.Creators.setIsEdit(true));
-    }
-  };
-
-  updateUserSuccess = () => {
-    if (this.notificationRef.current) {
-      (this.notificationRef.current as any).showNotification('saved successfully!', 'success');
-    }
-  };
-
-  render() {
-    const { user, isSubmitting, classes, isEdit, roles } = this.props;
-    const formProps = { isEdit, roles, isSubmitting };
-    const userRoles = ManageUserLogic.getUserRoles(roles, user.roles as string[]);
-    return (
-      <div className={classes.root}>
-        <Notification ref={this.notificationRef} />
-        <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
-        <Formik
-          ref={(node: Formik<FormValues>) => { this.form = node; }}
-          initialValues={{ user: { ...user, roles: userRoles }, continueAdding: false }}
-          render={(props: FormikProps<FormValues>) => (<UserForm {...props} {...formProps} />)}
-          onSubmit={this.onSubmit}
-          validate={userFormValidation}
-          validateOnChange={false}
-        />
-      </div>
-    );
-  }
+  const { user, isSubmitting, classes, roles } = props;
+  const formProps = { isEdit, roles, isSubmitting };
+  const userRoles = ManageUserLogic.getUserRoles(roles, user.roles as string[]);
+  return (
+    <div className={classes.root}>
+      <Notification ref={notificationEl} />
+      <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
+      <Formik
+        innerRef={formEl}
+        initialValues={{ user: { ...user, roles: userRoles }, continueAdding: false }}
+        onSubmit={onSubmit}
+        validate={userFormValidation}
+        validateOnChange={false}
+      >
+        {(fprops) => (
+          <UserForm {...fprops} {...formProps} />
+        )}
+      </Formik>
+    </div>
+  );
 }
 
-const mapStateToProps = ({ users, userPage, roles }: AppStore, { match }: any) => {
-  const id = ManageUserLogic.getUserId(match.params.userId, userPage.newId);
+const mapStateToProps = ({ users, userPage, roles }: AppStore, props: any) => {
+  const id = ManageUserLogic.getUserId(props.router.params.userId, userPage.newId);
   const user = ManageUserLogic.getUser(id, users);
   return {
     user,
@@ -111,4 +115,4 @@ const mapStateToProps = ({ users, userPage, roles }: AppStore, { match }: any) =
   };
 };
 
-export default withStyles(styles)(connect(mapStateToProps)(ManageUserContainer));
+export default withStyles(styles)(withRouter(connect(mapStateToProps)(ManageUserContainer)));

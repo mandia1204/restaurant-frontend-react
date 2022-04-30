@@ -1,6 +1,6 @@
 import React, { Dispatch } from 'react';
 import { connect } from 'react-redux';
-import { Formik, FormikActions, FormikProps } from 'formik';
+import { Formik, FormikProps, FormikHelpers as FormikActions } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import Actions from '../../state/actions/AppActions';
 import LoginForm from './LoginForm';

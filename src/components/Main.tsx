@@ -37,15 +37,7 @@ function Main({ classes }: WithStyles<typeof styles>) {
             )}
           />
           <Route
-            path="/settings"
-            element={(
-              <PrivateRoute>
-                <Settings />
-              </PrivateRoute>
-            )}
-          />
-          <Route
-            path="/settings"
+            path="/settings/*"
             element={(
               <PrivateRoute>
                 <Settings />

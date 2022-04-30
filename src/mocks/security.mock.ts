@@ -48,7 +48,8 @@ export default webpackMockServer.add((app, _) => {
   });
 
   app.put('/securityApi/user', (_req, res) => {
-    users = users.map((u) => (u.id === _req.body.id ? _req.body.user : u));
+    // console.log('users :>> ', users);
+    users = users.map((u) => (u.id === _req.body.id ? _req.body : u));
     res.json(_req.body);
   });
 

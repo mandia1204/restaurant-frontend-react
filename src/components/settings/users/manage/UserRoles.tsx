@@ -18,7 +18,7 @@ const checkChange = ({ field, form }: FieldProps) => (e: React.ChangeEvent<any>)
 const checkComponent = ({ field, form }: FieldProps) => (
   <Checkbox
     checked={field.value}
-    onChange={checkChange({ field, form })}
+    onChange={checkChange({ field, form } as FieldProps)}
     name={field.name}
   />
 );

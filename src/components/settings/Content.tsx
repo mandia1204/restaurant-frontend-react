@@ -20,9 +20,10 @@ function Content(props: Props) {
   const { classes, className } = props;
   return (
     <main className={`${classes.main} ${className}`}>
+
       <Routes>
         <Route
-          path="/settings/users"
+          path="/users"
           element={(
             <PrivateRoute>
               <UsersMainContainer />
@@ -30,7 +31,7 @@ function Content(props: Props) {
           )}
         />
         <Route
-          path="/settings/users/manage"
+          path="/users/manage"
           element={(
             <PrivateRoute>
               <ManageUserContainer />
@@ -38,7 +39,7 @@ function Content(props: Props) {
           )}
         />
         <Route
-          path="/settings/users/manage/:userId"
+          path="/users/manage/:userId"
           element={(
             <PrivateRoute>
               <ManageUserContainer />
@@ -46,7 +47,7 @@ function Content(props: Props) {
           )}
         />
         <Route
-          path="/settings/groups"
+          path="/groups"
           element={(
             <PrivateRoute>
               <Groups />
