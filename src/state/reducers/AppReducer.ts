@@ -1,4 +1,3 @@
-// @ts-ignore
 import { createReducer } from 'reduxsauce';
 import Actions from '../actions/AppActions';
 import { AppState } from '../../types/AppStore';
