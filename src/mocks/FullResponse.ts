@@ -1,5 +1,5 @@
-import { Charts, Cards } from '../../util/Constants';
-import { DashboardModel } from '../../types/Dashboard';
+import { Charts, Cards } from '../util/Constants';
+import { DashboardModel } from '../types/Dashboard';
 
 const dashboard: DashboardModel = {
   charts: [

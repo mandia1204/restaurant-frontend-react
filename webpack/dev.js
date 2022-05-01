@@ -31,7 +31,8 @@ module.exports = merge(baseConfig('dev'), {
     setupMiddlewares: function(middlewares , devServer) {
       webpackMockServer.use(devServer.app, {
           entry: [
-              "src/mocks/security.mock.ts"
+              "src/mocks/security.mock.ts",
+              "src/mocks/dashboard.mock.ts"
           ],
           before: (req, res, next) => { // you can use this for custom-logging instead of logResponses: true, logRequests: true
               // console.log(`Got request: ${req.method} ${req.url}`);

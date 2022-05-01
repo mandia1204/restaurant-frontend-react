@@ -1,4 +1,4 @@
-import React, { Component, Dispatch } from 'react';
+import React, { Dispatch, useEffect } from 'react';
 import { connect } from 'react-redux';
 import DashboardActions from '../../state/actions/DashboardActions';
 import Actions from '../../state/actions/AppActions';
@@ -16,41 +16,32 @@ interface Props {
   dashboard: DashboardModel;
 }
 
-class DashboardContainer extends Component<Props, any> {
-  chartModelBuilder: IChartModelBuilder;
+const chartModelBuilder: IChartModelBuilder = ChartModelBuilder();
+const cardModelBuilder = CardModelBuilder();
+const anulacionesFormatter = AnulacionesFormatter();
 
-  cardModelBuilder: any;
-
-  anulacionesFormatter: any;
-
-  constructor(props: Props) {
-    super(props);
-    this.chartModelBuilder = ChartModelBuilder();
-    this.cardModelBuilder = CardModelBuilder();
-    this.anulacionesFormatter = AnulacionesFormatter();
-  }
-
-  componentDidMount() {
-    const { appState, dispatch } = this.props;
+function DashboardContainer(props: Props) {
+  const { appState, dispatch } = props;
+  useEffect(() => {
     const filters = { ...appState.dashboardFilters, ops: Ops.all };
     dispatch(DashboardActions.Creators.fetchDashboard(filters));
     dispatch(Actions.Creators.showFilters(true));
-  }
 
-  componentWillUnmount() {
-    const { dispatch } = this.props;
-    dispatch(Actions.Creators.showFilters(false));
-  }
+    return () => {
+      dispatch(Actions.Creators.showFilters(false));
+    };
+  }, []);
 
-  render() {
-    const { dashboard } = this.props;
-    const chartModel = this.chartModelBuilder.build(dashboard.charts);
-    const cardModel = this.cardModelBuilder.build(dashboard.cards);
-    const anulaciones = this.anulacionesFormatter.format(dashboard.anulaciones);
-    return (
-      <Dashboard chartModel={chartModel} anulaciones={anulaciones} cardModel={cardModel} />
-    );
-  }
+  const { dashboard } = props;
+  const chartModel = chartModelBuilder.build(dashboard.charts);
+  const cardModel = cardModelBuilder.build(dashboard.cards);
+  const anulaciones = anulacionesFormatter.format(dashboard.anulaciones);
+
+  console.log('dashboard :>> ', chartModel, cardModel, anulaciones);
+  return (
+    dashboard.charts.length === 0 ? <div>loading...</div>
+      : <Dashboard chartModel={chartModel} anulaciones={anulaciones} cardModel={cardModel} />
+  );
 }
 
 const mapStateToProps = (state: AppStore) => {
