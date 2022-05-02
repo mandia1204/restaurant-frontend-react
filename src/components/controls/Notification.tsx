@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, SyntheticEvent, useEffect } from 'react';
 import clsx from 'clsx';
 import CloseIcon from '@mui/icons-material/Close';
 import { amber, green } from '@mui/material/colors';
@@ -7,7 +7,9 @@ import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
-import { NotificationWrapperProps, NotificationProps, NotificationState, variantIcon } from '../../types/components/Notification';
+import { useSelector } from 'react-redux';
+import { NotificationWrapperProps, NotificationProps, NotificationState, variantIcon, NotificationMainState, NotificationMainProps } from '../../types/components/Notification';
+import { selectNotificationEvents } from '../../state/selectors';
 
 const useStyles1 = makeStyles((theme: Theme) => ({
   success: {
@@ -41,6 +43,7 @@ const SnackbarContentWrapper = forwardRef((props: NotificationWrapperProps, ref 
   const Icon = variantIcon[variant];
 
   return (
+
     <SnackbarContent
       ref={ref}
       className={clsx(classes[variant], className)}
@@ -61,15 +64,8 @@ const SnackbarContentWrapper = forwardRef((props: NotificationWrapperProps, ref 
   );
 });
 
-const Notification = forwardRef(({ autoHideDuration = 4000 }: NotificationProps, ref) => {
-  const [state, setState] = React.useState<NotificationState>({ open: false, message: '', variant: 'info' });
-
-  useImperativeHandle(ref, () => ({
-    showNotification(message: string, variant: keyof typeof variantIcon) {
-      setState({ open: true, message, variant });
-    },
-  }));
-
+function NotificationMain({ autoHideDuration, message, variant }: NotificationMainProps) {
+  const [state, setState] = React.useState<NotificationMainState>({ open: true });
   const onClose = (event?: SyntheticEvent<any> | Event, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
@@ -88,12 +84,28 @@ const Notification = forwardRef(({ autoHideDuration = 4000 }: NotificationProps,
     >
       <SnackbarContentWrapper
         onClose={onClose}
-        variant={state.variant}
-        message={state.message}
+        variant={variant}
+        message={message}
       />
     </Snackbar>
-
   );
-});
+}
+
+function Notification({ autoHideDuration = 4000 }: NotificationProps) {
+  const [state, setState] = React.useState<NotificationState>({ queue: [] });
+  const event = useSelector(selectNotificationEvents);
+  useEffect(() => {
+    if (event) {
+      // eslint-disable-next-line
+      console.log('notification :>> ', event);
+      setState((st) => ({ queue: [...st.queue, { id: event.id, message: event.payload.message, variant: event.payload.variant }] }));
+    }
+  }, [event]);
+  return (
+    <div>
+      {state.queue.map((item) => <NotificationMain key={item.id} autoHideDuration={autoHideDuration} message={item.message} variant={item.variant} />)}
+    </div>
+  );
+}
 
 export default Notification;

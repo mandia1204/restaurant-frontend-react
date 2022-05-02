@@ -2,6 +2,7 @@ import DashboardFilters from './DashboardFilters';
 import User, { Role } from './User';
 import { DashboardModel } from './Dashboard';
 import FormState from './FormState';
+import { AppEvents } from './Events';
 
 export interface AppState {
   showHeaderLinks: boolean;
@@ -16,4 +17,5 @@ export interface AppStore {
   users: User[];
   userPage: FormState;
   roles: Role [];
+  events: AppEvents;
 }

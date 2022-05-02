@@ -7,6 +7,7 @@ import { createAppStore } from '../state/ConfigureStore';
 import Main from './Main';
 import HeaderContainer from './header/HeaderContainer';
 import { configureAuth } from '../ConfigureAuth';
+import Notification from './controls/Notification';
 
 configureAuth();
 
@@ -23,6 +24,7 @@ function AppContainer({ classes }: WithStyles<typeof styles>) {
         <div className={classes.root}>
           <HeaderContainer />
           <Main />
+          <Notification />
         </div>
       </BrowserRouter>
     </Provider>

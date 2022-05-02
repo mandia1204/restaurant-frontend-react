@@ -21,8 +21,24 @@ export interface NotificationProps {
   autoHideDuration?: number;
 }
 
-export interface NotificationState {
-  open: boolean;
+export interface NotificationMainProps extends NotificationProps {
   message: string;
   variant: keyof typeof variantIcon;
+}
+
+export interface NotificationMainState {
+  open: boolean;
+}
+
+export interface NotificationMessage {
+  message: string;
+  variant: keyof typeof variantIcon;
+}
+
+export interface NotificationQueueItem extends NotificationMessage {
+  id: string
+}
+
+export interface NotificationState {
+  queue: NotificationQueueItem[]
 }

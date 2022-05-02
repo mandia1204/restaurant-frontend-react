@@ -5,6 +5,7 @@ import { UserReducer } from './UserReducer';
 import { UserPageReducer } from './UserPageReducer';
 import { RoleReducer } from './RoleReducer';
 import { AppStore } from '../../types/AppStore';
+import { EventsReducer } from './EventsReducer';
 
 export const RootReducer = combineReducers<AppStore>({
   dashboard: DashboardReducer,
@@ -12,4 +13,5 @@ export const RootReducer = combineReducers<AppStore>({
   users: UserReducer,
   userPage: UserPageReducer,
   roles: RoleReducer,
+  events: EventsReducer,
 });
