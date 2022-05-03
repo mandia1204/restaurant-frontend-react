@@ -7,3 +7,7 @@ export function selectAppState(store: AppStore) {
 export function selectNotificationEvents(store: AppStore) {
   return store.events.notifications;
 }
+
+export function selectEvents(store: AppStore) {
+  return store.events;
+}

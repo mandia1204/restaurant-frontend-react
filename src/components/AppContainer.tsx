@@ -8,6 +8,7 @@ import Main from './Main';
 import HeaderContainer from './header/HeaderContainer';
 import { configureAuth } from '../ConfigureAuth';
 import Notification from './controls/Notification';
+import EventViewer from './events/EventViewer';
 
 configureAuth();
 
@@ -25,6 +26,7 @@ function AppContainer({ classes }: WithStyles<typeof styles>) {
           <HeaderContainer />
           <Main />
           <Notification />
+          <EventViewer />
         </div>
       </BrowserRouter>
     </Provider>
