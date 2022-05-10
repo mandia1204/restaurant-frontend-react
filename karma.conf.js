@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
-
+const env = 'development';
 module.exports = function(config) {
   config.set({
     basePath: '',
@@ -19,7 +19,7 @@ module.exports = function(config) {
       'indexTest.js': ['webpack']
     },
     client: {
-      captureConsole: false
+      captureConsole: true
     },
     webpack: {
       // devtool: 'inline-source-map',
@@ -28,7 +28,16 @@ module.exports = function(config) {
           {
               test: /\.ts|tsx|js|jsx?$/,
               exclude: /node_modules/,
-              use: ['babel-loader']
+              use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: [
+                      ['@babel/env', { "modules": "commonjs" }] // for mocking module dependencies
+                    ]
+                  }
+                }
+              ]
           }
         ]
       },
@@ -42,14 +51,16 @@ module.exports = function(config) {
       plugins: [
         new NodePolyfillPlugin(),
         new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify('production')
+          'process.env.NODE_ENV': JSON.stringify(env)
         })
       ],
-      mode: 'production'
+      mode: env
     },
     webpackMiddleware: {
       stats: 'errors-only'
     },
+    // browserNoActivityTimeout: 300000,
+    // captureTimeout: 300000,
     reporters: ['tap-pretty'], // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     tapReporter: {
       prettify: require('faucet'),
@@ -58,7 +69,7 @@ module.exports = function(config) {
     },
     port: 9876,
     colors: true,
-    logLevel: config.LOG_DEBUG, // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO, // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     autoWatch: false, // enable / disable watching file and executing tests whenever any file changes
     browsers: ['ChromeHeadless'],// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     customLaunchers:{

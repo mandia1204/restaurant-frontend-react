@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { Auth } from '@aws-amplify/auth';
-import jwtParser from '../../util/jwtParser';
+import { parse } from '../../util/jwtParser';
 
 interface CognitoState {
   userName: string;
@@ -30,8 +30,8 @@ class CognitoUserInfo extends React.Component<any, CognitoState> {
     if (!user) {
       return Promise.resolve(null);
     }
-    const idToken = jwtParser.parse(user.getIdToken().getJwtToken()) as any;
-    const accessToken = jwtParser.parse(user.getAccessToken().getJwtToken());
+    const idToken = parse(user.getIdToken().getJwtToken()) as any;
+    const accessToken = parse(user.getAccessToken().getJwtToken());
     const refreshToken = user.getRefreshToken();
     // eslint-disable-next-line
     console.log(idToken, accessToken, refreshToken);

@@ -11,10 +11,7 @@ function UserInfo({ logout, user }: Props) {
   return (
     <Grid item>
       <span>
-        User:
-      </span>
-      <span>
-        {user.name}
+        User: {user.name}
       </span>
       <Button onClick={logout}>
         Logout

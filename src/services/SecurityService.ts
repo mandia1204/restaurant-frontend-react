@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import LocalStorageWrapper from '../wrappers/LocalStorageWrapper';
 import { tokenKey } from '../util/Constants';
-import jwtParser from '../util/jwtParser';
+import { parse } from '../util/jwtParser';
 import SecurityApi from '../api/SecurityApi';
 import LoginCredentials from '../types/LoginCredentials';
 import AuthData from '../types/AuthData';
@@ -27,13 +27,13 @@ const SecurityService = (): ISecurityService => {
     LocalStorageWrapper.remove(tokenKey);
   };
 
-  const getAuthData = (): AuthData => jwtParser.parse(LocalStorageWrapper.get(tokenKey)) as AuthData;
+  const getAuthData = (): AuthData => parse(LocalStorageWrapper.get(tokenKey)) as AuthData;
 
   const isAuthenticated = (): boolean => {
     const token = LocalStorageWrapper.get(tokenKey);
     if (!token) return false;
     // check date expiration
-    const { exp }: AuthData = jwtParser.parse(token) as AuthData;
+    const { exp }: AuthData = parse(token) as AuthData;
     if (exp < Date.now() / 1000) return false;
     return true;
   };

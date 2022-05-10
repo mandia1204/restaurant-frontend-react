@@ -30,6 +30,7 @@ function InputText(props: InputProps) {
     && errors[field].length > 0);
   return (
     <TextField
+      id={fieldName}
       error={fieldHasError(fieldName)}
       name={fieldName}
       className={classes.textField}

@@ -1,15 +1,16 @@
 import React from 'react';
 import test from 'tape';
-import { shallow } from 'enzyme';
-import '../../../setupTest';
+import { render, cleanup } from '../../util/testUtils';
 import Home from './Home';
 
 test('[Home]', (t) => {
-  t.test('--should render a div', (a) => {
-    const wrapper = shallow(<Home />);
-    const el = wrapper.find('div');
+  t.test('--should display welcome message', (a) => {
+    const { getByText } = render(<Home />);
 
-    a.equal(el.length, 1);
+    const welcomeMessage = getByText('Welcome to the jungle!!!');
+    a.true(welcomeMessage !== null, 'Welcome message displayed');
+
+    cleanup();
     a.end();
   });
   t.skip('');

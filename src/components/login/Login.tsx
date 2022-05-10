@@ -1,12 +1,13 @@
 import React, { Dispatch } from 'react';
 import { connect } from 'react-redux';
-import { Formik, FormikProps, FormikHelpers as FormikActions } from 'formik';
+import { Formik, FormikHelpers as FormikActions } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import Actions from '../../state/actions/AppActions';
 import LoginForm from './LoginForm';
 import SecurityService from '../../services/SecurityService';
 import ISecurityService from '../../types/ISecurityService';
 import LoginCredentials from '../../types/LoginCredentials';
+import EventsActions from '../../state/actions/EventsActions';
 
 interface LoginProps {
   dispatch: Dispatch<any>;
@@ -15,15 +16,15 @@ const securityService: ISecurityService = SecurityService();
 
 function Login(props: LoginProps) {
   const navigate = useNavigate();
+  const { dispatch } = props;
   const loginSuccess = (credentials: LoginCredentials) => {
     navigate('/');
-    const { dispatch } = props;
     const { Creators } = Actions;
     dispatch(Creators.updateLoginData({ user: { name: credentials.userName }, authenticated: true }));
   };
 
   const loginFail = () => {
-    alert('auth failed'); //eslint-disable-line
+    dispatch(EventsActions.Creators.sendNotification({ message: 'Authentication failed', variant: 'error' }));
   };
 
   const login = (user: LoginCredentials, setSubmitting: (isSubmitting: boolean) => void) => {
@@ -58,11 +59,14 @@ function Login(props: LoginProps) {
         userName: 'matt',
         password: 'oli1234##hard',
       }}
-      render={(fprops: FormikProps<LoginCredentials>) => (<LoginForm {...fprops} />)}
       onSubmit={onSubmit}
       validate={validate}
       validateOnChange={false}
-    />
+    >
+      {(fprops) => (
+        <LoginForm {...fprops} />
+      )}
+    </Formik>
   );
 }
 
