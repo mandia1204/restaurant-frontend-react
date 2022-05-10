@@ -1,12 +1,12 @@
 import jwtDecode from 'jwt-decode';
 
-function parse(token) {
+function parse<T>(token: string) {
   if (!token) {
     return null;
   }
 
   try {
-    return jwtDecode(token);
+    return jwtDecode<T>(token);
   } catch (err) {
     return null;
   }

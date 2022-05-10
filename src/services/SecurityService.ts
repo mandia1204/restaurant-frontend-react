@@ -27,7 +27,7 @@ const SecurityService = (): ISecurityService => {
     LocalStorageWrapper.remove(tokenKey);
   };
 
-  const getAuthData = (): AuthData => parse(LocalStorageWrapper.get(tokenKey)) as AuthData;
+  const getAuthData = (): AuthData => parse(LocalStorageWrapper.get(tokenKey) as string) as AuthData;
 
   const isAuthenticated = (): boolean => {
     const token = LocalStorageWrapper.get(tokenKey);
