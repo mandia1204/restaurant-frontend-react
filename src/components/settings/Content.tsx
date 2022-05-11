@@ -1,26 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { SxProps } from '@mui/material/styles';
 import PrivateRoute from '../routing/PrivateRoute';
 import UsersMainContainer from './users/UsersMainContainer';
 import ManageUserContainer from './users/manage/ManageUserContainer';
 import Groups from './groups/Main';
 
-const styles = createStyles({
-  main: {
-    padding: '5px 10px 0 10px',
-  },
-});
-
-interface Props extends WithStyles<typeof styles> {
-  className?: string;
-}
-
-function Content(props: Props) {
-  const { classes, className } = props;
+function Content({ styles }: {styles: SxProps}) {
   return (
-    <main className={`${classes.main} ${className}`}>
-
+    <Box component="main" sx={{ ...styles, padding: '5px 10px 0 10px' }}>
       <Routes>
         <Route
           path="/users"
@@ -55,8 +44,8 @@ function Content(props: Props) {
           )}
         />
       </Routes>
-    </main>
+    </Box>
   );
 }
 
-export default withStyles(styles)(Content);
+export default Content;

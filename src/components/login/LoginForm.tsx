@@ -1,24 +1,24 @@
 import React from 'react';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { FormikProps } from 'formik';
 import { Auth } from '@aws-amplify/auth';
+import { SxProps } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import InputText from '../controls/InputText';
 import LoginCredentials from '../../types/LoginCredentials';
 
-const styles = createStyles({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-});
+const containerStyle: SxProps = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  borderColor: 'red',
+};
 
-function LoginForm(props: FormikProps<LoginCredentials> & WithStyles<typeof styles>) {
-  const { classes, handleChange, handleBlur, isSubmitting, values, handleSubmit, errors, touched } = props;
+function LoginForm(props: FormikProps<LoginCredentials>) {
+  const { handleChange, handleBlur, isSubmitting, values, handleSubmit, errors, touched } = props;
   const textProps = { onChange: handleChange, onBlur: handleBlur, errors, touched };
   return (
-    <form className={classes.container} onSubmit={handleSubmit} autoComplete="off">
+    <Box component="form" sx={containerStyle} onSubmit={handleSubmit} autoComplete="off">
       <h1>
         Login please
       </h1>
@@ -37,16 +37,18 @@ function LoginForm(props: FormikProps<LoginCredentials> & WithStyles<typeof styl
           />
         </Grid>
         <Grid item>
-          <Button color="primary" type="submit" disabled={isSubmitting}>
-            Login
-          </Button>
+          <div>
+            <Button color="primary" variant="outlined" type="submit" disabled={isSubmitting}>
+              Login
+            </Button>
+            <Button color="primary" variant="outlined" onClick={() => Auth.federatedSignIn()}>
+              Login with Cognito
+            </Button>
+          </div>
         </Grid>
       </Grid>
-      <Button color="primary" onClick={() => Auth.federatedSignIn()}>
-        Login with Cognito
-      </Button>
-    </form>
+    </Box>
   );
 }
 
-export default withStyles(styles)(LoginForm);
+export default LoginForm;

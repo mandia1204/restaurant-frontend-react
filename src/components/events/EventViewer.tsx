@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { createStyles, WithStyles, withStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { SxProps } from '@mui/material/styles';
 import { selectEvents } from '../../state/selectors';
 import { AppEvent } from '../../types/Events';
 
-const styles = createStyles({
+const styles: Record<string, SxProps> = {
   title: {
-    color: 'red',
+    color: 'purple',
   },
   body: {
     backgroundColor: 'teal',
     textAlign: 'center',
   },
-});
+};
 
-type Props = WithStyles<typeof styles>
-
-function EventViewer({ classes }: Props) {
+function EventViewer() {
   const events = useSelector(selectEvents);
   const [eventList, setEventList] = useState<(AppEvent | null)[]>([]);
 
@@ -27,14 +26,14 @@ function EventViewer({ classes }: Props) {
   }, [events]);
 
   return (
-    <div className={classes.body}>
-      <div className={classes.title}>Events ({eventList.length}):</div>
+    <Box sx={styles.body}>
+      <Box sx={styles.title}>Events ({eventList.length}):</Box>
       <button type="button" onClick={() => { setEventList([]); }}>clear</button>
       <ul>
         {eventList.map((e) => <li key={e?.id}>id: {e?.id}, payload: {JSON.stringify(e?.payload)}</li>)}
       </ul>
-    </div>
+    </Box>
   );
 }
 
-export default withStyles(styles)(EventViewer);
+export default EventViewer;

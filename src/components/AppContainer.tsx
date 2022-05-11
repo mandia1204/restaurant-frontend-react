@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStyles, WithStyles, withStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
 import { createAppStore } from '../state/ConfigureStore';
 import Main from './Main';
 import HeaderContainer from './header/HeaderContainer';
@@ -12,25 +12,19 @@ import EventViewer from './events/EventViewer';
 
 configureAuth();
 
-const styles = createStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
-
-function AppContainer({ classes }: WithStyles<typeof styles>) {
+function AppContainer() {
   return (
     <Provider store={createAppStore()}>
       <BrowserRouter>
-        <div className={classes.root}>
+        <Box sx={{ flexGrow: 1 }}>
           <HeaderContainer />
           <Main />
           <Notification />
           <EventViewer />
-        </div>
+        </Box>
       </BrowserRouter>
     </Provider>
   );
 }
 
-export default withStyles(styles)(AppContainer);
+export default AppContainer;

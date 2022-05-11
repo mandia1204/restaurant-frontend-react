@@ -1,13 +1,14 @@
 import React from 'react';
 import Drawer from '@mui/material/Drawer';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import { SxProps } from '@mui/material/styles';
 import List from '@mui/material/List';
 import PersonIcon from '@mui/icons-material/Person';
 import GroupIcon from '@mui/icons-material/Group';
 import ListItemLink from '../routing/ListItemLink';
 
 const drawerWidth = 200;
-const styles = createStyles({
+
+const styles: Record<string, SxProps> = {
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -16,16 +17,15 @@ const styles = createStyles({
     position: 'relative',
     width: drawerWidth,
   },
-});
+};
 
-function Menu(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+function Menu() {
   return (
     <Drawer
-      className={classes.drawer}
+      sx={styles.drawer}
       variant="permanent"
-      classes={{
-        paper: classes.drawerPaper,
+      PaperProps={{
+        sx: styles.drawerPaper,
       }}
     >
       <List component="nav">
@@ -36,4 +36,4 @@ function Menu(props: WithStyles<typeof styles>) {
   );
 }
 
-export default withStyles(styles)(Menu);
+export default Menu;

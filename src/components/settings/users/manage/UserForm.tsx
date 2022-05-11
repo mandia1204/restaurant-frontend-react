@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { FormikProps } from 'formik';
@@ -11,24 +11,23 @@ import InputText from '../../../controls/InputText';
 import { FormValues } from '../../../../types/components/ManageUser';
 import UserRoles from './UserRoles';
 
-const styles = createStyles({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-});
-
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   isEdit: boolean;
   errors: any;
 }
 
 function UserForm(props: FormikProps<FormValues> & Props) {
-  const { classes, handleChange, handleBlur, isSubmitting, isEdit, values, handleSubmit, errors, touched } = props;
+  const { handleChange, handleBlur, isSubmitting, isEdit, values, handleSubmit, errors, touched } = props;
   const textProps = { onChange: handleChange, onBlur: handleBlur, errors, touched };
   const { user } = values;
   return (
-    <form className={classes.container} onSubmit={handleSubmit} autoComplete="off">
+    <Box
+      sx={{ display: 'flex',
+        flexWrap: 'wrap' }}
+      component="form"
+      onSubmit={handleSubmit}
+      autoComplete="off"
+    >
       <Grid container direction="column">
         <Grid item>
           <InputText disabled fieldName="user.id" label="Id" value={user.id.toString()} {...textProps} />
@@ -64,8 +63,8 @@ function UserForm(props: FormikProps<FormValues> & Props) {
           ) : ''}
         </Grid>
       </Grid>
-    </form>
+    </Box>
   );
 }
 
-export default withStyles(styles)(UserForm);
+export default UserForm;

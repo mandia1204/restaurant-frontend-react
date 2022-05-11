@@ -1,23 +1,17 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
 import Settings from './settings/Main';
 import PrivateRoute from './routing/PrivateRoute';
 import Login from './login/Login';
 import CognitoUserInfo from './user/CognitoUserInfo';
 
-const styles = createStyles({
-  main: {
-    padding: '5px 10px 0 10px',
-  },
-});
-
 const Home = lazy(() => import('./home/Home'));
 const DashboardContainer = lazy(() => import('./dashboard/DashboardContainer'));
 
-function Main({ classes }: WithStyles<typeof styles>) {
+function Main() {
   return (
-    <main className={classes.main}>
+    <Box component="main" sx={{ padding: '5px 10px 0 10px' }}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route
@@ -54,8 +48,8 @@ function Main({ classes }: WithStyles<typeof styles>) {
           />
         </Routes>
       </Suspense>
-    </main>
+    </Box>
   );
 }
 
-export default withStyles(styles)(Main);
+export default Main;

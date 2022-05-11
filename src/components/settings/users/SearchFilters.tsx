@@ -1,25 +1,19 @@
 import React from 'react';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Checkbox from '@mui/material/Checkbox';
 
-const styles = createStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
-
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   userNameFilter: string;
   isAdminFilter: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 function SearchFilters(props: Props) {
-  const { classes, userNameFilter, isAdminFilter, onChange } = props;
+  const { userNameFilter, isAdminFilter, onChange } = props;
   return (
-    <div className={classes.root}>
+    <Box sx={{ flexGrow: 1 }}>
       <Grid alignItems="flex-end" container spacing={10}>
         <Grid item xs={7}>
           <TextField
@@ -36,8 +30,8 @@ function SearchFilters(props: Props) {
           <Checkbox name="isAdminFilter" checked={isAdminFilter} onChange={onChange} />
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }
 
-export default withStyles(styles)(SearchFilters);
+export default SearchFilters;

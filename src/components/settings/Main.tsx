@@ -1,10 +1,10 @@
 import React from 'react';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
-import { Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import { SxProps } from '@mui/material/styles';
 import Content from './Content';
 import Menu from './Menu';
 
-const styles = ({ spacing, palette }: Theme) => createStyles({
+const styles: Record<string, SxProps> = {
   root: {
     flexGrow: 1,
     zIndex: 1,
@@ -14,20 +14,19 @@ const styles = ({ spacing, palette }: Theme) => createStyles({
   },
   content: {
     flexGrow: 1,
-    backgroundColor: palette.background.default,
-    padding: spacing(3),
+    backgroundColor: 'background.default',
+    p: 3,
     minWidth: 0, // So the Typography noWrap works
   },
-});
+};
 
-function Main(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+function Main() {
   return (
-    <div className={classes.root}>
+    <Box sx={styles.root}>
       <Menu />
-      <Content className={classes.content} />
-    </div>
+      <Content styles={styles.content} />
+    </Box>
   );
 }
 
-export default withStyles(styles)(Main);
+export default Main;

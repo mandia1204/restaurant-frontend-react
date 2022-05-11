@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import { SxProps } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,28 +11,27 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import { Link } from 'react-router-dom';
-import { Theme } from '@mui/material/styles';
 import User from '../../../types/User';
 
-const styles = ({ spacing }: Theme) => createStyles({
+const styles: Record<string, SxProps> = {
   root: {
     width: '100%',
-    marginTop: spacing(3),
+    mt: 3,
     overflowX: 'auto',
   },
   table: {
     minWidth: 700,
   },
-});
+};
 
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   users: User[];
 }
 
-function UsersTable({ classes, users }: Props) {
+function UsersTable({ users }: Props) {
   return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
+    <Paper sx={styles.root}>
+      <Table sx={styles.table}>
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
@@ -67,4 +66,4 @@ function UsersTable({ classes, users }: Props) {
   );
 }
 
-export default withStyles(styles)(UsersTable);
+export default UsersTable;

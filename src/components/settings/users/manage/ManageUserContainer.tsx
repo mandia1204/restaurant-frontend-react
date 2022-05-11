@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
 import { Formik, FormikProps } from 'formik';
 import { useParams } from 'react-router-dom';
 import UserForm from './UserForm';
@@ -13,15 +13,7 @@ import ManageUserLogic from './ManageUserLogic';
 import userFormValidation from './userFormValidation';
 import { withRouter } from '../../../../util/withRouter';
 
-const styles = createStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
-
-interface Props extends PageProps, WithStyles<typeof styles> { }
-
-function ManageUserContainer(props: Props) {
+function ManageUserContainer(props: PageProps) {
   const { userId } = useParams();
   const { dispatch } = props;
   const formEl = useRef<FormikProps<any>>(null);
@@ -30,7 +22,7 @@ function ManageUserContainer(props: Props) {
   const notifySuccess = (message: string) => {
     dispatch(sendNotification({ message, variant: 'success' }));
   };
-  const addNewUserSuccess = ({ continueAdding, user }: FormValues, { roles }: Props) => {
+  const addNewUserSuccess = ({ continueAdding, user }: FormValues, { roles }: PageProps) => {
     if (continueAdding) {
       formEl?.current?.resetForm({ values: ManageUserLogic.getFormStateReset(roles, continueAdding) });
       dispatch(setNewId(''));
@@ -69,11 +61,11 @@ function ManageUserContainer(props: Props) {
     dispatch(updateUser(user));
   };
 
-  const { user, isSubmitting, classes, roles } = props;
+  const { user, isSubmitting, roles } = props;
   const formProps = { isEdit, roles, isSubmitting };
   const userRoles = ManageUserLogic.getUserRoles(roles, user.roles as string[]);
   return (
-    <div className={classes.root}>
+    <Box sx={{ flexGrow: 1 }}>
       <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
       <Formik
         innerRef={formEl}
@@ -86,7 +78,7 @@ function ManageUserContainer(props: Props) {
           <UserForm {...fprops} {...formProps} />
         )}
       </Formik>
-    </div>
+    </Box>
   );
 }
 
@@ -103,4 +95,4 @@ const mapStateToProps = ({ users, userPage, roles }: AppStore, props: any) => {
   };
 };
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps)(ManageUserContainer)));
+export default withRouter(connect(mapStateToProps)(ManageUserContainer));

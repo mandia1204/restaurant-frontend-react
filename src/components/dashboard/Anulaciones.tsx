@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import { SxProps } from '@mui/material/styles';
 import List from '@mui/material/List';
+import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import AnulacionesItem from './AnulacionesItem';
 import Anulacion from '../../types/Anulacion';
 
-const styles = createStyles({
+const styles: Record<string, SxProps> = {
   root: {
     backgroundColor: 'white',
   },
@@ -13,16 +14,16 @@ const styles = createStyles({
     maxHeight: '350px',
     overflow: 'auto',
   },
-});
+};
 
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   anulaciones: Anulacion[];
 }
 
-function Anulaciones({ classes, anulaciones }: Props) {
+function Anulaciones({ anulaciones }: Props) {
   return (
-    <div className={classes.root}>
-      <List className={classes.list}>
+    <Box sx={styles.root}>
+      <List sx={styles.list}>
         {anulaciones.map((a, k) => (
         // eslint-disable-next-line react/no-array-index-key
           <Fragment key={k}>
@@ -31,8 +32,8 @@ function Anulaciones({ classes, anulaciones }: Props) {
           </Fragment>
         ))}
       </List>
-    </div>
+    </Box>
   );
 }
 
-export default withStyles(styles)(Anulaciones);
+export default Anulaciones;
