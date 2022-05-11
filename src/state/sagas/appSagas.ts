@@ -1,26 +1,25 @@
 import { put, call, all, takeEvery, fork } from 'redux-saga/effects';
-import Actions from '../actions/AppActions';
+import { updateLoginData } from '../reducers/AppSlice';
 import SecurityService from '../../services/SecurityService';
 
-const { Creators, Types } = Actions;
 const securityService = SecurityService();
 
 const getLoginData = () => {
   const decoded = securityService.getAuthData();
   if (decoded !== null) {
-    return { user: { name: decoded.userName }, authenticated: true };
+    return { name: decoded.userName, authenticated: true };
   }
-  return { user: { name: '' }, authenticated: false };
+  return { name: '', authenticated: false };
 };
 
 function* fetchLoginData() {
   // @ts-ignore
   const data = yield call(getLoginData);
-  yield put(Creators.updateLoginData(data));
+  yield put(updateLoginData(data));
 }
 
 const watchSagas = () => function* watch() {
-  yield takeEvery(Types.FETCH_LOGIN_DATA, fetchLoginData);
+  yield takeEvery('appState/fetchLoginData', fetchLoginData);
 };
 
 export default function* appSagas() {

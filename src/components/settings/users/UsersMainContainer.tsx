@@ -1,7 +1,7 @@
 import React, { Dispatch, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@mui/material/Grid';
-import Actions from '../../../state/actions/UserActions';
+import { fetchUsers } from '../../../state/reducers/UsersSlice';
 import UsersTable from './UsersTable';
 import SearchFilters from './SearchFilters';
 import AddUser from './AddUser';
@@ -22,7 +22,7 @@ function UsersMainContainer(props: Props) {
 
   useEffect(() => {
     const { dispatch } = props;
-    dispatch(Actions.Creators.fetchUsers());
+    dispatch(fetchUsers());
   }, []);
 
   const updateFiltersState = (event: React.ChangeEvent<HTMLInputElement>) => {

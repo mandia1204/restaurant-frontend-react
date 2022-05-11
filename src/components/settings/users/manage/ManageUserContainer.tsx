@@ -5,13 +5,13 @@ import { Formik, FormikProps } from 'formik';
 import { useParams } from 'react-router-dom';
 import UserForm from './UserForm';
 import { AppStore } from '../../../../types/AppStore';
-import Actions from '../../../../state/actions/UserActions';
-import PageActions from '../../../../state/actions/UserPageActions';
+import { updateUser } from '../../../../state/reducers/UsersSlice';
+import { setNewId, setIsEdit, clearForm, setFormSubmitting } from '../../../../state/reducers/UserPageSlice';
+import { sendNotification } from '../../../../state/reducers/EventsSlice';
 import { Props as PageProps, FormValues } from '../../../../types/components/ManageUser';
 import ManageUserLogic from './ManageUserLogic';
 import userFormValidation from './userFormValidation';
 import { withRouter } from '../../../../util/withRouter';
-import EventsActions from '../../../../state/actions/EventsActions';
 
 const styles = createStyles({
   root: {
@@ -28,15 +28,15 @@ function ManageUserContainer(props: Props) {
   const { newId, isEdit, status } = props;
 
   const notifySuccess = (message: string) => {
-    dispatch(EventsActions.Creators.sendNotification({ message, variant: 'success' }));
+    dispatch(sendNotification({ message, variant: 'success' }));
   };
   const addNewUserSuccess = ({ continueAdding, user }: FormValues, { roles }: Props) => {
     if (continueAdding) {
       formEl?.current?.resetForm({ values: ManageUserLogic.getFormStateReset(roles, continueAdding) });
-      dispatch(PageActions.Creators.setNewId(''));
+      dispatch(setNewId(''));
     } else {
       formEl?.current?.setValues({ user: { ...user, id: newId }, continueAdding: false });
-      dispatch(PageActions.Creators.setIsEdit(true));
+      dispatch(setIsEdit(true));
     }
     notifySuccess('User added successfully!');
   };
@@ -46,12 +46,12 @@ function ManageUserContainer(props: Props) {
   };
 
   useEffect(() => () => {
-    dispatch(PageActions.Creators.clearForm());
+    dispatch(clearForm());
   }, []);
 
   useEffect(() => {
     if (userId) {
-      dispatch(PageActions.Creators.setIsEdit(true));
+      dispatch(setIsEdit(true));
     }
   }, [userId]);
 
@@ -64,24 +64,16 @@ function ManageUserContainer(props: Props) {
   }, [newId, status]);
 
   const onSubmit = (values: FormValues) => {
-    dispatch(PageActions.Creators.setFormSubmitting(true));
+    dispatch(setFormSubmitting(true));
     const user = ManageUserLogic.formatUser(values.user);
-    if (isEdit) {
-      dispatch(Actions.Creators.updateUser(user));
-    } else {
-      dispatch(Actions.Creators.saveUser(user));
-    }
+    dispatch(updateUser(user));
   };
 
-  // const alertMe = () => {
-  //   dispatch(EventsActions.Creators.sendNotification({ message: 'just testing', variant: 'success' }));
-  // };
   const { user, isSubmitting, classes, roles } = props;
   const formProps = { isEdit, roles, isSubmitting };
   const userRoles = ManageUserLogic.getUserRoles(roles, user.roles as string[]);
   return (
     <div className={classes.root}>
-      {/* <button type="button" onClick={alertMe}>alert me</button> */}
       <h2>{isEdit ? 'Edit' : 'Add'} User</h2>
       <Formik
         innerRef={formEl}

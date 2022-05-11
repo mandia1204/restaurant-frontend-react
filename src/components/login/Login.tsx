@@ -2,12 +2,12 @@ import React, { Dispatch } from 'react';
 import { connect } from 'react-redux';
 import { Formik, FormikHelpers as FormikActions } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import Actions from '../../state/actions/AppActions';
+import { updateLoginData } from '../../state/reducers/AppSlice';
+import { sendNotification } from '../../state/reducers/EventsSlice';
 import LoginForm from './LoginForm';
 import SecurityService from '../../services/SecurityService';
 import ISecurityService from '../../types/ISecurityService';
 import LoginCredentials from '../../types/LoginCredentials';
-import EventsActions from '../../state/actions/EventsActions';
 
 interface LoginProps {
   dispatch: Dispatch<any>;
@@ -19,12 +19,11 @@ function Login(props: LoginProps) {
   const { dispatch } = props;
   const loginSuccess = (credentials: LoginCredentials) => {
     navigate('/');
-    const { Creators } = Actions;
-    dispatch(Creators.updateLoginData({ user: { name: credentials.userName }, authenticated: true }));
+    dispatch(updateLoginData({ name: credentials.userName, authenticated: true }));
   };
 
   const loginFail = () => {
-    dispatch(EventsActions.Creators.sendNotification({ message: 'Authentication failed', variant: 'error' }));
+    dispatch(sendNotification({ message: 'Authentication failed', variant: 'error' }));
   };
 
   const login = (user: LoginCredentials, setSubmitting: (isSubmitting: boolean) => void) => {

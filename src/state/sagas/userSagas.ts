@@ -1,11 +1,11 @@
 import { put, call, all, takeEvery, fork } from 'redux-saga/effects';
 import { AxiosResponse } from 'axios';
 import UserService from '../../services/UserService';
-import Actions from '../actions/UserActions';
-import UserPageActions from '../actions/UserPageActions';
+import { receiveUsers, updateUserSuccess, saveUserSuccess } from '../reducers/UsersSlice';
+import { formSubmitSuccess } from '../reducers/UserPageSlice';
+
 import User from '../../types/User';
 
-const { Creators, Types } = Actions;
 const service = UserService();
 
 const getUsers = () => service.getUsers();
@@ -13,32 +13,27 @@ const callSaveUser = (user: User) => service.saveUser(user);
 
 function* fetchUsers() {
   const { data }: AxiosResponse<User[]> = yield call(getUsers);
-  yield put(Creators.receiveUsers(data));
+  yield put(receiveUsers(data));
 }
 
-function* saveUser({ user }: {user: User}) {
-  const { data }: AxiosResponse<User> = yield call(callSaveUser, user);
-  const isExisting = !!user.id;
-  yield put(isExisting ? Creators.updateUserSuccess(data) : Creators.saveUserSuccess(data));
-  yield put(UserPageActions.Creators.formSubmitSuccess(isExisting ? '' : data.id));
-}
-
-function* watchSaveUser() {
-  yield takeEvery(Types.SAVE_USER, saveUser);
+function* saveUser({ payload } : any) {
+  const { data }: AxiosResponse<User> = yield call(callSaveUser, payload);
+  const isExisting = !!payload.id;
+  yield put(isExisting ? updateUserSuccess(data) : saveUserSuccess(data));
+  yield put(formSubmitSuccess(isExisting ? '' : data.id));
 }
 
 function* watchUpdateUser() {
-  yield takeEvery(Types.UPDATE_USER, saveUser);
+  yield takeEvery('users/updateUser', saveUser);
 }
 
 function* watchFetchUsers() {
-  yield takeEvery(Types.FETCH_USERS, fetchUsers);
+  yield takeEvery('users/fetchUsers', fetchUsers);
 }
 
 export default function* userSagas() {
   yield all([
     fork(watchFetchUsers),
-    fork(watchSaveUser),
     fork(watchUpdateUser),
   ]);
 }

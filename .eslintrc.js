@@ -60,6 +60,7 @@ module.exports = {
     'import/no-import-module-exports': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     'class-methods-use-this': 'off',
+    'no-param-reassign': [1, { props: true, ignorePropertyModificationsFor: ['state'] }],
     // 'no-console': 'off',
     // 'no-unused-vars':'off'
   },

@@ -4,10 +4,15 @@ import { DashboardModel } from './Dashboard';
 import FormState from './FormState';
 import { AppEvents } from './Events';
 
+export interface LoggedUser {
+  name: string;
+  authenticated: boolean;
+}
+
 export interface AppState {
   showHeaderLinks: boolean;
   showFilters: boolean;
-  loggedUser: any;
+  loggedUser: LoggedUser;
   dashboardFilters: DashboardFilters;
 }
 

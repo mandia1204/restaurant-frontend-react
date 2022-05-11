@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SecurityService from '../../services/SecurityService';
-import Actions from '../../state/actions/AppActions';
-import DashboardActions from '../../state/actions/DashboardActions';
+import { updateDashboardFilter, logout } from '../../state/reducers/AppSlice';
+import { fetchDashboard } from '../../state/reducers/DashboardSlice';
 import { Ops } from '../../util/Constants';
 import Header from './Header';
 import ISecurityService from '../../types/ISecurityService';
@@ -18,14 +18,14 @@ function HeaderContainer() {
 
   const onFiltersChange = (filter: DashboardFilters) => {
     const filters: DashboardFilters = { ...appState.dashboardFilters, ...filter, ops: Ops.all };
-    dispatch(Actions.Creators.updateDashboardFilter(filter));
-    dispatch(DashboardActions.Creators.fetchDashboard(filters));
+    dispatch(updateDashboardFilter(filter));
+    dispatch(fetchDashboard(filters));
   };
 
-  const logout = () => {
+  const logoutFn = () => {
     securityService.logout();
     navigate('login');
-    dispatch(Actions.Creators.logout());
+    dispatch(logout());
   };
 
   const { showHeaderLinks, showFilters, dashboardFilters, loggedUser } = appState;
@@ -35,7 +35,7 @@ function HeaderContainer() {
       showFilters={showFilters}
       dashboardFilters={dashboardFilters}
       onFiltersChange={onFiltersChange}
-      logout={logout}
+      logout={logoutFn}
       loggedUser={loggedUser}
     />
   );

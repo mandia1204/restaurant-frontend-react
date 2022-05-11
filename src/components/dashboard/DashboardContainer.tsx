@@ -1,7 +1,7 @@
 import React, { Dispatch, useEffect } from 'react';
 import { connect } from 'react-redux';
-import DashboardActions from '../../state/actions/DashboardActions';
-import Actions from '../../state/actions/AppActions';
+import { showFilters } from '../../state/reducers/AppSlice';
+import { fetchDashboard } from '../../state/reducers/DashboardSlice';
 import { ChartModelBuilder } from './builders/ChartModelBuilder';
 import { CardModelBuilder } from './builders/CardModelBuilder';
 import { AnulacionesFormatter } from './formatters/AnulacionesFormatter';
@@ -24,11 +24,11 @@ function DashboardContainer(props: Props) {
   const { appState, dispatch } = props;
   useEffect(() => {
     const filters = { ...appState.dashboardFilters, ops: Ops.all };
-    dispatch(DashboardActions.Creators.fetchDashboard(filters));
-    dispatch(Actions.Creators.showFilters(true));
+    dispatch(fetchDashboard(filters));
+    dispatch(showFilters(true));
 
     return () => {
-      dispatch(Actions.Creators.showFilters(false));
+      dispatch(showFilters(false));
     };
   }, []);
 
@@ -37,7 +37,6 @@ function DashboardContainer(props: Props) {
   const cardModel = cardModelBuilder.build(dashboard.cards);
   const anulaciones = anulacionesFormatter.format(dashboard.anulaciones);
 
-  console.log('dashboard :>> ', chartModel, cardModel, anulaciones);
   return (
     dashboard.charts.length === 0 ? <div>loading...</div>
       : <Dashboard chartModel={chartModel} anulaciones={anulaciones} cardModel={cardModel} />
