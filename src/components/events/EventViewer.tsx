@@ -9,9 +9,13 @@ const styles: Record<string, SxProps> = {
   title: {
     color: 'purple',
   },
-  body: {
+  main: {
     backgroundColor: 'teal',
     textAlign: 'center',
+    position: 'fixed',
+    bottom: 0,
+    right: 0,
+    width: { lg: 500, sm: 200 },
   },
 };
 
@@ -26,7 +30,7 @@ function EventViewer() {
   }, [events]);
 
   return (
-    <Box sx={styles.body}>
+    <Box sx={styles.main}>
       <Box sx={styles.title}>Events ({eventList.length}):</Box>
       <button type="button" onClick={() => { setEventList([]); }}>clear</button>
       <ul>

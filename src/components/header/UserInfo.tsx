@@ -11,8 +11,8 @@ interface Props {
 
 function UserInfo({ logout, user }: Props) {
   return (
-    <Grid item>
-      <Box component="span" sx={{ color: 'grey.A100' }}>
+    <Grid item id="userInfo">
+      <Box component="span" sx={{ color: 'grey.A100', mr: 1 }}>
         User: {user.name}
       </Box>
       <Button color="secondary" variant="outlined" onClick={logout}>

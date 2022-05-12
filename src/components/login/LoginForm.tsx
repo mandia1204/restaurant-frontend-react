@@ -11,7 +11,15 @@ import LoginCredentials from '../../types/LoginCredentials';
 const containerStyle: SxProps = {
   display: 'flex',
   flexWrap: 'wrap',
-  borderColor: 'red',
+  width: { lg: 400, xl: 500, sm: 200 },
+};
+
+const buttonsBar: SxProps = {
+  p: 1,
+};
+
+const buttonStyle: SxProps = {
+  mr: 1,
 };
 
 function LoginForm(props: FormikProps<LoginCredentials>) {
@@ -36,15 +44,13 @@ function LoginForm(props: FormikProps<LoginCredentials>) {
             {...textProps}
           />
         </Grid>
-        <Grid item>
-          <div>
-            <Button color="primary" variant="outlined" type="submit" disabled={isSubmitting}>
-              Login
-            </Button>
-            <Button color="primary" variant="outlined" onClick={() => Auth.federatedSignIn()}>
-              Login with Cognito
-            </Button>
-          </div>
+        <Grid item sx={buttonsBar}>
+          <Button color="primary" variant="outlined" type="submit" disabled={isSubmitting} sx={buttonStyle}>
+            Login
+          </Button>
+          <Button color="primary" variant="outlined" onClick={() => Auth.federatedSignIn()}>
+            Login with Cognito
+          </Button>
         </Grid>
       </Grid>
     </Box>

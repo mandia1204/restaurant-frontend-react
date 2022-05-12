@@ -1,6 +1,6 @@
 import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Filters from './Filters';
 import UserInfo from './UserInfo';
@@ -20,40 +20,36 @@ interface Props {
 
 function Header({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChange, logout, loggedUser }: Props) {
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Grid container spacing={8}>
-          <Grid item xs> { showHeaderLinks && <NavBar /> } </Grid>
-          <Grid item xs={6}>
-            { showHeaderLinks && showFilters
-                        && (
-                          <>
-                            <Grid sx={{ display: { sm: 'none', xl: 'block' } }} container alignItems="center" style={{ height: '100%' }}>
-                              <Filters values={dashboardFilters} filtersChange={onFiltersChange} />
-                            </Grid>
-                            <Grid sx={{ display: { sm: 'block', md: 'none' } }} item>
-                              <FiltersPopup values={dashboardFilters} filtersChange={onFiltersChange} />
-                            </Grid>
-                          </>
-                        )}
-          </Grid>
-          <Grid item xs>
-            { showHeaderLinks
-                    && (
-                      <Grid container justifyContent="flex-end">
-                        <Grid sx={{ display: { sm: 'none', md: 'block' } }} item>
-                          <UserInfo logout={logout} user={loggedUser} />
-                        </Grid>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          { showHeaderLinks && <NavBar /> }
+          { showHeaderLinks && showFilters && (
+            <>
+              <Box sx={{ display: { sm: 'none', xl: 'block' } }}>
+                <Filters values={dashboardFilters} filtersChange={onFiltersChange} />
+              </Box>
+              <Box sx={{ display: { sm: 'block', md: 'none' } }}>
+                <FiltersPopup values={dashboardFilters} filtersChange={onFiltersChange} />
+              </Box>
+            </>
+          )}
+          <Box sx={{ flexGrow: 1 }} />
+          { showHeaderLinks
+            && (
+              <>
+                <Box sx={{ display: { sm: 'none', md: 'block' } }}>
+                  <UserInfo logout={logout} user={loggedUser} />
+                </Box>
+                <Box sx={{ display: { sm: 'block', md: 'none' } }}>
+                  <Menu />
+                </Box>
+              </>
+            )}
+        </Toolbar>
+      </AppBar>
+    </Box>
 
-                        <Grid sx={{ display: { sm: 'block', md: 'none' } }} item>
-                          <Menu />
-                        </Grid>
-                      </Grid>
-                    )}
-          </Grid>
-        </Grid>
-      </Toolbar>
-    </AppBar>
   );
 }
 
