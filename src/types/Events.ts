@@ -5,4 +5,5 @@ export interface AppEvent {
 
 export interface AppEvents {
   notifications: AppEvent | null;
+  settingsMenuChanged: AppEvent | null;
 }

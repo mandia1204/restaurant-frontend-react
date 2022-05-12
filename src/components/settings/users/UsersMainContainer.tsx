@@ -1,6 +1,7 @@
 import React, { Dispatch, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import { fetchUsers } from '../../../state/reducers/UsersSlice';
 import UsersTable from './UsersTable';
 import SearchFilters from './SearchFilters';
@@ -47,7 +48,9 @@ function UsersMainContainer(props: Props) {
 
   return (
     <div>
-      <h2>Users</h2>
+      <Typography variant="h5" gutterBottom component="div">
+        Users
+      </Typography>
       <Grid alignItems="flex-end" container>
         <Grid item xs={10}>
           <SearchFilters

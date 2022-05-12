@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import AppContainer from './components/AppContainer';
-import './index.scss';
+import './styles/index.scss';
+import './styles/reset.scss';
 import '@babel/polyfill';
 import theme from './theme';
 

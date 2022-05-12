@@ -6,11 +6,20 @@ import PrivateRoute from '../routing/PrivateRoute';
 import UsersMainContainer from './users/UsersMainContainer';
 import ManageUserContainer from './users/manage/ManageUserContainer';
 import Groups from './groups/Main';
+import Landing from './Landing';
 
 function Content({ styles }: {styles: SxProps}) {
   return (
     <Box component="main" sx={{ ...styles, padding: '5px 10px 0 10px' }}>
       <Routes>
+        <Route
+          path="/"
+          element={(
+            <PrivateRoute>
+              <Landing />
+            </PrivateRoute>
+          )}
+        />
         <Route
           path="/users"
           element={(

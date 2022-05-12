@@ -11,3 +11,15 @@ export function selectNotificationEvents(store: AppStore) {
 export function selectEvents(store: AppStore) {
   return store.events;
 }
+
+export function selectUsers(store: AppStore) {
+  return store.users;
+}
+
+export function selectRoles(store: AppStore) {
+  return store.roles;
+}
+
+export function selectSettingsMenuChanged(store: AppStore) {
+  return store.events.settingsMenuChanged?.payload;
+}

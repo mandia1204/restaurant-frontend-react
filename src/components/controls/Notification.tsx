@@ -1,4 +1,4 @@
-import React, { forwardRef, SyntheticEvent, useEffect } from 'react';
+import React, { forwardRef, SyntheticEvent, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import CloseIcon from '@mui/icons-material/Close';
 import { amber, green } from '@mui/material/colors';
@@ -65,7 +65,7 @@ const SnackbarContentWrapper = forwardRef((props: NotificationWrapperProps, ref 
 });
 
 function NotificationMain({ autoHideDuration, message, variant }: NotificationMainProps) {
-  const [state, setState] = React.useState<NotificationMainState>({ open: true });
+  const [state, setState] = useState<NotificationMainState>({ open: true });
   const onClose = (event?: SyntheticEvent<any> | Event, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
@@ -92,7 +92,7 @@ function NotificationMain({ autoHideDuration, message, variant }: NotificationMa
 }
 
 function Notification({ autoHideDuration = 4000 }: NotificationProps) {
-  const [state, setState] = React.useState<NotificationState>({ queue: [] });
+  const [state, setState] = useState<NotificationState>({ queue: [] });
   const event = useSelector(selectNotificationEvents);
   useEffect(() => {
     if (event) {

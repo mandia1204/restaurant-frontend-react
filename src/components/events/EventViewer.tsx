@@ -27,6 +27,9 @@ function EventViewer() {
     if (events && events.notifications) {
       setEventList((list) => ([...list, events.notifications]));
     }
+    if (events && events.settingsMenuChanged) {
+      setEventList((list) => ([...list, events.settingsMenuChanged]));
+    }
   }, [events]);
 
   return (
