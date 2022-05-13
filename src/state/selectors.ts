@@ -20,6 +20,10 @@ export function selectRoles(store: AppStore) {
   return store.roles;
 }
 
+export function selectTheme(store: AppStore) {
+  return store.appState.theme;
+}
+
 export function selectSettingsMenuChanged(store: AppStore) {
   return store.events.settingsMenuChanged?.payload;
 }

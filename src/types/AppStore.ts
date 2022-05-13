@@ -14,6 +14,7 @@ export interface AppState {
   showFilters: boolean;
   loggedUser: LoggedUser;
   dashboardFilters: DashboardFilters;
+  theme: string;
 }
 
 export interface AppStore {
