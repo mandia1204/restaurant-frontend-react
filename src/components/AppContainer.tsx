@@ -11,23 +11,24 @@ import HeaderContainer from './header/HeaderContainer';
 import { configureAuth } from '../ConfigureAuth';
 import Notification from './controls/Notification';
 import EventViewer from './events/EventViewer';
-import { selectTheme } from '../state/selectors';
+import { selectTheme, selectShowEvents } from '../state/selectors';
 
 configureAuth();
 
-function Container(){
+function Container() {
+  const showEvents = useSelector(selectShowEvents);
   const selectedTheme = useSelector(selectTheme);
 
   return (
     <ThemeProvider theme={themeMap[selectedTheme]}>
       <Box sx={{ flexGrow: 1 }}>
-            <HeaderContainer />
-            <Main />
-            <Notification />
-            <EventViewer />
+        <HeaderContainer />
+        <Main />
+        <Notification />
+        {showEvents && <EventViewer />}
       </Box>
     </ThemeProvider>
-  )
+  );
 }
 
 function AppContainer() {

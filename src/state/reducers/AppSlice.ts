@@ -10,7 +10,8 @@ const INITIAL_STATE: AppState = {
   showFilters: false,
   loggedUser: { name: '', authenticated: false },
   dashboardFilters: getDefaultFilters(),
-  theme: 'light'
+  theme: 'light',
+  showEvents: false,
 };
 
 const appSlice = createSlice({
@@ -31,8 +32,11 @@ const appSlice = createSlice({
         state.dashboardFilters.month = action.payload.month;
       }
     },
-    setTheme(state, action){
+    setTheme(state, action) {
       state.theme = action.payload;
+    },
+    setShowEvents(state, action) {
+      state.showEvents = action.payload;
     },
     updateLoginData(state, action: PayloadAction<LoggedUser>) {
       state.loggedUser.name = action.payload.name;
@@ -42,10 +46,10 @@ const appSlice = createSlice({
       return state;
     },
     logout(state) {
-      return { ...INITIAL_STATE, theme: state.theme, dashboardFilters: getDefaultFilters() };
+      return { ...INITIAL_STATE, theme: state.theme, showEvents: state.showEvents, dashboardFilters: getDefaultFilters() };
     },
   },
 });
 
-export const { showNavLinks, showFilters, setTheme, updateDashboardFilter, updateLoginData, fetchLoginData, logout } = appSlice.actions;
+export const { showNavLinks, showFilters, setTheme, setShowEvents, updateDashboardFilter, updateLoginData, fetchLoginData, logout } = appSlice.actions;
 export default appSlice.reducer;

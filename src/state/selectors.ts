@@ -24,6 +24,10 @@ export function selectTheme(store: AppStore) {
   return store.appState.theme;
 }
 
+export function selectShowEvents(store: AppStore) {
+  return store.appState.showEvents;
+}
+
 export function selectSettingsMenuChanged(store: AppStore) {
   return store.events.settingsMenuChanged?.payload;
 }

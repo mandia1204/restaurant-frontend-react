@@ -1,5 +1,5 @@
 import { createTheme, Theme } from '@mui/material/styles';
-import { red, blue, grey, blueGrey, orange } from '@mui/material/colors';
+import { red, blue, grey, blueGrey, orange, teal } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -15,6 +15,9 @@ const theme = createTheme({
     },
     error: {
       main: red.A400,
+    },
+    info: {
+      main: teal[300],
     },
   },
 });
@@ -33,6 +36,9 @@ const darkTheme = createTheme({
     },
     error: {
       main: red.A400,
+    },
+    info: {
+      main: orange[100],
     },
   },
 });

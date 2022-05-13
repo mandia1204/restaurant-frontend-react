@@ -1,18 +1,18 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from 'react-redux';
+import Radio from '@mui/material/Radio';
 import { setTheme } from '../../state/reducers/AppSlice';
 import { selectTheme } from '../../state/selectors';
-import Radio from '@mui/material/Radio';
 
 const themeList = [
   {
-    name: 'Light', value: 'light'
+    name: 'Light', value: 'light',
   },
   {
-    name: 'Dark', value: 'dark'
-  }
-]
+    name: 'Dark', value: 'dark',
+  },
+];
 
 export default function themeSelection() {
   const theme = useSelector(selectTheme);
@@ -23,12 +23,13 @@ export default function themeSelection() {
   };
 
   return (
-  <Box component="ul">
-    { themeList.map(t => (
-    <li key={t.name}>
-      <Radio checked={theme === t.value} name="theme-radio" onChange={handleChange} value={t.value} />
-      <span>{t.name}</span>
-    </li>
-    ))}
-  </Box>)
+    <Box component="ul">
+      { themeList.map((t) => (
+        <Box component="li" key={t.name}>
+          <Radio checked={theme === t.value} name="theme-radio" onChange={handleChange} value={t.value} />
+          <span>{t.name}</span>
+        </Box>
+      ))}
+    </Box>
+  );
 }

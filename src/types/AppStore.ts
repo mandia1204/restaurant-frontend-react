@@ -15,6 +15,7 @@ export interface AppState {
   loggedUser: LoggedUser;
   dashboardFilters: DashboardFilters;
   theme: string;
+  showEvents: boolean;
 }
 
 export interface AppStore {
