@@ -5,16 +5,17 @@ import { SxProps } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { selectUsers } from '../../state/selectors';
 import { fetchUsers } from '../../state/reducers/UsersSlice';
-import ThemeSelection from './themeSelection'
+import ThemeSelection from './themeSelection';
 
 const styles: Record<string, SxProps> = {
   panelMain: {
     borderRadius: '4px',
-    border: '1px solid #337ab7',
-    mb: 2
+    border: '1px solid',
+    borderColor: 'primary.main',
+    mb: 2,
   },
   panelHeader: {
-    backgroundColor: '#337ab7',
+    backgroundColor: 'primary.main',
     color: 'white',
     p: 1,
   },

@@ -1,14 +1,17 @@
 import { createTheme, Theme } from '@mui/material/styles';
-import { red, blue, grey, blueGrey } from '@mui/material/colors';
+import { red, blue, grey, blueGrey, orange } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: blue[500],
-      light: blue[200],
+      light: blue[100],
+      main: blue[300],
+      dark: blue[500],
     },
     secondary: {
-      main: grey.A400,
+      light: grey[100],
+      main: grey[300],
+      dark: grey[500],
     },
     error: {
       main: red.A400,
@@ -19,11 +22,14 @@ const theme = createTheme({
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: blueGrey[500],
-      light: blueGrey[200],
+      light: blueGrey[100],
+      main: blueGrey[300],
+      dark: blueGrey[500],
     },
     secondary: {
-      main: blueGrey.A400,
+      light: orange[100],
+      main: orange[300],
+      dark: orange[500],
     },
     error: {
       main: red.A400,
@@ -31,9 +37,9 @@ const darkTheme = createTheme({
   },
 });
 
-const themeMap : Record<string,Theme> = {
+const themeMap : Record<string, Theme> = {
   light: theme,
-  dark: darkTheme
-}
+  dark: darkTheme,
+};
 
 export default themeMap;

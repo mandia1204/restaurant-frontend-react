@@ -21,7 +21,7 @@ interface Props {
 function Header({ showHeaderLinks, showFilters, dashboardFilters, onFiltersChange, logout, loggedUser }: Props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: 'primary.dark' }}>
         <Toolbar>
           { showHeaderLinks && <NavBar /> }
           { showHeaderLinks && showFilters && (

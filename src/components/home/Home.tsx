@@ -1,10 +1,14 @@
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 function Home() {
   return (
-    <div className="colortest">
-      Welcome to the jungle!!!
-    </div>
+    <Box sx={{ color: 'primary.main', textAlign: 'center' }}>
+      <Typography variant="h4" gutterBottom component="div">
+        Welcome to the jungle!!!
+      </Typography>
+    </Box>
+
   );
 }
 
