@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Settings from './settings/Main';
+import Features from './features/Main';
 import PrivateRoute from './routing/PrivateRoute';
 import Login from './login/Login';
 import CognitoUserInfo from './user/CognitoUserInfo';
@@ -36,6 +37,12 @@ function Main() {
               <PrivateRoute>
                 <Settings />
               </PrivateRoute>
+            )}
+          />
+          <Route
+            path="/features/*"
+            element={(
+              <Features />
             )}
           />
           <Route
