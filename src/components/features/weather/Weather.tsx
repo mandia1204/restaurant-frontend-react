@@ -1,44 +1,72 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect, useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
-import Search from './Search';
+import LocationSearch from './LocationSearch';
 import WeatherList from './WeatherList';
-import { Forecast } from '../../../types/components/Weather';
+import WeatherApi from '../../../api/WeatherApi';
+import { Forecast, WeatherLocation } from '../../../types/components/Weather';
+import { LocationList } from './LocationList';
 
 interface State {
   forecasts: Forecast[],
+  locations: WeatherLocation[],
   location: string,
+  locationId: number,
   searching: boolean,
   noDataAfterSearch: boolean
 }
 
-const weatherReducer = (state: State, action: any) => {
+const initialState: State = { forecasts: [], locations: [], location: '', locationId: 0, searching: false, noDataAfterSearch: false };
+const weatherReducer = (state: State, action: any): State => {
   console.log('action', action);
   switch (action.type) {
-    case 'weather/searchCompleted':
-      return { forecasts: action.forecasts, searching: false, location: action.location, noDataAfterSearch: false };
+    case 'weather/locationFoundSingle':
+      return { ...state, locations: [], location: action.location, locationId: action.locationId, noDataAfterSearch: false };
     case 'weather/searching':
       return { ...state, searching: action.searching };
     case 'weather/recordsNotFound':
-      return { searching: false, forecasts: [], location: '', noDataAfterSearch: true };
+      return { ...initialState, noDataAfterSearch: true };
+    case 'weather/recieveLocation':
+      return { ...state, locations: [], location: action.location, locationId: action.locationId };
+    case 'weather/receiveLocations':
+      return { ...state, searching: false, locations: action.locations };
+    case 'weather/receiveForecasts':
+      return { ...state, searching: false, forecasts: action.forecasts };
     default:
       throw new Error();
   }
 };
 
+const api = WeatherApi();
+
 export function Weather() {
-  const [state, dispatch] = useReducer(weatherReducer, { forecasts: [], location: '', searching: false, noDataAfterSearch: false });
+  const [state, dispatch] = useReducer(weatherReducer, initialState);
+  const { location, locationId, locations } = state;
+
+  const fetchForecasts = useCallback(async (locationIdParam: number) => {
+    const { data: forecasts } = await api.getLocationWeather(locationIdParam);
+    dispatch({ type: 'weather/receiveForecasts', forecasts });
+  }, []);
+
+  useEffect(() => {
+    if (locationId === 0) return;
+    fetchForecasts(locationId);
+  }, [locationId]);
+
+  const onLocationSelected = useCallback(async (selectedLocation: WeatherLocation) => {
+    dispatch({ type: 'weather/searching', searching: true });
+    dispatch({ type: 'weather/recieveLocation', location: selectedLocation.locationName, locationId: selectedLocation.id });
+  }, []);
 
   const contents = (
     <Box>
-      <Search dispatch={dispatch} searching={state.searching} />
+      <LocationSearch dispatch={dispatch} searching={state.searching} />
+      { locations.length > 1 && <LocationList locations={locations} onLocationSelected={onLocationSelected} /> }
       {
-        state.location
-      && <Typography sx={{ color: 'secondary.dark' }} variant="h5" gutterBottom>Location: {state.location}</Typography>
+        location
+      && <Typography sx={{ color: 'secondary.dark', mt: 2 }} variant="h5" gutterBottom>Location: {location}</Typography>
       }
       {
-        state.forecasts
-       && state.forecasts.length > 1
-       && <WeatherList forecasts={state.forecasts} />
+        state.forecasts.length > 0 && <WeatherList forecasts={state.forecasts} />
       }
       {
         state.noDataAfterSearch && (

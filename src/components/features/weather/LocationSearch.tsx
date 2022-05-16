@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { LocationList } from './LocationList';
 import useDebounce from '../../../hooks/useDebounce';
 import WeatherApi from '../../../api/WeatherApi';
 import './Search.scss';
@@ -17,20 +16,15 @@ function Search({ dispatch, searching }: Props) {
   const inputEl = useRef<HTMLInputElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
-  const [locations, setLocations] = useState<WeatherLocation[]>([]);
   const isValidInput = (searchTerm.length > 2);
 
   const processFoundLocations = useCallback(async (foundLocations: WeatherLocation[]) => {
     if (foundLocations.length === 1) {
-      setLocations([]);
-      const { data: forecasts } = await api.getLocationWeather(foundLocations[0].id.toString());
-      dispatch({ type: 'weather/searchCompleted', forecasts, location: foundLocations[0].locationName });
+      dispatch({ type: 'weather/locationFoundSingle', location: foundLocations[0].locationName, locationId: foundLocations[0].id });
     } else if (foundLocations.length > 1) {
-      setLocations(foundLocations);
-      dispatch({ type: 'weather/searching', searching: false });
+      dispatch({ type: 'weather/receiveLocations', locations: foundLocations });
     } else {
-      setLocations([]);
-      dispatch({ type: 'weather/recordsNotFound', forecasts: [] });
+      dispatch({ type: 'weather/recordsNotFound' });
     }
   }, []);
 
@@ -48,8 +42,7 @@ function Search({ dispatch, searching }: Props) {
         dispatch({ type: 'weather/searching', searching: true });
         fetchLocations();
       } else {
-        setLocations([]);
-        dispatch({ type: 'weather/searching', searching: false });
+        dispatch({ type: 'weather/receiveLocations', locations: [] });
       }
     },
     [debouncedSearchTerm],
@@ -63,13 +56,6 @@ function Search({ dispatch, searching }: Props) {
     }
   }, [searching]);
 
-  const onLocationSelected = useCallback(async (selectedLocation: WeatherLocation) => {
-    dispatch({ type: 'weather/searching', searching: true });
-    processFoundLocations([selectedLocation]);
-    if (inputEl.current) {
-      inputEl.current.value = selectedLocation.locationName;
-    }
-  }, []);
   return (
     <Box>
       <Box>
@@ -83,7 +69,6 @@ function Search({ dispatch, searching }: Props) {
         { searchTerm && !isValidInput && <Box>Enter at least 3 characters</Box>}
         {searching && <span className="searching"><em>Searching...</em></span>}
       </Box>
-      { locations.length > 1 && <LocationList locations={locations} onLocationSelected={onLocationSelected} /> }
     </Box>
   );
 }
