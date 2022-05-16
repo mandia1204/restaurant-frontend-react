@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import useDebounce from '../../../hooks/useDebounce';
@@ -12,8 +12,8 @@ interface Props {
 }
 
 const api = WeatherApi();
-function Search({ dispatch, searching }: Props) {
-  const inputEl = useRef<HTMLInputElement>(null);
+
+const Search = forwardRef(({ dispatch, searching }: Props, ref : any) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
   const isValidInput = (searchTerm.length > 2);
@@ -48,20 +48,12 @@ function Search({ dispatch, searching }: Props) {
     [debouncedSearchTerm],
   );
 
-  useEffect(() => {
-    if (inputEl.current && !searching) {
-      inputEl.current.focus();
-      inputEl.current.selectionStart = inputEl.current.value.length;
-      inputEl.current.selectionEnd = inputEl.current.value.length;
-    }
-  }, [searching]);
-
   return (
     <Box>
       <Box>
         <TextField
           disabled={searching}
-          inputRef={inputEl}
+          inputRef={ref}
           className="search-input"
           placeholder="enter location"
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -71,6 +63,6 @@ function Search({ dispatch, searching }: Props) {
       </Box>
     </Box>
   );
-}
+});
 
 export default Search;

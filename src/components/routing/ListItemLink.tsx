@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import ListItem from '@mui/material/ListItem';
 import { SxProps } from '@mui/material/styles';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -16,8 +16,8 @@ interface ListItemLinkProps {
 export default function ListItemLink(props: ListItemLinkProps) {
   const { icon, primary, to, onClick, sx } = props;
 
-  const renderLink = React.useMemo(
-    () => React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'innerRef' | 'to'>>(
+  const renderLink = useMemo(
+    () => forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'innerRef' | 'to'>>(
       (itemProps, ref) => (
         <RouterLink to={to} {...itemProps} ref={ref} />
       ),

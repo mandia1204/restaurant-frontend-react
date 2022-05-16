@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useCallback } from 'react';
+import React, { useReducer, useEffect, useCallback, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import LocationSearch from './LocationSearch';
 import WeatherList from './WeatherList';
@@ -40,7 +40,8 @@ const api = WeatherApi();
 
 export function Weather() {
   const [state, dispatch] = useReducer(weatherReducer, initialState);
-  const { location, locationId, locations } = state;
+  const { location, locationId, locations, searching } = state;
+  const searchEl = useRef<HTMLInputElement>(null);
 
   const fetchForecasts = useCallback(async (locationIdParam: number) => {
     const { data: forecasts } = await api.getLocationWeather(locationIdParam);
@@ -52,6 +53,14 @@ export function Weather() {
     fetchForecasts(locationId);
   }, [locationId]);
 
+  useEffect(() => {
+    if (searchEl.current && !searching) {
+      searchEl.current.focus();
+      searchEl.current.selectionStart = searchEl.current.value.length;
+      searchEl.current.selectionEnd = searchEl.current.value.length;
+    }
+  }, [searching]);
+
   const onLocationSelected = useCallback(async (selectedLocation: WeatherLocation) => {
     dispatch({ type: 'weather/searching', searching: true });
     dispatch({ type: 'weather/recieveLocation', location: selectedLocation.locationName, locationId: selectedLocation.id });
@@ -59,7 +68,7 @@ export function Weather() {
 
   const contents = (
     <Box>
-      <LocationSearch dispatch={dispatch} searching={state.searching} />
+      <LocationSearch ref={searchEl} dispatch={dispatch} searching={state.searching} />
       { locations.length > 1 && <LocationList locations={locations} onLocationSelected={onLocationSelected} /> }
       {
         location
